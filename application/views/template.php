@@ -345,14 +345,9 @@
   </div>
   <!-- Core JS -->
   <!-- build:js <?= base_url() ?>assets/vendor/js/core.js -->
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="<?= base_url() ?>assets/admin/vendor/libs/jquery/jquery.js"></script>
   <script src="<?= base_url() ?>assets/admin/vendor/libs/popper/popper.js"></script>
   <script src="<?= base_url() ?>assets/admin/vendor/js/bootstrap.js"></script>
   <script src="<?= base_url() ?>assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></!--script-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

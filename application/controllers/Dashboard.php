@@ -14,6 +14,6 @@ class Dashboard extends CI_Controller
 			"satuan" => $this->satuan->index(),
 			"title" => 'Dashboard'
 		);
-		$this->template->load('template', 'dashboard', $data);
+		$this->template->load('template', 'dashboard/index', $data);
 	}
 }
