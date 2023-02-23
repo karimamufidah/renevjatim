@@ -3,15 +3,16 @@ class Get_highest_penghantar_this_month_panel_m extends CI_Model
 {
   private function _get_table_name()
   {
-    return "penghantar_realisasi_table AS main";
+    return "penghantar_realisasi AS main";
   }
 
-  public function show()
+  public function show($column)
   {
-    $this->db->select("main.logged_at, mw AS value");
-    $this->db->where("MONTH(logged_at) = MONTH(NOW())");
-    $this->db->where("YEAR(logged_at) = YEAR(NOW())");
-    $this->db->order_by("mw", "DESC");
+    $this->db->select("main.tanggal, $column AS value, '$column' AS waktu");
+    $this->db->where("satuan", "MW");
+    $this->db->where("MONTH(tanggal) = MONTH(NOW())");
+    $this->db->where("YEAR(tanggal) = YEAR(NOW())");
+    $this->db->order_by($column, "DESC");
     $this->db->limit(1);
 
     $query = $this->db->get($this->_get_table_name());

@@ -36,7 +36,7 @@
       url: `${urlAPIPenghantarHighestThisMonth}`
     });
 
-    fillInner("penghantar-highest-this-month", data.value);
+    fillInner("penghantar-highest-this-month", `${data.value} MW`);
     fillInner("penghantar-highest-this-month-datetime", getDateFormatOptions(data.logged_at));
   }
 
@@ -45,7 +45,7 @@
       url: `${urlAPIPenghantarHighestThisYear}`
     });
 
-    fillInner("penghantar-highest-this-year", data.value);
+    fillInner("penghantar-highest-this-year", `${data.value} MW`);
     fillInner("penghantar-highest-this-year-datetime", getDateFormatOptions(data.logged_at));
   }
 
@@ -54,7 +54,7 @@
       url: `${urlAPIPenghantarHighestThisAllTime}`
     });
 
-    fillInner("penghantar-highest-all-time", data.value);
+    fillInner("penghantar-highest-all-time", `${data.value} MW`);
     fillInner("penghantar-highest-all-time-datetime", getDateFormatOptions(data.logged_at));
   }
 

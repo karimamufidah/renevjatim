@@ -28,15 +28,64 @@ class Get_highest_penghantar_this_month_panel extends CI_Controller
     if (!$response->success) return;
 
     $this->load->model("panel/Get_highest_penghantar_this_month_panel_m", "main");
+    $this->load->helper("jam");
 
-    $response->data = $this->main->show();
+    $data = array(
+      $this->_get_value("eval_0030"), $this->_get_value("eval_0100"),
+      $this->_get_value("eval_0130"), $this->_get_value("eval_0200"),
+      $this->_get_value("eval_0230"), $this->_get_value("eval_0300"),
+      $this->_get_value("eval_0330"), $this->_get_value("eval_0400"),
+      $this->_get_value("eval_0430"), $this->_get_value("eval_0500"),
+      $this->_get_value("eval_0530"), $this->_get_value("eval_0600"),
+      $this->_get_value("eval_0630"), $this->_get_value("eval_0700"),
+      $this->_get_value("eval_0730"), $this->_get_value("eval_0800"),
+      $this->_get_value("eval_0830"), $this->_get_value("eval_0900"),
+      $this->_get_value("eval_0930"), $this->_get_value("eval_1000"),
+      $this->_get_value("eval_1030"), $this->_get_value("eval_1100"),
+      $this->_get_value("eval_1130"), $this->_get_value("eval_1200"),
+      $this->_get_value("eval_1230"), $this->_get_value("eval_1300"),
+      $this->_get_value("eval_1330"), $this->_get_value("eval_1400"),
+      $this->_get_value("eval_1430"), $this->_get_value("eval_1500"),
+      $this->_get_value("eval_1530"), $this->_get_value("eval_1600"),
+      $this->_get_value("eval_1630"), $this->_get_value("eval_1700"),
+      $this->_get_value("eval_1730"), $this->_get_value("eval_1800"),
+      $this->_get_value("eval_1830"), $this->_get_value("eval_1900"),
+      $this->_get_value("eval_1930"), $this->_get_value("eval_2000"),
+      $this->_get_value("eval_2030"), $this->_get_value("eval_2100"),
+      $this->_get_value("eval_2130"), $this->_get_value("eval_2200"),
+      $this->_get_value("eval_2230"), $this->_get_value("eval_2300"),
+      $this->_get_value("eval_2330"), $this->_get_value("eval_2400")
+    );
 
-    if (!$response->data) {
-      $this->load->helper("jam");
-      $response->data = (object) array(
-        "logged_at" => generate_timezone_timestamp(null),
-        "value" => 0
-      );
-    }
+    usort($data, function ($firstData, $secondData) {
+      return strcmp($firstData->value, $secondData->value);
+    });
+
+    $data = $data[0];
+    $time = $this->_generate_time($data->waktu);
+    $data->logged_at = "$data->tanggal $time";
+
+    unset($data->tanggal);
+    unset($data->waktu);
+
+    $response->data = $data;
+  }
+
+  private function _get_value($column)
+  {
+    $data = $this->main->show($column);
+    $date = new DateTime();
+
+    return $data ? $data : (object) array(
+      "tanggal" => $date->format("Y-m-d"),
+      "waktu" => $column,
+      "value" => 0
+    );
+  }
+
+  private function _generate_time($timestring)
+  {
+    $timestring = str_replace("eval_", "", $timestring);
+    return substr($timestring, 0, 2) . ":" . substr($timestring, -2, 2);
   }
 }

@@ -8,20 +8,14 @@
               <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
                 Beban Puncak Bulan Ini
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800" id="this-month-cancelled-order-count">0</div>
-              <small class="text-muted"><em>Hari, Tanggal, Pukul</em></small>
-            </div>
-
-            <div class="col-auto">
-              <svg class="svg-inline--fa fa-xmark fa-2x text-gray-300" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path>
-              </svg><!-- <i class="fas fa-times fa-2x text-gray-300"></i> Font Awesome fontawesome.com -->
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="trafo-highest-this-month">0</div>
+              <small class="text-muted"><em id="trafo-highest-this-month-datetime">Sedang memuat...</em></small>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+
     <div class="col-md-4 col-12 mb-4">
       <div class="card h-100 py-2 bg-light border-start border-primary">
         <div class="card-body">
@@ -30,14 +24,8 @@
               <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
                 Beban Puncak Tahun Ini
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800" id="this-month-cancelled-order-count">0</div>
-              <small class="text-muted"><em>Hari, Tanggal, Pukul</em></small>
-            </div>
-
-            <div class="col-auto">
-              <svg class="svg-inline--fa fa-xmark fa-2x text-gray-300" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path>
-              </svg><!-- <i class="fas fa-times fa-2x text-gray-300"></i> Font Awesome fontawesome.com -->
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="trafo-highest-this-year">0</div>
+              <small class="text-muted"><em id="trafo-highest-this-year-datetime">Sedang memuat...</em></small>
             </div>
           </div>
         </div>
@@ -52,14 +40,8 @@
               <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
                 Beban Puncak Tertinggi
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800" id="this-month-cancelled-order-count">0</div>
-              <small class="text-muted"><em>Hari, Tanggal, Pukul</em></small>
-            </div>
-
-            <div class="col-auto">
-              <svg class="svg-inline--fa fa-xmark fa-2x text-gray-300" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path>
-              </svg><!-- <i class="fas fa-times fa-2x text-gray-300"></i> Font Awesome fontawesome.com -->
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="trafo-highest-all-time">0</div>
+              <small class="text-muted"><em id="trafo-highest-all-time-datetime">Sedang memuat...</em></small>
             </div>
           </div>
         </div>

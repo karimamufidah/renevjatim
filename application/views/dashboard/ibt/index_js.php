@@ -5,6 +5,9 @@
   const urlAPIBebanIBTSelect2 = "<?php echo base_url('api/select2/beban-interbus-transformer'); ?>";
   const urlAPISatuanIBTSelect2 = "<?php echo base_url('api/select2/satuan-ibt'); ?>";
   const urlAPIIBTDatatable = "<?php echo base_url('api/datatable'); ?>";
+  const urlAPIIBTHighestThisMonth = "<?php echo base_url('api/panel/get-highest-ibt-this-month-panel'); ?>";
+  const urlAPIIBTHighestThisYear = "<?php echo base_url('api/panel/get-highest-ibt-this-year-panel'); ?>";
+  const urlAPIIBTHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-ibt-all-time-panel'); ?>";
   let ibtDailyChart = document.getElementById('ibt-daily-chart');
   let ibtMonthlyChart = document.getElementById('ibt-monthly-chart');
   let ibtYearlyChart = document.getElementById('ibt-yearly-chart');
@@ -15,6 +18,9 @@
   // /** Initialize Data */
   async function initializeIBTData() {
     await initializeIBTSelect2Default();
+    getAndFillIBTHighestThisMonthPanel();
+    getAndFillIBTHighestThisYearPanel();
+    getAndFillIBTHighestAllTimePanel();
     initializeIBTDateRangePicker();
     initializeIBTDailyChart();
     initializeIBTMonthlyChart();
@@ -23,6 +29,33 @@
     initializeIBTDatatable();
     initializeIBTSelect2();
   };
+
+  async function getAndFillIBTHighestThisMonthPanel() {
+    const data = await crud.read({
+      url: `${urlAPIIBTHighestThisMonth}`
+    });
+
+    fillInner("ibt-highest-this-month", `${data.value} MW`);
+    fillInner("ibt-highest-this-month-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillIBTHighestThisYearPanel() {
+    const data = await crud.read({
+      url: `${urlAPIIBTHighestThisYear}`
+    });
+
+    fillInner("ibt-highest-this-year", `${data.value} MW`);
+    fillInner("ibt-highest-this-year-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillIBTHighestAllTimePanel() {
+    const data = await crud.read({
+      url: `${urlAPIIBTHighestThisAllTime}`
+    });
+
+    fillInner("ibt-highest-all-time", `${data.value} MW`);
+    fillInner("ibt-highest-all-time-datetime", getDateFormatOptions(data.logged_at));
+  }
 
   async function initializeIBTSelect2Default() {
     await getDefaultSelect2({
@@ -200,7 +233,7 @@
       templateSelection: formatTemplateSelection,
       escapeMarkup: (m) => m
     });
-    
+
     $(".select2-satuan-ibt").select2({
       ajax: {
         url: urlAPISatuanIBTSelect2,

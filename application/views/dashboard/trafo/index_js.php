@@ -5,6 +5,9 @@
   const urlAPIBebanTrafoSelect2 = "<?php echo base_url('api/select2/beban-trafo'); ?>";
   const urlAPISatuanTrafoSelect2 = "<?php echo base_url('api/select2/satuan-trafo'); ?>";
   const urlAPITrafoDatatable = "<?php echo base_url('api/datatable'); ?>";
+  const urlAPITrafoHighestThisMonth = "<?php echo base_url('api/panel/get-highest-trafo-this-month-panel'); ?>";
+  const urlAPITrafoHighestThisYear = "<?php echo base_url('api/panel/get-highest-trafo-this-year-panel'); ?>";
+  const urlAPITrafoHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-trafo-all-time-panel'); ?>";
   let trafoDailyChart = document.getElementById('trafo-daily-chart');
   let trafoMonthlyChart = document.getElementById('trafo-monthly-chart');
   let trafoYearlyChart = document.getElementById('trafo-yearly-chart');
@@ -15,6 +18,9 @@
   // /** Initialize Data */
   async function initializeTrafoData() {
     await initializeTrafoSelect2Default();
+    getAndFillTrafoHighestThisMonthPanel();
+    getAndFillTrafoHighestThisYearPanel();
+    getAndFillTrafoHighestAllTimePanel();
     initializeTrafoDateRangePicker();
     initializeTrafoDailyChart();
     initializeTrafoMonthlyChart();
@@ -59,6 +65,33 @@
       id: 'trafo-satuan-yearly-default',
       url: `${urlAPISatuanTrafoSelect2}`
     });
+  }
+
+  async function getAndFillTrafoHighestThisMonthPanel() {
+    const data = await crud.read({
+      url: `${urlAPITrafoHighestThisMonth}`
+    });
+
+    fillInner("trafo-highest-this-month", `${data.value} MW`);
+    fillInner("trafo-highest-this-month-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillTrafoHighestThisYearPanel() {
+    const data = await crud.read({
+      url: `${urlAPITrafoHighestThisYear}`
+    });
+
+    fillInner("trafo-highest-this-year", `${data.value} MW`);
+    fillInner("trafo-highest-this-year-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillTrafoHighestAllTimePanel() {
+    const data = await crud.read({
+      url: `${urlAPITrafoHighestThisAllTime}`
+    });
+
+    fillInner("trafo-highest-all-time", `${data.value} MW`);
+    fillInner("trafo-highest-all-time-datetime", getDateFormatOptions(data.logged_at));
   }
 
   async function initializeTrafoDateRangePicker() {
@@ -200,7 +233,7 @@
       templateSelection: formatTemplateSelection,
       escapeMarkup: (m) => m
     });
-    
+
     $(".select2-satuan-trafo").select2({
       ajax: {
         url: urlAPISatuanTrafoSelect2,
