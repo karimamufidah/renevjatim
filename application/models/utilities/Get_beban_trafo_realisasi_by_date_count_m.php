@@ -1,9 +1,9 @@
 <?php
-class Get_beban_trafo_by_date_count_m extends CI_Model
+class Get_beban_trafo_realisasi_by_date_count_m extends CI_Model
 {
   private function _get_table_name()
   {
-    return "trafo_perencanaan AS main";
+    return "trafo_realisasi AS main";
   }
 
   public function show($date)

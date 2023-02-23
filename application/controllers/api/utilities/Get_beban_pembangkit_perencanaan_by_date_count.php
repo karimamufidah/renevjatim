@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Get_beban_trafo_by_date_count extends CI_Controller
+class Get_beban_pembangkit_perencanaan_by_date_count extends CI_Controller
 {
   public function index()
   {
@@ -28,7 +28,7 @@ class Get_beban_trafo_by_date_count extends CI_Controller
   {
     if (!$response->success) return;
 
-    $this->load->model("utilities/get_beban_trafo_by_date_count_m", "main");
+    $this->load->model("utilities/get_beban_pembangkit_perencanaan_by_date_count_m", "main");
 
     $response->data = $this->main->show($request->date);
   }

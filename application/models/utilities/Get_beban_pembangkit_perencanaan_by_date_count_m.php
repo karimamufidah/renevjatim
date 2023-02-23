@@ -1,9 +1,9 @@
 <?php
-class Get_beban_penghantar_by_date_count_m extends CI_Model
+class Get_beban_pembangkit_perencanaan_by_date_count_m extends CI_Model
 {
   private function _get_table_name()
   {
-    return "penghantar_perencanaan AS main";
+    return "pembangkit_perencanaan AS main";
   }
 
   public function show($date)

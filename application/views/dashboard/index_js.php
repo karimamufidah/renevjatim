@@ -11,6 +11,7 @@
     initializeTrafoData();
     initializeSistemData();
     initializeSubsistemData();
+    initializeTeganganData();
   };
 
   /** General */

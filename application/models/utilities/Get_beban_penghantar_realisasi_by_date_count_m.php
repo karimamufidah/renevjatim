@@ -1,9 +1,9 @@
 <?php
-class Get_beban_tegangan_by_date_count_m extends CI_Model
+class Get_beban_penghantar_realisasi_by_date_count_m extends CI_Model
 {
   private function _get_table_name()
   {
-    return "tegangan_perencanaan AS main";
+    return "penghantar_realisasi AS main";
   }
 
   public function show($date)

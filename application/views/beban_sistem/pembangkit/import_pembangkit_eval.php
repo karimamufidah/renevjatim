@@ -1,7 +1,7 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><a href="<?= site_url('beban_sistem/pembangkit_realisasi') ?>"><span class="text-muted fw-light">Beban Sistem /</span></a> Pembangkit | Realisasi</h4>
 
-    <form id="formBulkUpload" method="POST" action="<?= site_url('beban_sistem/upload_pembangkit_eval') ?>" enctype="multipart/form-data">
+    <form id="formBulkUpload" method="POST" onsubmit="checkDate();return false;" action="<?= site_url('beban_sistem/upload_pembangkit_eval') ?>" enctype="multipart/form-data">
         <div class="card mb-4">
             <h5 class="card-header">Upload File</h5>
             <div class="card-body" style="height: 300px;">
@@ -28,46 +28,42 @@
 </div>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<?php if ($this->session->flashdata('confirm')) : ?>
-    <script>
-        Swal.fire({
-            title: 'Data is already exist. Do you want to replace the data?',
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: 'Replace',
-            denyButtonText: `Don't save`,
-            html: `<input class="form-control" type="hidden" value="<?= set_value('tanggal') ?>" id="tanggal" name="tanggal" required />`,
-        }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-                $(document).ready(function() {
+<script>
+  const urlAPICountByDate = "<?= base_url("api/utilities/get-beban-pembangkit-realisasi-by-date-count"); ?>";
+  let crud;
 
-                    $('#formBulkUpload').on('submit', function(event) {
+  /** Initialize Data */
+  window.onload = () => {
+    crud = new LimCRUD();
+  };
 
-                        event.preventDefault();
-                        $.ajax({
-                            //url: '<?php echo base_url('tegangan/trial') ?>',
-                            method: 'POST',
-                            data: new FormData(this),
-                            dataType: 'json',
-                            contentType: false,
-                            cache: false,
-                            processData: false,
-                            success: function(data) {
-                                swal("Sukses", "Your imaginary file has been deleted.", "success");
-                            },
-                            error: function(data) {
-                                swal("NOT Deleted!", "Something blew up.", "error");
-                            }
-                        });
+  async function checkDate() {
+    const data = await crud.read({
+      url: `${urlAPICountByDate}?date=${getValue("tanggal")}`
+    });
 
-                    });
+    if (parseInt(data)) {
+      showConfirmationAlert();
+    } else {
+      submitData();
+    }
+  }
 
-                });
-                //window.location.href = "<?php echo base_url('tegangan/trial') ?>";
-            } else if (result.isDenied) {
-                Swal.fire('Changes are not saved', '', 'info')
-            }
-        })
-    </script>
-<?php endif; ?>
+  function showConfirmationAlert() {
+    Swal.fire({
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Replace',
+      denyButtonText: `Don't save`,
+      title: 'Data Exist!',
+      text: 'Data is already exist. Do you want to replace the data?'
+    }).then((result) => {
+      if (result.isConfirmed) submitData();
+    });
+  }
+
+  function submitData() {
+    getElement("formBulkUpload").setAttribute("onsubmit", "");
+    getElement("formBulkUpload").submit();
+  }
+</script>

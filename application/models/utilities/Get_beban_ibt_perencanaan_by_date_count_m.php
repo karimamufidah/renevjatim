@@ -1,9 +1,9 @@
 <?php
-class Get_beban_subsistem_by_date_count_m extends CI_Model
+class Get_beban_ibt_perencanaan_by_date_count_m extends CI_Model
 {
   private function _get_table_name()
   {
-    return "subsistem_perencanaan AS main";
+    return "ibt_perencanaan AS main";
   }
 
   public function show($date)

@@ -32,7 +32,7 @@ class Get_beban_tegangan_monthly extends CI_Controller
       "tahun" => $request->tahun
     ));
 
-    $data = $data ? $this->_format_data($data) : $this->_generate_empty_data();
+    $data = $data ? $this->_format_data($data, $request) : $this->_generate_empty_data();
 
     $response->data->plan = $data;
   }
@@ -47,17 +47,18 @@ class Get_beban_tegangan_monthly extends CI_Controller
       "tahun" => $request->tahun
     ));
 
-    $data = $data ? $this->_format_data($data) : $this->_generate_empty_data();
+    $data = $data ? $this->_format_data($data, $request) : $this->_generate_empty_data();
 
     $response->data->realization = $data;
   }
 
-  private function _format_data($data)
+  private function _format_data($data, $request)
   {
     $formatted_data = array();
 
     foreach ($data as $datum) {
-      $formatted_data[$datum->tanggal] = $datum->total;
+      $value = $this->_get_used_value((array) $datum, $request);
+      $formatted_data[$datum->tanggal] = $value;
     }
 
     for ($i = 1; $i <= 31; $i++) {
@@ -67,6 +68,14 @@ class Get_beban_tegangan_monthly extends CI_Controller
     ksort($formatted_data);
 
     return array_values($formatted_data);
+  }
+
+  private function _get_used_value($data, $request)
+  {
+    $data = array_values($data);
+    array_shift($data);
+
+    return $request->min_max == "Max" ? max($data) : min($data);
   }
 
   private function _generate_empty_data()

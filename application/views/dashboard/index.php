@@ -56,8 +56,5 @@
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script src="<?= base_url() ?>assets/js/var.js"></script>
-<script src="<?= base_url() ?>assets/js/w3.js"></script>
-<script src="<?= base_url() ?>assets/js/limcrud.js"></script>
 
 <?php $this->load->view("dashboard/index_js"); ?>

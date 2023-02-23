@@ -368,6 +368,9 @@
 
   <!-- Page JS -->
   <script src="<?= base_url() ?>assets/admin/js/dashboards-analytics.js"></script>
+  <script src="<?= base_url() ?>assets/js/var.js"></script>
+  <script src="<?= base_url() ?>assets/js/w3.js"></script>
+  <script src="<?= base_url() ?>assets/js/limcrud.js"></script>
 
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>

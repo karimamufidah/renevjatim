@@ -29,12 +29,13 @@ class Get_beban_tegangan_yearly extends CI_Controller
 
     for ($i = 1; $i <= 12; $i++) {
       $monthly_data = $this->plan->show((object) array(
+        "min_max" => $request->min_max,
         "gardu_induk" => $request->gardu_induk,
         "bulan" => $i,
         "tahun" => $request->tahun
       ));
 
-      array_push($data, $monthly_data ? $monthly_data : 0);
+      array_push($data, $request->min_max == "Max" ? $this->_get_max((array) $monthly_data) : $this->_get_min((array) $monthly_data));
     }
 
     $response->data->plan = $data;
@@ -48,14 +49,27 @@ class Get_beban_tegangan_yearly extends CI_Controller
 
     for ($i = 1; $i <= 12; $i++) {
       $monthly_data = $this->realization->show((object) array(
+        "min_max" => $request->min_max,
         "gardu_induk" => $request->gardu_induk,
         "bulan" => $i,
         "tahun" => $request->tahun
       ));
 
-      array_push($data, $monthly_data ? $monthly_data : 0);
+      array_push($data, $request->min_max == "Max" ? $this->_get_max((array) $monthly_data) : $this->_get_min((array) $monthly_data));
     }
 
     $response->data->realization = $data;
+  }
+
+  private function _get_max($data)
+  {
+    $data = array_values($data);
+    return max($data) ? max($data) : 0;
+  }
+
+  private function _get_min($data)
+  {
+    $data = array_values($data);
+    return min($data) ? min($data) : 0;
   }
 }

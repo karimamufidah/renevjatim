@@ -11,12 +11,6 @@
               <div class="h5 mb-0 font-weight-bold text-gray-800" id="this-month-cancelled-order-count">0</div>
               <small class="text-muted"><em>Hari, Tanggal, Pukul</em></small>
             </div>
-
-            <div class="col-auto">
-              <svg class="svg-inline--fa fa-xmark fa-2x text-gray-300" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path>
-              </svg><!-- <i class="fas fa-times fa-2x text-gray-300"></i> Font Awesome fontawesome.com -->
-            </div>
           </div>
         </div>
       </div>
@@ -32,12 +26,6 @@
               </div>
               <div class="h5 mb-0 font-weight-bold text-gray-800" id="this-month-cancelled-order-count">0</div>
               <small class="text-muted"><em>Hari, Tanggal, Pukul</em></small>
-            </div>
-
-            <div class="col-auto">
-              <svg class="svg-inline--fa fa-xmark fa-2x text-gray-300" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path>
-              </svg><!-- <i class="fas fa-times fa-2x text-gray-300"></i> Font Awesome fontawesome.com -->
             </div>
           </div>
         </div>
@@ -55,12 +43,6 @@
               <div class="h5 mb-0 font-weight-bold text-gray-800" id="this-month-cancelled-order-count">0</div>
               <small class="text-muted"><em>Hari, Tanggal, Pukul</em></small>
             </div>
-
-            <div class="col-auto">
-              <svg class="svg-inline--fa fa-xmark fa-2x text-gray-300" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path>
-              </svg><!-- <i class="fas fa-times fa-2x text-gray-300"></i> Font Awesome fontawesome.com -->
-            </div>
           </div>
         </div>
       </div>
@@ -70,12 +52,13 @@
   <div class="card shadow-none bg-transparent border border-secondary mb-3">
     <div class="card-body">
       <h5 class="card-title">Grafik Harian</h5>
+
       <div class="card-body">
         <div class="row">
           <div class="col-4">
             <div class="input-group mb-3">
-              <select id="tegangan-ruas-daily" class="select2-tegangan form-select" style="width: 100%;">
-                <option id="tegangan-ruas-daily-default" selected></option>
+              <select id="tegangan-daily" class="select2-tegangan form-select" style="width: 100%;">
+                <option id="tegangan-daily-default" selected></option>
               </select>
             </div>
 
@@ -88,24 +71,18 @@
               </div>
             <?php } ?>
 
-            <div class="input-group mb-3">
-              <select id="tegangan-satuan-daily" class="select2-satuan-tegangan form-select" style="width: 100%;">
-                <option id="tegangan-satuan-daily-default" selected></option>
-              </select>
-            </div>
-
             <div class="row mt-3">
               <div class="col-6">
                 <button class="btn btn-default col-12"><i class="bx bx-download"></i>&nbsp; Download</button>
               </div>
               <div class="col-6">
-                <button class="btn btn-primary col-12" onclick="refreshteganganDailyChartData()"><i class="bx bx-search"></i>&nbsp; Proses</button>
+                <button class="btn btn-primary col-12" onclick="refreshTeganganDailyChartData()"><i class="bx bx-search"></i>&nbsp; Proses</button>
               </div>
             </div>
           </div>
 
           <div class="col-8">
-            <canvas id="tegangan-daily"></canvas>
+            <canvas id="tegangan-daily-chart"></canvas>
           </div>
         </div>
       </div>
@@ -115,12 +92,13 @@
   <div class="card shadow-none bg-transparent border border-secondary mb-3">
     <div class="card-body">
       <h5 class="card-title">Grafik Bulanan</h5>
+
       <div class="card-body">
         <div class="row">
           <div class="col-4">
             <div class="input-group mb-3">
-              <select id="tegangan-ruas-monthly" class="select2-tegangan form-control" style="width: 100%;">
-                <option id="tegangan-ruas-monthly-default" selected></option>
+              <select id="tegangan-monthly" class="select2-tegangan form-control" style="width: 100%;">
+                <option id="tegangan-monthly-default" selected></option>
               </select>
             </div>
 
@@ -134,8 +112,8 @@
             <?php } ?>
 
             <div class="input-group mb-3">
-              <select id="tegangan-satuan-monthly" class="select2-satuan-tegangan form-select" style="width: 100%;">
-                <option id="tegangan-satuan-monthly-default" selected></option>
+              <select id="min-max-monthly" class="select2-min-max form-select" style="width: 100%;">
+                <option id="min-max-monthly-default" selected></option>
               </select>
             </div>
 
@@ -144,13 +122,13 @@
                 <button class="btn btn-default col-12"><i class="bx bx-download"></i>&nbsp; Download</button>
               </div>
               <div class="col-6">
-                <button class="btn btn-primary col-12" onclick="refreshteganganMonthlyChartData()"><i class="bx bx-search"></i>&nbsp; Proses</button>
+                <button class="btn btn-primary col-12" onclick="refreshTeganganMonthlyChartData()"><i class="bx bx-search"></i>&nbsp; Proses</button>
               </div>
             </div>
           </div>
 
           <div class="col-8">
-            <canvas id="tegangan-monthly"></canvas>
+            <canvas id="tegangan-monthly-chart"></canvas>
           </div>
         </div>
       </div>
@@ -160,12 +138,13 @@
   <div class="card shadow-none bg-transparent border border-secondary mb-3">
     <div class="card-body">
       <h5 class="card-title">Grafik Tahunan</h5>
+
       <div class="card-body">
         <div class="row">
           <div class="col-4">
             <div class="input-group mb-3">
-              <select id="tegangan-ruas-yearly" class="select2-tegangan form-control" style="width: 100%;">
-                <option id="tegangan-ruas-yearly-default" selected></option>
+              <select id="tegangan-yearly" class="select2-tegangan form-control" style="width: 100%;">
+                <option id="tegangan-yearly-default" selected></option>
               </select>
             </div>
 
@@ -179,8 +158,8 @@
             <?php } ?>
 
             <div class="input-group mb-3">
-              <select id="tegangan-satuan-yearly" class="select2-satuan-tegangan form-select" style="width: 100%;">
-                <option id="tegangan-satuan-yearly-default" selected></option>
+              <select id="min-max-yearly" class="select2-min-max form-select" style="width: 100%;">
+                <option id="min-max-yearly-default" selected></option>
               </select>
             </div>
 
@@ -189,13 +168,13 @@
                 <button class="btn btn-default col-12"><i class="bx bx-download"></i>&nbsp; Download</button>
               </div>
               <div class="col-6">
-                <button class="btn btn-primary col-12" onclick="refreshteganganYearlyChartData()"><i class="bx bx-search"></i>&nbsp; Proses</button>
+                <button class="btn btn-primary col-12" onclick="refreshTeganganYearlyChartData()"><i class="bx bx-search"></i>&nbsp; Proses</button>
               </div>
             </div>
           </div>
 
           <div class="col-8">
-            <canvas id="tegangan-yearly"></canvas>
+            <canvas id="tegangan-yearly-chart"></canvas>
           </div>
         </div>
       </div>
@@ -205,18 +184,19 @@
   <div class="card shadow-none bg-transparent border border-secondary mb-3">
     <div class="card-body">
       <h5 class="card-title">Pemantauan</h5>
+      
       <div class="card-body">
         <div class="row">
           <div class="col-4">
             <div class="input-group mb-3">
-              <select id="tegangan-ruas-table" class="select2-tegangan form-control" style="width: 100%;">
-                <option id="tegangan-ruas-table-default" selected></option>
+              <select id="tegangan-table" class="select2-tegangan form-control" style="width: 100%;">
+                <option id="tegangan-table-default" selected></option>
               </select>
             </div>
 
             <div class="row mb-3">
               <div class="col-12">
-                <input id="f-date-range" type="text" class="form-control">
+                <input id="f-tegangan-date-range" type="text" class="form-control">
               </div>
             </div>
 
@@ -226,10 +206,10 @@
                 <br>
                 <br>
                 <label for="tegangan-percentage-table-1" class="form-label col-12">Min</label>
-                <input type="range" class="form-range" min="0" max="100" step="1" id="tegangan-percentage-table-1" onchange="updateRangeteganganTableLabel()">
+                <input type="range" class="form-range" min="0" max="100" step="1" id="tegangan-percentage-table-1" onchange="updateRangeTeganganTableLabel()">
 
                 <label for="tegangan-percentage-table-2" class="form-label col-12">Max</label>
-                <input type="range" class="form-range" min="0" max="100" step="1" id="tegangan-percentage-table-2" onchange="updateRangeteganganTableLabel()">
+                <input type="range" class="form-range" min="0" max="100" step="1" id="tegangan-percentage-table-2" onchange="updateRangeTeganganTableLabel()">
               </div>
             </div>
 
@@ -261,3 +241,5 @@
     </div>
   </div>
 </div>
+
+<?php $this->load->view("dashboard/tegangan/index_js"); ?>
