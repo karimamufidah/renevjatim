@@ -3,6 +3,9 @@
   const urlAPISistemMonthlyChart = "<?php echo base_url('api/graph/get-beban-sistem-monthly'); ?>";
   const urlAPISistemYearlyChart = "<?php echo base_url('api/graph/get-beban-sistem-yearly'); ?>";
   const urlAPIBebanSistemSelect2 = "<?php echo base_url('api/select2/beban-sistem'); ?>";
+  const urlAPISistemHighestThisMonth = "<?php echo base_url('api/panel/get-highest-sistem-this-month-panel'); ?>";
+  const urlAPISistemHighestThisYear = "<?php echo base_url('api/panel/get-highest-sistem-this-year-panel'); ?>";
+  const urlAPISistemHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-sistem-all-time-panel'); ?>";
   let sistemDailyChart = document.getElementById('sistem-daily-chart');
   let sistemMonthlyChart = document.getElementById('sistem-monthly-chart');
   let sistemYearlyChart = document.getElementById('sistem-yearly-chart');
@@ -12,6 +15,9 @@
   // /** Initialize Data */
   async function initializeSistemData() {
     await initializeSistemSelect2Default();
+    getAndFillSistemHighestThisMonthPanel();
+    getAndFillSistemHighestThisYearPanel();
+    getAndFillSistemHighestAllTimePanel();
     initializeSistemDailyChart();
     initializeSistemMonthlyChart();
     initializeSistemYearlyChart();
@@ -33,6 +39,33 @@
       id: 'sistem-yearly-default',
       url: `${urlAPIBebanSistemSelect2}`
     });
+  }
+
+  async function getAndFillSistemHighestThisMonthPanel() {
+    const data = await crud.read({
+      url: `${urlAPISistemHighestThisMonth}`
+    });
+
+    fillInner("sistem-highest-this-month", `${data.value} MW`);
+    fillInner("sistem-highest-this-month-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillSistemHighestThisYearPanel() {
+    const data = await crud.read({
+      url: `${urlAPISistemHighestThisYear}`
+    });
+
+    fillInner("sistem-highest-this-year", `${data.value} MW`);
+    fillInner("sistem-highest-this-year-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillSistemHighestAllTimePanel() {
+    const data = await crud.read({
+      url: `${urlAPISistemHighestThisAllTime}`
+    });
+
+    fillInner("sistem-highest-all-time", `${data.value} MW`);
+    fillInner("sistem-highest-all-time-datetime", getDateFormatOptions(data.logged_at));
   }
 
   function initializeSistemDailyChart() {

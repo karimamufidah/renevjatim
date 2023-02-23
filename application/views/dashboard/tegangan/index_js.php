@@ -5,6 +5,9 @@
   const urlAPIBebanTeganganSelect2 = "<?php echo base_url('api/select2/beban-tegangan'); ?>";
   const urlAPIMinMaxSelect2 = "<?php echo base_url('api/select2/min-max'); ?>";
   const urlAPITeganganDatatable = "<?php echo base_url('api/datatable'); ?>";
+  const urlAPITeganganHighestThisMonth = "<?php echo base_url('api/panel/get-highest-tegangan-this-month-panel'); ?>";
+  const urlAPITeganganHighestThisYear = "<?php echo base_url('api/panel/get-highest-tegangan-this-year-panel'); ?>";
+  const urlAPITeganganHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-tegangan-all-time-panel'); ?>";
   let teganganDailyChart = document.getElementById('tegangan-daily-chart');
   let teganganMonthlyChart = document.getElementById('tegangan-monthly-chart');
   let teganganYearlyChart = document.getElementById('tegangan-yearly-chart');
@@ -54,6 +57,33 @@
       id: 'min-max-yearly-default',
       url: `${urlAPIMinMaxSelect2}`
     });
+  }
+
+  async function getAndFillTeganganHighestThisMonthPanel() {
+    const data = await crud.read({
+      url: `${urlAPITeganganHighestThisMonth}`
+    });
+
+    fillInner("tegangan-highest-this-month", `${data.value} MW`);
+    fillInner("tegangan-highest-this-month-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillTeganganHighestThisYearPanel() {
+    const data = await crud.read({
+      url: `${urlAPITeganganHighestThisYear}`
+    });
+
+    fillInner("tegangan-highest-this-year", `${data.value} MW`);
+    fillInner("tegangan-highest-this-year-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillTeganganHighestAllTimePanel() {
+    const data = await crud.read({
+      url: `${urlAPITeganganHighestThisAllTime}`
+    });
+
+    fillInner("tegangan-highest-all-time", `${data.value} MW`);
+    fillInner("tegangan-highest-all-time-datetime", getDateFormatOptions(data.logged_at));
   }
 
   async function initializeTeganganDateRangePicker() {

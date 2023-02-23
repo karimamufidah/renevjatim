@@ -8,14 +8,14 @@
               <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
                 Beban Puncak Bulan Ini
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800" id="this-month-cancelled-order-count">0</div>
-              <small class="text-muted"><em>Hari, Tanggal, Pukul</em></small>
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="tegangan-highest-this-month">0</div>
+              <small class="text-muted"><em id="tegangan-highest-this-month-datetime">Sedang memuat...</em></small>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+
     <div class="col-md-4 col-12 mb-4">
       <div class="card h-100 py-2 bg-light border-start border-primary">
         <div class="card-body">
@@ -24,8 +24,8 @@
               <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
                 Beban Puncak Tahun Ini
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800" id="this-month-cancelled-order-count">0</div>
-              <small class="text-muted"><em>Hari, Tanggal, Pukul</em></small>
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="tegangan-highest-this-year">0</div>
+              <small class="text-muted"><em id="tegangan-highest-this-year-datetime">Sedang memuat...</em></small>
             </div>
           </div>
         </div>
@@ -40,8 +40,8 @@
               <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
                 Beban Puncak Tertinggi
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800" id="this-month-cancelled-order-count">0</div>
-              <small class="text-muted"><em>Hari, Tanggal, Pukul</em></small>
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="tegangan-highest-all-time">0</div>
+              <small class="text-muted"><em id="tegangan-highest-all-time-datetime">Sedang memuat...</em></small>
             </div>
           </div>
         </div>
@@ -184,7 +184,7 @@
   <div class="card shadow-none bg-transparent border border-secondary mb-3">
     <div class="card-body">
       <h5 class="card-title">Pemantauan</h5>
-      
+
       <div class="card-body">
         <div class="row">
           <div class="col-4">

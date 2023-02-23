@@ -5,6 +5,9 @@
   const urlAPIBebanPembangkitSelect2 = "<?php echo base_url('api/select2/beban-pembangkit'); ?>";
   const urlAPISatuanPembangkitSelect2 = "<?php echo base_url('api/select2/satuan-pembangkit'); ?>";
   const urlAPIPembangkitDatatable = "<?php echo base_url('api/datatable'); ?>";
+  const urlAPIPembangkitHighestThisMonth = "<?php echo base_url('api/panel/get-highest-pembangkit-this-month-panel'); ?>";
+  const urlAPIPembangkitHighestThisYear = "<?php echo base_url('api/panel/get-highest-pembangkit-this-year-panel'); ?>";
+  const urlAPIPembangkitHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-pembangkit-all-time-panel'); ?>";
   let pembangkitDailyChart = document.getElementById('pembangkit-daily-chart');
   let pembangkitMonthlyChart = document.getElementById('pembangkit-monthly-chart');
   let pembangkitYearlyChart = document.getElementById('pembangkit-yearly-chart');
@@ -59,6 +62,33 @@
       id: 'pembangkit-satuan-yearly-default',
       url: `${urlAPISatuanPembangkitSelect2}`
     });
+  }
+
+  async function getAndFillPembangkitHighestThisMonthPanel() {
+    const data = await crud.read({
+      url: `${urlAPIPembangkitHighestThisMonth}`
+    });
+
+    fillInner("pembangkit-highest-this-month", `${data.value} MW`);
+    fillInner("pembangkit-highest-this-month-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillPembangkitHighestThisYearPanel() {
+    const data = await crud.read({
+      url: `${urlAPIPembangkitHighestThisYear}`
+    });
+
+    fillInner("pembangkit-highest-this-year", `${data.value} MW`);
+    fillInner("pembangkit-highest-this-year-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillPembangkitHighestAllTimePanel() {
+    const data = await crud.read({
+      url: `${urlAPIPembangkitHighestThisAllTime}`
+    });
+
+    fillInner("pembangkit-highest-all-time", `${data.value} MW`);
+    fillInner("pembangkit-highest-all-time-datetime", getDateFormatOptions(data.logged_at));
   }
 
   async function initializePembangkitDateRangePicker() {

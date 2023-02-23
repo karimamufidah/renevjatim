@@ -5,6 +5,9 @@
   const urlAPIBebanSubsistemSelect2 = "<?php echo base_url('api/select2/beban-subsistem'); ?>";
   const urlAPIPasokanSubsistemSelect2 = "<?php echo base_url('api/select2/pasokan-subsistem'); ?>";
   const urlAPISubsistemDatatable = "<?php echo base_url('api/datatable'); ?>";
+  const urlAPISubsistemHighestThisMonth = "<?php echo base_url('api/panel/get-highest-subsistem-this-month-panel'); ?>";
+  const urlAPISubsistemHighestThisYear = "<?php echo base_url('api/panel/get-highest-subsistem-this-year-panel'); ?>";
+  const urlAPISubsistemHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-subsistem-all-time-panel'); ?>";
   let subsistemDailyChart = document.getElementById('subsistem-daily-chart');
   let subsistemMonthlyChart = document.getElementById('subsistem-monthly-chart');
   let subsistemYearlyChart = document.getElementById('subsistem-yearly-chart');
@@ -15,6 +18,9 @@
   // /** Initialize Data */
   async function initializeSubsistemData() {
     await initializeSubsistemSelect2Default();
+    getAndFillSubsistemHighestThisMonthPanel();
+    getAndFillSubsistemHighestThisYearPanel();
+    getAndFillSubsistemHighestAllTimePanel();
     initializeSubsistemDailyChart();
     initializeSubsistemMonthlyChart();
     initializeSubsistemYearlyChart();
@@ -51,6 +57,33 @@
       id: 'subsistem-pasokan-yearly-default',
       url: `${urlAPIPasokanSubsistemSelect2}`
     });
+  }
+
+  async function getAndFillSubsistemHighestThisMonthPanel() {
+    const data = await crud.read({
+      url: `${urlAPISubsistemHighestThisMonth}`
+    });
+
+    fillInner("subsistem-highest-this-month", `${data.value} MW`);
+    fillInner("subsistem-highest-this-month-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillSubsistemHighestThisYearPanel() {
+    const data = await crud.read({
+      url: `${urlAPISubsistemHighestThisYear}`
+    });
+
+    fillInner("subsistem-highest-this-year", `${data.value} MW`);
+    fillInner("subsistem-highest-this-year-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillSubsistemHighestAllTimePanel() {
+    const data = await crud.read({
+      url: `${urlAPISubsistemHighestThisAllTime}`
+    });
+
+    fillInner("subsistem-highest-all-time", `${data.value} MW`);
+    fillInner("subsistem-highest-all-time-datetime", getDateFormatOptions(data.logged_at));
   }
 
   async function initializeSubsistemDateRangePicker() {
@@ -192,7 +225,7 @@
       templateSelection: formatTemplateSelection,
       escapeMarkup: (m) => m
     });
-    
+
     $(".select2-pasokan-subsistem").select2({
       ajax: {
         url: urlAPIPasokanSubsistemSelect2,
