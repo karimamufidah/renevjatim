@@ -29,7 +29,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-  const urlAPICountByDate = "<?= base_url("api/utilities/get-beban-tegangan-realisasi-by-date-count"); ?>";
+  const urlAPICountByDate = "<?= base_url("api/utilities/get-beban-tegangan-perencanaan-by-date-count"); ?>";
   let crud;
 
   /** Initialize Data */

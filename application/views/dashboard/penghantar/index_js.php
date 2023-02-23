@@ -5,6 +5,9 @@
   const urlAPIBebanPenghantarSelect2 = "<?php echo base_url('api/select2/beban-penghantar'); ?>";
   const urlAPISatuanPenghantarSelect2 = "<?php echo base_url('api/select2/satuan-penghantar'); ?>";
   const urlAPIPenghantarDatatable = "<?php echo base_url('api/datatable'); ?>";
+  const urlAPIPenghantarHighestThisMonth = "<?php echo base_url('api/panel/get-highest-penghantar-this-month-panel'); ?>";
+  const urlAPIPenghantarHighestThisYear = "<?php echo base_url('api/panel/get-highest-penghantar-this-year-panel'); ?>";
+  const urlAPIPenghantarHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-penghantar-all-time-panel'); ?>";
   let penghantarDailyChart = document.getElementById('penghantar-daily');
   let penghantarMonthlyChart = document.getElementById('penghantar-monthly');
   let penghantarYearlyChart = document.getElementById('penghantar-yearly');
@@ -16,6 +19,9 @@
   /** Initialize Data */
   async function initializePenghantarData() {
     await initializePenghantarSelect2Default();
+    getAndFillPenghantarHighestThisMonthPanel();
+    getAndFillPenghantarHighestThisYearPanel();
+    getAndFillPenghantarHighestAllTimePanel();
     initializePenghantarDateRangePicker();
     initializePenghantarDailyChart();
     initializePenghantarMonthlyChart();
@@ -24,6 +30,33 @@
     initializePenghantarDatatable();
     initializePenghantarSelect2();
   };
+
+  async function getAndFillPenghantarHighestThisMonthPanel() {
+    const data = await crud.read({
+      url: `${urlAPIPenghantarHighestThisMonth}`
+    });
+
+    fillInner("penghantar-highest-this-month", data.value);
+    fillInner("penghantar-highest-this-month-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillPenghantarHighestThisYearPanel() {
+    const data = await crud.read({
+      url: `${urlAPIPenghantarHighestThisYear}`
+    });
+
+    fillInner("penghantar-highest-this-year", data.value);
+    fillInner("penghantar-highest-this-year-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillPenghantarHighestAllTimePanel() {
+    const data = await crud.read({
+      url: `${urlAPIPenghantarHighestThisAllTime}`
+    });
+
+    fillInner("penghantar-highest-all-time", data.value);
+    fillInner("penghantar-highest-all-time-datetime", getDateFormatOptions(data.logged_at));
+  }
 
   async function initializePenghantarSelect2Default() {
     await getDefaultSelect2({
@@ -179,7 +212,7 @@
         },
       }
     });
-  }
+  };
 
   function initializePenghantarSelect2() {
     $(".select2-penghantar").select2({
@@ -201,7 +234,7 @@
       templateSelection: formatTemplateSelection,
       escapeMarkup: (m) => m
     });
-    
+
     $(".select2-satuan-penghantar").select2({
       ajax: {
         url: urlAPISatuanPenghantarSelect2,
@@ -368,5 +401,17 @@
     return await crud.read({
       url: `${urlAPIPenghantarYearlyChart}?ruas=${ruas}&satuan=${satuan}&tahun=${tahun}`
     });
+  }
+
+  /** General */
+  function getDateFormatOptions(datetime) {
+    const date = new Date(datetime);
+    const options = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    };
+    return `${date.toLocaleDateString('id-ID', options)}, ${date.toLocaleTimeString('id-ID')}`;
   }
 </script>

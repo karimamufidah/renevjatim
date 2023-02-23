@@ -8,8 +8,8 @@
               <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
                 Beban Puncak Bulan Ini
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800" id="this-month-cancelled-order-count">0</div>
-              <small class="text-muted"><em>Hari, Tanggal, Pukul</em></small>
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="penghantar-highest-this-month">0</div>
+              <small class="text-muted"><em id="penghantar-highest-this-month-datetime">Sedang memuat...</em></small>
             </div>
           </div>
         </div>
@@ -24,8 +24,8 @@
               <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
                 Beban Puncak Tahun Ini
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800" id="this-month-cancelled-order-count">0</div>
-              <small class="text-muted"><em>Hari, Tanggal, Pukul</em></small>
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="penghantar-highest-this-year">0</div>
+              <small class="text-muted"><em id="penghantar-highest-this-year-datetime">Sedang memuat...</em></small>
             </div>
           </div>
         </div>
@@ -40,8 +40,8 @@
               <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
                 Beban Puncak Tertinggi
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800" id="this-month-cancelled-order-count">0</div>
-              <small class="text-muted"><em>Hari, Tanggal, Pukul</em></small>
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="penghantar-highest-all-time">0</div>
+              <small class="text-muted"><em id="penghantar-highest-all-time-datetime">Sedang memuat...</em></small>
             </div>
           </div>
         </div>
