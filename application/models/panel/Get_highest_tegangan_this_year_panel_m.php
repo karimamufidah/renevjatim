@@ -1,9 +1,9 @@
 <?php
-class Get_highest_sistem_this_year_panel_m extends CI_Model
+class Get_highest_tegangan_this_year_panel_m extends CI_Model
 {
   private function _get_table_name()
   {
-    return "sistem_realisasi AS main";
+    return "tegangan_realisasi AS main";
   }
 
   public function show($column)

@@ -3,7 +3,7 @@ class Get_highest_sistem_all_time_panel_m extends CI_Model
 {
   private function _get_table_name()
   {
-    return "trafo_realisasi AS main";
+    return "sistem_realisasi AS main";
   }
 
   public function show($column)

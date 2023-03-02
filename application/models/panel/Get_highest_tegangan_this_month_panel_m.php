@@ -1,14 +1,15 @@
 <?php
-class Get_highest_sistem_this_year_panel_m extends CI_Model
+class Get_highest_tegangan_this_month_panel_m extends CI_Model
 {
   private function _get_table_name()
   {
-    return "sistem_realisasi AS main";
+    return "tegangan_realisasi AS main";
   }
 
   public function show($column)
   {
     $this->db->select("main.tanggal, $column AS value, '$column' AS waktu");
+    $this->db->where("MONTH(tanggal) = MONTH(NOW())");
     $this->db->where("YEAR(tanggal) = YEAR(NOW())");
     $this->db->order_by($column, "DESC");
     $this->db->limit(1);
