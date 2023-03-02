@@ -8,6 +8,7 @@
   const urlAPIIBTHighestThisMonth = "<?php echo base_url('api/panel/get-highest-ibt-this-month-panel'); ?>";
   const urlAPIIBTHighestThisYear = "<?php echo base_url('api/panel/get-highest-ibt-this-year-panel'); ?>";
   const urlAPIIBTHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-ibt-all-time-panel'); ?>";
+  const urlAPIIBTDailyExport = "<?php echo base_url('export/xlsx-ibt'); ?>";
   let ibtDailyChart = document.getElementById('ibt-daily-chart');
   let ibtMonthlyChart = document.getElementById('ibt-monthly-chart');
   let ibtYearlyChart = document.getElementById('ibt-yearly-chart');
@@ -15,7 +16,7 @@
   let ibtStartDate = "";
   let ibtEndDate = "";
 
-  // /** Initialize Data */
+  /** Initialize Data */
   async function initializeIBTData() {
     await initializeIBTSelect2Default();
     getAndFillIBTHighestThisMonthPanel();
@@ -258,7 +259,7 @@
   const formatBebanIBT = (result) => formatTemplateResult(result, 'beban-ibt');
   const formatSatuanIBT = (result) => formatTemplateResult(result, 'satuan-ibt');
 
-  // /** Read */
+  /** Read */
   async function refreshIBTDailyChartData() {
     let params = {
       ibt: getValue('ibt-daily'),
@@ -400,5 +401,35 @@
     return await crud.read({
       url: `${urlAPIIBTYearlyChart}?ibt=${ibt}&satuan=${satuan}&tahun=${tahun}`
     });
+  }
+
+  function downloadIBTDailyXLSX() {
+    const mainFilter = `ibt=${getValue("ibt-daily")}&satuan=${getValue("ibt-satuan-daily")}`;
+    const dateData = `${generateIBTDateDaily()}`;
+    const isWithPlanData = `${generateIBTIsWithPlanDaily()}`;
+    const url = `${urlAPIIBTDailyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generateIBTDateDaily() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`ibt-tanggal-daily-${i}`);
+      if (date) dateData += `&date${i}=${date}`;
+    }
+
+    return dateData;
+  }
+
+  function generateIBTIsWithPlanDaily() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`ibt-tanggal-daily-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
   }
 </script>

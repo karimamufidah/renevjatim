@@ -406,13 +406,13 @@
 
   function downloadPenghantarDailyXLSX() {
     const mainFilter = `ruas=${getValue("penghantar-ruas-daily")}&satuan=${getValue("penghantar-satuan-daily")}`;
-    const dateData = `${generateDateDaily()}`;
-    const isWithPlanData = `${generateIsWithPlanDaily()}`;
+    const dateData = `${generatePenghantarDateDaily()}`;
+    const isWithPlanData = `${generatePenghantarIsWithPlanDaily()}`;
     const url = `${urlAPIPenghantarDailyExport}?${mainFilter}${dateData}${isWithPlanData}`;
     window.open(url);
   }
 
-  function generateDateDaily() {
+  function generatePenghantarDateDaily() {
     let dateData = "";
 
     for (let i = 1; i <= 5; i++) {
@@ -423,7 +423,7 @@
     return dateData;
   }
 
-  function generateIsWithPlanDaily() {
+  function generatePenghantarIsWithPlanDaily() {
     let isWithPlan = "";
 
     for (let i = 1; i <= 5; i++) {
