@@ -5,7 +5,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Xlsx_ibt extends CI_Controller
+class Xlsx_trafo extends CI_Controller
 {
 
   public function index()
@@ -26,7 +26,7 @@ class Xlsx_ibt extends CI_Controller
 
   private function _validate($request, &$response)
   {
-    if (!isset($request->ibt)) $request->ibt = null;
+    if (!isset($request->trafo)) $request->trafo = null;
     if (!isset($request->satuan)) $request->satuan = null;
     if (!isset($request->date1)) $request->date1 = null;
     if (!isset($request->date2)) $request->date2 = null;
@@ -42,12 +42,12 @@ class Xlsx_ibt extends CI_Controller
 
   private function _get_data($request, &$response)
   {
-    $this->load->model("export/get_ibt_perencanaan_by_date_m", "plan");
-    $this->load->model("export/get_ibt_realisasi_by_date_m", "realization");
+    $this->load->model("export/get_trafo_perencanaan_by_date_m", "plan");
+    $this->load->model("export/get_trafo_realisasi_by_date_m", "realization");
 
     if ($request->date1) {
       $data_1 = $this->_get_data_detail((object) array(
-        "ibt" => $request->ibt,
+        "trafo" => $request->trafo,
         "satuan" => $request->satuan,
         "tanggal" => $request->date1,
         "isWithPlan" => $request->isWithPlan1
@@ -56,7 +56,7 @@ class Xlsx_ibt extends CI_Controller
 
     if ($request->date2) {
       $data_2 = $this->_get_data_detail((object) array(
-        "ibt" => $request->ibt,
+        "trafo" => $request->trafo,
         "satuan" => $request->satuan,
         "tanggal" => $request->date2,
         "isWithPlan" => $request->isWithPlan2
@@ -65,7 +65,7 @@ class Xlsx_ibt extends CI_Controller
 
     if ($request->date3) {
       $data_3 = $this->_get_data_detail((object) array(
-        "ibt" => $request->ibt,
+        "trafo" => $request->trafo,
         "satuan" => $request->satuan,
         "tanggal" => $request->date3,
         "isWithPlan" => $request->isWithPlan3
@@ -74,7 +74,7 @@ class Xlsx_ibt extends CI_Controller
 
     if ($request->date4) {
       $data_4 = $this->_get_data_detail((object) array(
-        "ibt" => $request->ibt,
+        "trafo" => $request->trafo,
         "satuan" => $request->satuan,
         "tanggal" => $request->date4,
         "isWithPlan" => $request->isWithPlan4
@@ -83,7 +83,7 @@ class Xlsx_ibt extends CI_Controller
 
     if ($request->date5) {
       $data_5 = $this->_get_data_detail((object) array(
-        "ibt" => $request->ibt,
+        "trafo" => $request->trafo,
         "satuan" => $request->satuan,
         "tanggal" => $request->date5,
         "isWithPlan" => $request->isWithPlan5
@@ -102,7 +102,7 @@ class Xlsx_ibt extends CI_Controller
   private function _get_data_detail($filters)
   {
     $realization = $this->realization->show((object) array(
-      "ibt" => $filters->ibt,
+      "trafo" => $filters->trafo,
       "satuan" => $filters->satuan,
       "tanggal" => $filters->tanggal
     ));
@@ -112,7 +112,7 @@ class Xlsx_ibt extends CI_Controller
       $plan = $this->_generate_empty_plan();
     } else {
       $plan = $this->plan->show((object) array(
-        "ibt" => $filters->ibt,
+        "trafo" => $filters->trafo,
         "satuan" => $filters->satuan,
         "tanggal" => $filters->tanggal
       ));
@@ -431,7 +431,7 @@ class Xlsx_ibt extends CI_Controller
 
   private function _generate_table_row(&$request, $data, &$sheet)
   {
-    $sheet->setCellValue("A$request->index", $request->ibt);
+    $sheet->setCellValue("A$request->index", $request->trafo);
     $sheet->setCellValue("B$request->index", $data->date);
     $sheet->setCellValue("C$request->index", $request->satuan);
 
@@ -602,7 +602,7 @@ class Xlsx_ibt extends CI_Controller
   private function _download_spreadsheet($request)
   {
     $this->load->helper('jam');
-    $name = "ibt-harian-" . str_replace(" ", "", str_replace("-", "", str_replace(":", "", generate_timezone_timestamp(null))));
+    $name = "trafo-harian-" . str_replace(" ", "", str_replace("-", "", str_replace(":", "", generate_timezone_timestamp(null))));
     $writer = new Xlsx($request->spreadsheet);
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Disposition: attachment;filename="' . $name . '.xlsx"');

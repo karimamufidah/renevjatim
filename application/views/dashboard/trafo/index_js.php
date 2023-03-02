@@ -8,6 +8,7 @@
   const urlAPITrafoHighestThisMonth = "<?php echo base_url('api/panel/get-highest-trafo-this-month-panel'); ?>";
   const urlAPITrafoHighestThisYear = "<?php echo base_url('api/panel/get-highest-trafo-this-year-panel'); ?>";
   const urlAPITrafoHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-trafo-all-time-panel'); ?>";
+  const urlAPITrafoDailyExport = "<?php echo base_url('export/xlsx-trafo'); ?>";
   let trafoDailyChart = document.getElementById('trafo-daily-chart');
   let trafoMonthlyChart = document.getElementById('trafo-monthly-chart');
   let trafoYearlyChart = document.getElementById('trafo-yearly-chart');
@@ -15,7 +16,7 @@
   let trafoStartDate = "";
   let trafoEndDate = "";
 
-  // /** Initialize Data */
+  /** Initialize Data */
   async function initializeTrafoData() {
     await initializeTrafoSelect2Default();
     getAndFillTrafoHighestThisMonthPanel();
@@ -258,7 +259,7 @@
   const formatBebanTrafo = (result) => formatTemplateResult(result, 'beban-trafo');
   const formatSatuanTrafo = (result) => formatTemplateResult(result, 'satuan-trafo');
 
-  // /** Read */
+  /** Read */
   async function refreshTrafoDailyChartData() {
     let params = {
       trafo: getValue('trafo-daily'),
@@ -400,5 +401,35 @@
     return await crud.read({
       url: `${urlAPITrafoYearlyChart}?trafo=${trafo}&satuan=${satuan}&tahun=${tahun}`
     });
+  }
+
+  function downloadTrafoDailyXLSX() {
+    const mainFilter = `trafo=${getValue("trafo-daily")}&satuan=${getValue("trafo-satuan-daily")}`;
+    const dateData = `${generateTrafoDateDaily()}`;
+    const isWithPlanData = `${generateTrafoIsWithPlanDaily()}`;
+    const url = `${urlAPITrafoDailyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generateTrafoDateDaily() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`trafo-tanggal-daily-${i}`);
+      if (date) dateData += `&date${i}=${date}`;
+    }
+
+    return dateData;
+  }
+
+  function generateTrafoIsWithPlanDaily() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`trafo-tanggal-daily-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
   }
 </script>
