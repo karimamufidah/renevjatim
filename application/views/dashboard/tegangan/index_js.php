@@ -9,6 +9,7 @@
   const urlAPITeganganHighestThisYear = "<?php echo base_url('api/panel/get-highest-tegangan-this-year-panel'); ?>";
   const urlAPITeganganHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-tegangan-all-time-panel'); ?>";
   const urlAPITeganganDailyExport = "<?php echo base_url('export/xlsx-tegangan'); ?>";
+  const urlAPITeganganMonthlyExport = "<?php echo base_url('export/monthly/xlsx-tegangan'); ?>";
   let teganganDailyChart = document.getElementById('tegangan-daily-chart');
   let teganganMonthlyChart = document.getElementById('tegangan-monthly-chart');
   let teganganYearlyChart = document.getElementById('tegangan-yearly-chart');
@@ -416,6 +417,39 @@
 
     for (let i = 1; i <= 5; i++) {
       const isWithPlanCheck = getElement(`tegangan-tanggal-daily-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
+  }
+
+
+  // Monthly
+  function downloadTeganganMonthlyXLSX() {
+    const mainFilter = `tegangan=${getValue("tegangan-monthly")}&minMax=${getValue("min-max-monthly")}`;
+    const dateData = `${generateTeganganDateMonthly()}`;
+    const isWithPlanData = `${generateTeganganIsWithPlanMonthly()}`;
+    const url = `${urlAPITeganganMonthlyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generateTeganganDateMonthly() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`tegangan-tanggal-monthly-${i}`);
+      const [month, year] = date.split("-");
+      if (date) dateData += `&date${i}=${year}-${month}`;
+    }
+
+    return dateData;
+  }
+
+  function generateTeganganIsWithPlanMonthly() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`tegangan-tanggal-monthly-${i}-checkbox`).checked;
       if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
     }
 

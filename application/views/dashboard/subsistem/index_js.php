@@ -9,6 +9,7 @@
   const urlAPISubsistemHighestThisYear = "<?php echo base_url('api/panel/get-highest-subsistem-this-year-panel'); ?>";
   const urlAPISubsistemHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-subsistem-all-time-panel'); ?>";
   const urlAPISubsistemDailyExport = "<?php echo base_url('export/xlsx-subsistem'); ?>";
+  const urlAPISubsistemMonthlyExport = "<?php echo base_url('export/monthly/xlsx-subsistem'); ?>";
   let subsistemDailyChart = document.getElementById('subsistem-daily-chart');
   let subsistemMonthlyChart = document.getElementById('subsistem-monthly-chart');
   let subsistemYearlyChart = document.getElementById('subsistem-yearly-chart');
@@ -395,6 +396,7 @@
     });
   }
 
+  // Daily
   function downloadSubsistemDailyXLSX() {
     const mainFilter = `subsistem=${getValue("subsistem-daily")}&pasokan=${getValue("subsistem-pasokan-daily")}`;
     const dateData = `${generateSubsistemDateDaily()}`;
@@ -419,6 +421,38 @@
 
     for (let i = 1; i <= 5; i++) {
       const isWithPlanCheck = getElement(`subsistem-tanggal-daily-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
+  }
+
+  // Monthly
+  function downloadSubsistemMonthlyXLSX() {
+    const mainFilter = `subsistem=${getValue("subsistem-monthly")}&pasokan=${getValue("subsistem-pasokan-monthly")}`;
+    const dateData = `${generateSubsistemDateMonthly()}`;
+    const isWithPlanData = `${generateSubsistemIsWithPlanMonthly()}`;
+    const url = `${urlAPISubsistemMonthlyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generateSubsistemDateMonthly() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`subsistem-tanggal-monthly-${i}`);
+      const [month, year] = date.split("-");
+      if (date) dateData += `&date${i}=${year}-${month}`;
+    }
+
+    return dateData;
+  }
+
+  function generateSubsistemIsWithPlanMonthly() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`subsistem-tanggal-monthly-${i}-checkbox`).checked;
       if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
     }
 

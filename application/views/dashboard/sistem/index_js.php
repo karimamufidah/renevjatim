@@ -7,6 +7,7 @@
   const urlAPISistemHighestThisYear = "<?php echo base_url('api/panel/get-highest-sistem-this-year-panel'); ?>";
   const urlAPISistemHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-sistem-all-time-panel'); ?>";
   const urlAPISistemDailyExport = "<?php echo base_url('export/xlsx-sistem'); ?>";
+  const urlAPISistemMonthlyExport = "<?php echo base_url('export/monthly/xlsx-sistem'); ?>";
   let sistemDailyChart = document.getElementById('sistem-daily-chart');
   let sistemMonthlyChart = document.getElementById('sistem-monthly-chart');
   let sistemYearlyChart = document.getElementById('sistem-yearly-chart');
@@ -260,6 +261,7 @@
     });
   }
 
+  // Daily
   function downloadSistemDailyXLSX() {
     const mainFilter = `sistem=${getValue("sistem-daily")}`;
     const dateData = `${generateSistemDateDaily()}`;
@@ -284,6 +286,38 @@
 
     for (let i = 1; i <= 5; i++) {
       const isWithPlanCheck = getElement(`sistem-tanggal-daily-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
+  }
+
+  // Monthly
+  function downloadSistemMonthlyXLSX() {
+    const mainFilter = `sistem=${getValue("sistem-monthly")}`;
+    const dateData = `${generateSistemDateMonthly()}`;
+    const isWithPlanData = `${generateSistemIsWithPlanMonthly()}`;
+    const url = `${urlAPISistemMonthlyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generateSistemDateMonthly() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`sistem-tanggal-monthly-${i}`);
+      const [month, year] = date.split("-");
+      if (date) dateData += `&date${i}=${year}-${month}`;
+    }
+
+    return dateData;
+  }
+
+  function generateSistemIsWithPlanMonthly() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`sistem-tanggal-monthly-${i}-checkbox`).checked;
       if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
     }
 

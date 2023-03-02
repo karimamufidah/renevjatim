@@ -9,6 +9,7 @@
   const urlAPIPenghantarHighestThisYear = "<?php echo base_url('api/panel/get-highest-penghantar-this-year-panel'); ?>";
   const urlAPIPenghantarHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-penghantar-all-time-panel'); ?>";
   const urlAPIPenghantarDailyExport = "<?php echo base_url('export/xlsx-penghantar'); ?>";
+  const urlAPIPenghantarMonthlyExport = "<?php echo base_url('export/monthly/xlsx-penghantar'); ?>";
   let penghantarDailyChart = document.getElementById('penghantar-daily');
   let penghantarMonthlyChart = document.getElementById('penghantar-monthly');
   let penghantarYearlyChart = document.getElementById('penghantar-yearly');
@@ -404,6 +405,7 @@
     });
   }
 
+  // Daily
   function downloadPenghantarDailyXLSX() {
     const mainFilter = `ruas=${getValue("penghantar-ruas-daily")}&satuan=${getValue("penghantar-satuan-daily")}`;
     const dateData = `${generatePenghantarDateDaily()}`;
@@ -428,6 +430,38 @@
 
     for (let i = 1; i <= 5; i++) {
       const isWithPlanCheck = getElement(`penghantar-tanggal-daily-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
+  }
+
+  // Monthly
+  function downloadPenghantarMonthlyXLSX() {
+    const mainFilter = `ruas=${getValue("penghantar-ruas-monthly")}&satuan=${getValue("penghantar-satuan-monthly")}`;
+    const dateData = `${generatePenghantarDateMonthly()}`;
+    const isWithPlanData = `${generatePenghantarIsWithPlanMonthly()}`;
+    const url = `${urlAPIPenghantarMonthlyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generatePenghantarDateMonthly() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`penghantar-tanggal-monthly-${i}`);
+      const [month, year] = date.split("-");
+      if (date) dateData += `&date${i}=${year}-${month}`;
+    }
+
+    return dateData;
+  }
+
+  function generatePenghantarIsWithPlanMonthly() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`penghantar-tanggal-monthly-${i}-checkbox`).checked;
       if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
     }
 

@@ -9,6 +9,7 @@
   const urlAPITrafoHighestThisYear = "<?php echo base_url('api/panel/get-highest-trafo-this-year-panel'); ?>";
   const urlAPITrafoHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-trafo-all-time-panel'); ?>";
   const urlAPITrafoDailyExport = "<?php echo base_url('export/xlsx-trafo'); ?>";
+  const urlAPITrafoMonthlyExport = "<?php echo base_url('export/monthly/xlsx-trafo'); ?>";
   let trafoDailyChart = document.getElementById('trafo-daily-chart');
   let trafoMonthlyChart = document.getElementById('trafo-monthly-chart');
   let trafoYearlyChart = document.getElementById('trafo-yearly-chart');
@@ -403,6 +404,7 @@
     });
   }
 
+  // Daily
   function downloadTrafoDailyXLSX() {
     const mainFilter = `trafo=${getValue("trafo-daily")}&satuan=${getValue("trafo-satuan-daily")}`;
     const dateData = `${generateTrafoDateDaily()}`;
@@ -427,6 +429,38 @@
 
     for (let i = 1; i <= 5; i++) {
       const isWithPlanCheck = getElement(`trafo-tanggal-daily-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
+  }
+
+  // Monthly
+  function downloadTrafoMonthlyXLSX() {
+    const mainFilter = `trafo=${getValue("trafo-monthly")}&satuan=${getValue("trafo-satuan-monthly")}`;
+    const dateData = `${generateTrafoDateMonthly()}`;
+    const isWithPlanData = `${generateTrafoIsWithPlanMonthly()}`;
+    const url = `${urlAPITrafoMonthlyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generateTrafoDateMonthly() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`trafo-tanggal-monthly-${i}`);
+      const [month, year] = date.split("-");
+      if (date) dateData += `&date${i}=${year}-${month}`;
+    }
+
+    return dateData;
+  }
+
+  function generateTrafoIsWithPlanMonthly() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`trafo-tanggal-monthly-${i}-checkbox`).checked;
       if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
     }
 

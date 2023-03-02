@@ -9,6 +9,7 @@
   const urlAPIIBTHighestThisYear = "<?php echo base_url('api/panel/get-highest-ibt-this-year-panel'); ?>";
   const urlAPIIBTHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-ibt-all-time-panel'); ?>";
   const urlAPIIBTDailyExport = "<?php echo base_url('export/xlsx-ibt'); ?>";
+  const urlAPIIBTMonthlyExport = "<?php echo base_url('export/monthly/xlsx-ibt'); ?>";
   let ibtDailyChart = document.getElementById('ibt-daily-chart');
   let ibtMonthlyChart = document.getElementById('ibt-monthly-chart');
   let ibtYearlyChart = document.getElementById('ibt-yearly-chart');
@@ -403,6 +404,7 @@
     });
   }
 
+  // Daily
   function downloadIBTDailyXLSX() {
     const mainFilter = `ibt=${getValue("ibt-daily")}&satuan=${getValue("ibt-satuan-daily")}`;
     const dateData = `${generateIBTDateDaily()}`;
@@ -427,6 +429,38 @@
 
     for (let i = 1; i <= 5; i++) {
       const isWithPlanCheck = getElement(`ibt-tanggal-daily-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
+  }
+
+  // Monthly
+  function downloadIBTMonthlyXLSX() {
+    const mainFilter = `ibt=${getValue("ibt-monthly")}&satuan=${getValue("ibt-satuan-monthly")}`;
+    const dateData = `${generateIBTDateMonthly()}`;
+    const isWithPlanData = `${generateIBTIsWithPlanMonthly()}`;
+    const url = `${urlAPIIBTMonthlyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generateIBTDateMonthly() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`ibt-tanggal-monthly-${i}`);
+      const [month, year] = date.split("-");
+      if (date) dateData += `&date${i}=${year}-${month}`;
+    }
+
+    return dateData;
+  }
+
+  function generateIBTIsWithPlanMonthly() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`ibt-tanggal-monthly-${i}-checkbox`).checked;
       if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
     }
 
