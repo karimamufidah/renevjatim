@@ -8,6 +8,7 @@
   const urlAPISubsistemHighestThisMonth = "<?php echo base_url('api/panel/get-highest-subsistem-this-month-panel'); ?>";
   const urlAPISubsistemHighestThisYear = "<?php echo base_url('api/panel/get-highest-subsistem-this-year-panel'); ?>";
   const urlAPISubsistemHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-subsistem-all-time-panel'); ?>";
+  const urlAPISubsistemDailyExport = "<?php echo base_url('export/xlsx-subsistem'); ?>";
   let subsistemDailyChart = document.getElementById('subsistem-daily-chart');
   let subsistemMonthlyChart = document.getElementById('subsistem-monthly-chart');
   let subsistemYearlyChart = document.getElementById('subsistem-yearly-chart');
@@ -15,7 +16,7 @@
   let subsistemStartDate = "";
   let subsistemEndDate = "";
 
-  // /** Initialize Data */
+  /** Initialize Data */
   async function initializeSubsistemData() {
     await initializeSubsistemSelect2Default();
     getAndFillSubsistemHighestThisMonthPanel();
@@ -250,7 +251,7 @@
   const formatBebanSubsistem = (result) => formatTemplateResult(result, 'beban-subsistem');
   const formatPasokanSubsistem = (result) => formatTemplateResult(result, 'pasokan-subsistem');
 
-  // /** Read */
+  /** Read */
   async function refreshSubsistemDailyChartData() {
     let params = {
       subsistem: getValue('subsistem-daily'),
@@ -392,5 +393,35 @@
     return await crud.read({
       url: `${urlAPISubsistemYearlyChart}?subsistem=${subsistem}&pasokan=${pasokan}&tahun=${tahun}`
     });
+  }
+
+  function downloadSubsistemDailyXLSX() {
+    const mainFilter = `subsistem=${getValue("subsistem-daily")}&pasokan=${getValue("subsistem-pasokan-daily")}`;
+    const dateData = `${generateSubsistemDateDaily()}`;
+    const isWithPlanData = `${generateSubsistemIsWithPlanDaily()}`;
+    const url = `${urlAPISubsistemDailyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generateSubsistemDateDaily() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`subsistem-tanggal-daily-${i}`);
+      if (date) dateData += `&date${i}=${date}`;
+    }
+
+    return dateData;
+  }
+
+  function generateSubsistemIsWithPlanDaily() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`subsistem-tanggal-daily-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
   }
 </script>
