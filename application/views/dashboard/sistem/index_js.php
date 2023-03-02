@@ -6,13 +6,14 @@
   const urlAPISistemHighestThisMonth = "<?php echo base_url('api/panel/get-highest-sistem-this-month-panel'); ?>";
   const urlAPISistemHighestThisYear = "<?php echo base_url('api/panel/get-highest-sistem-this-year-panel'); ?>";
   const urlAPISistemHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-sistem-all-time-panel'); ?>";
+  const urlAPISistemDailyExport = "<?php echo base_url('export/xlsx-sistem'); ?>";
   let sistemDailyChart = document.getElementById('sistem-daily-chart');
   let sistemMonthlyChart = document.getElementById('sistem-monthly-chart');
   let sistemYearlyChart = document.getElementById('sistem-yearly-chart');
   let sistemStartDate = "";
   let sistemEndDate = "";
 
-  // /** Initialize Data */
+  /** Initialize Data */
   async function initializeSistemData() {
     await initializeSistemSelect2Default();
     getAndFillSistemHighestThisMonthPanel();
@@ -122,7 +123,7 @@
 
   const formatBebanSistem = (result) => formatTemplateResult(result, 'beban-sistem');
 
-  // /** Read */
+  /** Read */
   async function refreshSistemDailyChartData() {
     let params = {
       sistem: getValue('sistem-daily')
@@ -257,5 +258,35 @@
     return await crud.read({
       url: `${urlAPISistemYearlyChart}?sistem=${sistem}&tahun=${tahun}`
     });
+  }
+
+  function downloadSistemDailyXLSX() {
+    const mainFilter = `sistem=${getValue("sistem-daily")}`;
+    const dateData = `${generateSistemDateDaily()}`;
+    const isWithPlanData = `${generateSistemIsWithPlanDaily()}`;
+    const url = `${urlAPISistemDailyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generateSistemDateDaily() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`sistem-tanggal-daily-${i}`);
+      if (date) dateData += `&date${i}=${date}`;
+    }
+
+    return dateData;
+  }
+
+  function generateSistemIsWithPlanDaily() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`sistem-tanggal-daily-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
   }
 </script>

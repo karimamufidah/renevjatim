@@ -8,6 +8,7 @@
   const urlAPITeganganHighestThisMonth = "<?php echo base_url('api/panel/get-highest-tegangan-this-month-panel'); ?>";
   const urlAPITeganganHighestThisYear = "<?php echo base_url('api/panel/get-highest-tegangan-this-year-panel'); ?>";
   const urlAPITeganganHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-tegangan-all-time-panel'); ?>";
+  const urlAPITeganganDailyExport = "<?php echo base_url('export/xlsx-tegangan'); ?>";
   let teganganDailyChart = document.getElementById('tegangan-daily-chart');
   let teganganMonthlyChart = document.getElementById('tegangan-monthly-chart');
   let teganganYearlyChart = document.getElementById('tegangan-yearly-chart');
@@ -15,7 +16,7 @@
   let teganganStartDate = "";
   let teganganEndDate = "";
 
-  // /** Initialize Data */
+  /** Initialize Data */
   async function initializeTeganganData() {
     await initializeTeganganSelect2Default();
     initializeTeganganDateRangePicker();
@@ -250,7 +251,7 @@
   const formatBebanTegangan = (result) => formatTemplateResult(result, 'beban-tegangan');
   const formatSatuanTegangan = (result) => formatTemplateResult(result, 'satuan-tegangan');
 
-  // /** Read */
+  /** Read */
   async function refreshTeganganDailyChartData() {
     let params = {
       gardu_induk: getValue('tegangan-daily')
@@ -389,5 +390,35 @@
     return await crud.read({
       url: `${urlAPITeganganYearlyChart}?gardu_induk=${gardu_induk}&min_max=${min_max}&tahun=${tahun}`
     });
+  }
+
+  function downloadTeganganDailyXLSX() {
+    const mainFilter = `tegangan=${getValue("tegangan-daily")}`;
+    const dateData = `${generateTeganganDateDaily()}`;
+    const isWithPlanData = `${generateTeganganIsWithPlanDaily()}`;
+    const url = `${urlAPITeganganDailyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generateTeganganDateDaily() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`tegangan-tanggal-daily-${i}`);
+      if (date) dateData += `&date${i}=${date}`;
+    }
+
+    return dateData;
+  }
+
+  function generateTeganganIsWithPlanDaily() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`tegangan-tanggal-daily-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
   }
 </script>
