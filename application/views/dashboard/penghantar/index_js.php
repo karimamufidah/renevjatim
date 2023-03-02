@@ -8,6 +8,7 @@
   const urlAPIPenghantarHighestThisMonth = "<?php echo base_url('api/panel/get-highest-penghantar-this-month-panel'); ?>";
   const urlAPIPenghantarHighestThisYear = "<?php echo base_url('api/panel/get-highest-penghantar-this-year-panel'); ?>";
   const urlAPIPenghantarHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-penghantar-all-time-panel'); ?>";
+  const urlAPIPenghantarDailyExport = "<?php echo base_url('export/xlsx-penghantar'); ?>";
   let penghantarDailyChart = document.getElementById('penghantar-daily');
   let penghantarMonthlyChart = document.getElementById('penghantar-monthly');
   let penghantarYearlyChart = document.getElementById('penghantar-yearly');
@@ -401,6 +402,36 @@
     return await crud.read({
       url: `${urlAPIPenghantarYearlyChart}?ruas=${ruas}&satuan=${satuan}&tahun=${tahun}`
     });
+  }
+
+  function downloadPenghantarDailyXLSX() {
+    const mainFilter = `ruas=${getValue("penghantar-ruas-daily")}&satuan=${getValue("penghantar-satuan-daily")}`;
+    const dateData = `${generateDateDaily()}`;
+    const isWithPlanData = `${generateIsWithPlanDaily()}`;
+    const url = `${urlAPIPenghantarDailyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generateDateDaily() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`penghantar-tanggal-daily-${i}`);
+      if (date) dateData += `&date${i}=${date}`;
+    }
+
+    return dateData;
+  }
+
+  function generateIsWithPlanDaily() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`penghantar-tanggal-daily-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
   }
 
   /** General */
