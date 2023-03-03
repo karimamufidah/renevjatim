@@ -26,14 +26,31 @@ class Get_beban_trafo_monthly extends CI_Controller
   {
     $this->load->model("graph/get_beban_trafo_monthly_plan_m", "plan");
 
-    $data = $this->plan->show((object) array(
-      "trafo" => $request->trafo,
-      "satuan" => $request->satuan,
-      "bulan" => $request->bulan,
-      "tahun" => $request->tahun
-    ));
+    $data = array();
 
-    $data = $data ? $this->_format_data($data) : $this->_generate_empty_data();
+    for ($i = 1; $i <= 31; $i++) {
+      if ($i > $this->_get_max_day("$request->tahun-$request->bulan")) {
+        array_push($data, 0);
+        continue;
+      }
+
+      $day = $i < 10 ? "0$i" : $i;
+      $plan = $this->plan->show((object) array(
+        "trafo" => $request->trafo,
+        "satuan" => $request->satuan,
+        "tanggal" => "$request->tahun-$request->bulan-$day"
+      ));
+
+      if (!$plan) {
+        $plan = 0;
+      } else {
+        $plan = array_values((array) $plan);
+        rsort($plan);
+        $plan = $plan[0];
+      }
+
+      array_push($data, $plan);
+    }
 
     $response->data->plan = $data;
   }
@@ -42,41 +59,47 @@ class Get_beban_trafo_monthly extends CI_Controller
   {
     $this->load->model("graph/get_beban_trafo_monthly_realization_m", "realization");
 
-    $data = $this->realization->show((object) array(
-      "trafo" => $request->trafo,
-      "satuan" => $request->satuan,
-      "bulan" => $request->bulan,
-      "tahun" => $request->tahun
-    ));
+    $data = array();
 
-    $data = $data ? $this->_format_data($data) : $this->_generate_empty_data();
+    for ($i = 1; $i <= 31; $i++) {
+      if ($i > $this->_get_max_day("$request->tahun-$request->bulan")) {
+        array_push($data, 0);
+        continue;
+      }
+
+      $day = $i < 10 ? "0$i" : $i;
+      $realization = $this->realization->show((object) array(
+        "trafo" => $request->trafo,
+        "satuan" => $request->satuan,
+        "tanggal" => "$request->tahun-$request->bulan-$day"
+      ));
+
+      if (!$realization) {
+        $realization = 0;
+      } else {
+        $realization = array_values((array) $realization);
+        rsort($realization);
+        $realization = $realization[0];
+      }
+
+      array_push($data, $realization);
+    }
 
     $response->data->realization = $data;
   }
 
-  private function _format_data($data)
+  private function _get_max_day($year_month)
   {
-    $formatted_data = array();
+    $year_month_array = explode('-', $year_month);
 
-    foreach ($data as $datum) {
-      $formatted_data[$datum->tanggal] = $datum->total;
-    }
+    if (in_array($year_month_array[1], array(1, 3, 5, 7, 8, 10, 12))) return 31;
+    if (in_array($year_month_array[1], array(2, 4, 6, 9, 11))) return 30;
 
-    for ($i = 1; $i <= 31; $i++) {
-      if (!isset($formatted_data[$i])) $formatted_data[$i] = 0;
-    }
-
-    ksort($formatted_data);
-
-    return array_values($formatted_data);
+    return $this->_is_leap_year($year_month_array[0]) ? 29 : 28;
   }
 
-  private function _generate_empty_data()
+  private function _is_leap_year($year)
   {
-    $data = array();
-
-    for ($i = 0; $i < 31; $i++) array_push($data, 0);
-
-    return $data;
+    return date('L', mktime(0, 0, 0, 1, 1, $year));
   }
 }
