@@ -8,7 +8,7 @@ class Get_tegangan_perencanaan_m extends CI_Model
 
   public function show($filters)
   {
-    if ($filters->minMax == "Max") {
+    if ($filters->min_max == "Max") {
       $this->db->select("
         COALESCE(MAX(ren_0030), 0) AS ren_0030, COALESCE(MAX(ren_0100), 0) AS ren_0100, COALESCE(MAX(ren_0130), 0) AS ren_0130, COALESCE(MAX(ren_0200), 0) AS ren_0200,
         COALESCE(MAX(ren_0230), 0) AS ren_0230, COALESCE(MAX(ren_0300), 0) AS ren_0300, COALESCE(MAX(ren_0330), 0) AS ren_0330, COALESCE(MAX(ren_0400), 0) AS ren_0400,
@@ -40,9 +40,9 @@ class Get_tegangan_perencanaan_m extends CI_Model
       ");
     }
 
-    $this->db->where("gardu_induk", $filters->tegangan);
+    $this->db->where("gardu_induk", $filters->gardu_induk);
     $this->db->where("YEAR(tanggal)", $filters->year);
-    $this->db->where("YEAR(tanggal)", $filters->month);
+    $this->db->where("MONTH(tanggal)", $filters->month);
 
     $query = $this->db->get($this->_get_table_name());
     $result = $query->result();

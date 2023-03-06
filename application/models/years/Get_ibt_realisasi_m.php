@@ -26,7 +26,7 @@ class Get_ibt_realisasi_m extends CI_Model
     $this->db->where("ibt", $filters->ibt);
     $this->db->where("satuan", $filters->satuan);
     $this->db->where("YEAR(tanggal)", $filters->year);
-    $this->db->where("YEAR(tanggal)", $filters->month);
+    $this->db->where("MONTH(tanggal)", $filters->month);
 
     $query = $this->db->get($this->_get_table_name());
     $result = $query->result();

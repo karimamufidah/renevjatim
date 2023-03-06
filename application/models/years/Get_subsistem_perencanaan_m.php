@@ -26,7 +26,7 @@ class Get_subsistem_perencanaan_m extends CI_Model
     $this->db->where("subsistem", $filters->subsistem);
     $this->db->where("pasokan", $filters->pasokan);
     $this->db->where("YEAR(tanggal)", $filters->year);
-    $this->db->where("YEAR(tanggal)", $filters->month);
+    $this->db->where("MONTH(tanggal)", $filters->month);
 
     $query = $this->db->get($this->_get_table_name());
     $result = $query->result();

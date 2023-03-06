@@ -23,7 +23,7 @@ class Get_beban_ibt_yearly extends CI_Controller
 
   private function _get_data_plan($request, &$response)
   {
-    $this->load->model("graph/get_beban_ibt_yearly_plan_m", "plan");
+    $this->load->model("years/get_ibt_perencanaan_m", "plan");
 
     $data = array();
 
@@ -31,9 +31,12 @@ class Get_beban_ibt_yearly extends CI_Controller
       $monthly_data = $this->plan->show((object) array(
         "ibt" => $request->ibt,
         "satuan" => $request->satuan,
-        "bulan" => $i,
-        "tahun" => $request->tahun
+        "month" => $i,
+        "year" => $request->tahun
       ));
+      $monthly_data = array_values((array) $monthly_data);
+      rsort($monthly_data);
+      $monthly_data = $monthly_data[0];
 
       array_push($data, $monthly_data ? $monthly_data : 0);
     }
@@ -43,7 +46,7 @@ class Get_beban_ibt_yearly extends CI_Controller
 
   private function _get_data_realization($request, &$response)
   {
-    $this->load->model("graph/get_beban_ibt_yearly_realization_m", "realization");
+    $this->load->model("years/get_ibt_realisasi_m", "realization");
 
     $data = array();
 
@@ -51,9 +54,12 @@ class Get_beban_ibt_yearly extends CI_Controller
       $monthly_data = $this->realization->show((object) array(
         "ibt" => $request->ibt,
         "satuan" => $request->satuan,
-        "bulan" => $i,
-        "tahun" => $request->tahun
+        "month" => $i,
+        "year" => $request->tahun
       ));
+      $monthly_data = array_values((array) $monthly_data);
+      rsort($monthly_data);
+      $monthly_data = $monthly_data[0];
 
       array_push($data, $monthly_data ? $monthly_data : 0);
     }
