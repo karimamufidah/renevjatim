@@ -168,7 +168,7 @@
 
             <div class="row mt-3">
               <div class="col-6">
-                <button class="btn btn-default col-12"><i class="bx bx-download"></i>&nbsp; Download</button>
+                <button class="btn btn-default col-12" onclick="downloadPembangkitYearlyXLSX()"><i class="bx bx-download"></i>&nbsp; Download</button>
               </div>
               <div class="col-6">
                 <button class="btn btn-primary col-12" onclick="refreshPembangkitYearlyChartData()"><i class="bx bx-search"></i>&nbsp; Proses</button>

@@ -10,6 +10,7 @@
   const urlAPISubsistemHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-subsistem-all-time-panel'); ?>";
   const urlAPISubsistemDailyExport = "<?php echo base_url('export/xlsx-subsistem'); ?>";
   const urlAPISubsistemMonthlyExport = "<?php echo base_url('export/monthly/xlsx-subsistem'); ?>";
+  const urlAPISubsistemYearlyExport = "<?php echo base_url('export/yearly/xlsx-subsistem'); ?>";
   let subsistemDailyChart = document.getElementById('subsistem-daily-chart');
   let subsistemMonthlyChart = document.getElementById('subsistem-monthly-chart');
   let subsistemYearlyChart = document.getElementById('subsistem-yearly-chart');
@@ -453,6 +454,37 @@
 
     for (let i = 1; i <= 5; i++) {
       const isWithPlanCheck = getElement(`subsistem-tanggal-monthly-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
+  }
+
+  // Yearly
+  function downloadSubsistemYearlyXLSX() {
+    const mainFilter = `subsistem=${getValue("subsistem-yearly")}&pasokan=${getValue("subsistem-pasokan-yearly")}`;
+    const dateData = `${generateSubsistemDateYearly()}`;
+    const isWithPlanData = `${generateSubsistemIsWithPlanYearly()}`;
+    const url = `${urlAPISubsistemYearlyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generateSubsistemDateYearly() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`subsistem-tanggal-yearly-${i}`);
+      if (date) dateData += `&date${i}=${date}`;
+    }
+
+    return dateData;
+  }
+
+  function generateSubsistemIsWithPlanYearly() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`subsistem-tanggal-yearly-${i}-checkbox`).checked;
       if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
     }
 

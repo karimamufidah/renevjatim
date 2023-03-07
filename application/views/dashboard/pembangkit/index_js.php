@@ -10,6 +10,7 @@
   const urlAPIPembangkitHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-pembangkit-all-time-panel'); ?>";
   const urlAPIPembangkitDailyExport = "<?php echo base_url('export/xlsx-pembangkit'); ?>";
   const urlAPIPembangkitMonthlyExport = "<?php echo base_url('export/monthly/xlsx-pembangkit'); ?>";
+  const urlAPIPembangkitYearlyExport = "<?php echo base_url('export/yearly/xlsx-pembangkit'); ?>";
   let pembangkitDailyChart = document.getElementById('pembangkit-daily-chart');
   let pembangkitMonthlyChart = document.getElementById('pembangkit-monthly-chart');
   let pembangkitYearlyChart = document.getElementById('pembangkit-yearly-chart');
@@ -457,6 +458,37 @@
 
     for (let i = 1; i <= 5; i++) {
       const isWithPlanCheck = getElement(`pembangkit-tanggal-monthly-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
+  }
+
+  // Yearly
+  function downloadPembangkitYearlyXLSX() {
+    const mainFilter = `pembangkit=${getValue("pembangkit-yearly")}&satuan=${getValue("pembangkit-satuan-yearly")}`;
+    const dateData = `${generatePembangkitDateYearly()}`;
+    const isWithPlanData = `${generatePembangkitIsWithPlanYearly()}`;
+    const url = `${urlAPIPembangkitYearlyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generatePembangkitDateYearly() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`pembangkit-tanggal-yearly-${i}`);
+      if (date) dateData += `&date${i}=${date}`;
+    }
+
+    return dateData;
+  }
+
+  function generatePembangkitIsWithPlanYearly() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`pembangkit-tanggal-yearly-${i}-checkbox`).checked;
       if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
     }
 

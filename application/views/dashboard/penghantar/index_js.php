@@ -10,6 +10,7 @@
   const urlAPIPenghantarHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-penghantar-all-time-panel'); ?>";
   const urlAPIPenghantarDailyExport = "<?php echo base_url('export/xlsx-penghantar'); ?>";
   const urlAPIPenghantarMonthlyExport = "<?php echo base_url('export/monthly/xlsx-penghantar'); ?>";
+  const urlAPIPenghantarYearlyExport = "<?php echo base_url('export/yearly/xlsx-penghantar'); ?>";
   let penghantarDailyChart = document.getElementById('penghantar-daily');
   let penghantarMonthlyChart = document.getElementById('penghantar-monthly');
   let penghantarYearlyChart = document.getElementById('penghantar-yearly');
@@ -462,6 +463,37 @@
 
     for (let i = 1; i <= 5; i++) {
       const isWithPlanCheck = getElement(`penghantar-tanggal-monthly-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
+  }
+
+  // Yearly
+  function downloadPenghantarYearlyXLSX() {
+    const mainFilter = `ruas=${getValue("penghantar-ruas-yearly")}&satuan=${getValue("penghantar-satuan-yearly")}`;
+    const dateData = `${generatePenghantarDateYearly()}`;
+    const isWithPlanData = `${generatePenghantarIsWithPlanYearly()}`;
+    const url = `${urlAPIPenghantarYearlyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generatePenghantarDateYearly() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`penghantar-tanggal-yearly-${i}`);
+      if (date) dateData += `&date${i}=${date}`;
+    }
+
+    return dateData;
+  }
+
+  function generatePenghantarIsWithPlanYearly() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`penghantar-tanggal-yearly-${i}-checkbox`).checked;
       if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
     }
 

@@ -8,6 +8,7 @@
   const urlAPISistemHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-sistem-all-time-panel'); ?>";
   const urlAPISistemDailyExport = "<?php echo base_url('export/xlsx-sistem'); ?>";
   const urlAPISistemMonthlyExport = "<?php echo base_url('export/monthly/xlsx-sistem'); ?>";
+  const urlAPISistemYearlyExport = "<?php echo base_url('export/yearly/xlsx-sistem'); ?>";
   let sistemDailyChart = document.getElementById('sistem-daily-chart');
   let sistemMonthlyChart = document.getElementById('sistem-monthly-chart');
   let sistemYearlyChart = document.getElementById('sistem-yearly-chart');
@@ -318,6 +319,37 @@
 
     for (let i = 1; i <= 5; i++) {
       const isWithPlanCheck = getElement(`sistem-tanggal-monthly-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
+  }
+
+  // Yearly
+  function downloadSistemYearlyXLSX() {
+    const mainFilter = `sistem=${getValue("sistem-yearly")}`;
+    const dateData = `${generateSistemDateYearly()}`;
+    const isWithPlanData = `${generateSistemIsWithPlanYearly()}`;
+    const url = `${urlAPISistemYearlyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generateSistemDateYearly() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`sistem-tanggal-yearly-${i}`);
+      if (date) dateData += `&date${i}=${date}`;
+    }
+
+    return dateData;
+  }
+
+  function generateSistemIsWithPlanYearly() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`sistem-tanggal-yearly-${i}-checkbox`).checked;
       if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
     }
 

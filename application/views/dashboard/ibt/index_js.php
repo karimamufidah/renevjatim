@@ -10,6 +10,7 @@
   const urlAPIIBTHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-ibt-all-time-panel'); ?>";
   const urlAPIIBTDailyExport = "<?php echo base_url('export/xlsx-ibt'); ?>";
   const urlAPIIBTMonthlyExport = "<?php echo base_url('export/monthly/xlsx-ibt'); ?>";
+  const urlAPIIBTYearlyExport = "<?php echo base_url('export/yearly/xlsx-ibt'); ?>";
   let ibtDailyChart = document.getElementById('ibt-daily-chart');
   let ibtMonthlyChart = document.getElementById('ibt-monthly-chart');
   let ibtYearlyChart = document.getElementById('ibt-yearly-chart');
@@ -461,6 +462,37 @@
 
     for (let i = 1; i <= 5; i++) {
       const isWithPlanCheck = getElement(`ibt-tanggal-monthly-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
+  }
+
+  // Yearly
+  function downloadIBTYearlyXLSX() {
+    const mainFilter = `ibt=${getValue("ibt-yearly")}&satuan=${getValue("ibt-satuan-yearly")}`;
+    const dateData = `${generateIBTDateYearly()}`;
+    const isWithPlanData = `${generateIBTIsWithPlanYearly()}`;
+    const url = `${urlAPIIBTYearlyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generateIBTDateYearly() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`ibt-tanggal-yearly-${i}`);
+      if (date) dateData += `&date${i}=${date}`;
+    }
+
+    return dateData;
+  }
+
+  function generateIBTIsWithPlanYearly() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`ibt-tanggal-yearly-${i}-checkbox`).checked;
       if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
     }
 

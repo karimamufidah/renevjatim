@@ -10,6 +10,7 @@
   const urlAPITrafoHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-trafo-all-time-panel'); ?>";
   const urlAPITrafoDailyExport = "<?php echo base_url('export/xlsx-trafo'); ?>";
   const urlAPITrafoMonthlyExport = "<?php echo base_url('export/monthly/xlsx-trafo'); ?>";
+  const urlAPITrafoYearlyExport = "<?php echo base_url('export/yearly/xlsx-trafo'); ?>";
   let trafoDailyChart = document.getElementById('trafo-daily-chart');
   let trafoMonthlyChart = document.getElementById('trafo-monthly-chart');
   let trafoYearlyChart = document.getElementById('trafo-yearly-chart');
@@ -461,6 +462,37 @@
 
     for (let i = 1; i <= 5; i++) {
       const isWithPlanCheck = getElement(`trafo-tanggal-monthly-${i}-checkbox`).checked;
+      if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
+    }
+
+    return isWithPlan;
+  }
+
+  // Yearly
+  function downloadTrafoYearlyXLSX() {
+    const mainFilter = `trafo=${getValue("trafo-yearly")}&satuan=${getValue("trafo-satuan-yearly")}`;
+    const dateData = `${generateTrafoDateYearly()}`;
+    const isWithPlanData = `${generateTrafoIsWithPlanYearly()}`;
+    const url = `${urlAPITrafoYearlyExport}?${mainFilter}${dateData}${isWithPlanData}`;
+    window.open(url);
+  }
+
+  function generateTrafoDateYearly() {
+    let dateData = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const date = getValue(`trafo-tanggal-yearly-${i}`);
+      if (date) dateData += `&date${i}=${date}`;
+    }
+
+    return dateData;
+  }
+
+  function generateTrafoIsWithPlanYearly() {
+    let isWithPlan = "";
+
+    for (let i = 1; i <= 5; i++) {
+      const isWithPlanCheck = getElement(`trafo-tanggal-yearly-${i}-checkbox`).checked;
       if (isWithPlanCheck) isWithPlan += `&isWithPlan${i}=${isWithPlanCheck}`;
     }
 
