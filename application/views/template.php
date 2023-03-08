@@ -57,7 +57,7 @@
 
       <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
 
-        <div>
+        <div class="text-center mt-3">
           <a class="navbar-brand " href="<?= site_url('dashboard') ?>" style="justify-content: center ;">
             <img src="<?= base_url() ?>assets/admin/img/renev-logo.png" class="img-fluid" style="width: 70%;">
           </a>
