@@ -500,7 +500,6 @@
     return isWithPlan;
   }
 
-
   // Pemantauan
   function downloadTrafoPemantauanXLSX() {
     const mainFilter = `nama=${getValue("trafo-table")}`;

@@ -216,6 +216,7 @@
             <div class="row mt-3">
               <div class="col-12">
                 <button class="btn btn-primary col-12" onclick="teganganDatatable.ajax.reload()">Proses</button>
+                <button class="btn btn-default col-12 mt-1" onclick="downloadTeganganPemantauanXLSX()"><i class="bx bx-download"></i>&nbsp; Download</button>
               </div>
             </div>
           </div>

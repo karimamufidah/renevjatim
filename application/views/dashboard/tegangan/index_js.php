@@ -11,6 +11,7 @@
   const urlAPITeganganDailyExport = "<?php echo base_url('export/xlsx-tegangan'); ?>";
   const urlAPITeganganMonthlyExport = "<?php echo base_url('export/monthly/xlsx-tegangan'); ?>";
   const urlAPITeganganYearlyExport = "<?php echo base_url('export/yearly/xlsx-tegangan'); ?>";
+  const urlAPITeganganPemantauanExport = "<?php echo base_url('export/pemantauan/xlsx-tegangan'); ?>";
   let teganganDailyChart = document.getElementById('tegangan-daily-chart');
   let teganganMonthlyChart = document.getElementById('tegangan-monthly-chart');
   let teganganYearlyChart = document.getElementById('tegangan-yearly-chart');
@@ -486,5 +487,28 @@
     }
 
     return isWithPlan;
+  }
+
+  // Pemantauan
+  function downloadTeganganPemantauanXLSX() {
+    const mainFilter = `nama=${getValue("tegangan-table")}`;
+    const dateData = `${generateTeganganDatePemantauan()}`;
+    const rangeData = `${generateTeganganRangePemantauan()}`;
+    const url = `${urlAPITeganganPemantauanExport}?${mainFilter}${dateData}${rangeData}`;
+    window.open(url);
+  }
+
+  function generateTeganganDatePemantauan() {
+    const tanggalAwal = teganganStartDate.format("YYYY-MM-DD");
+    const tanggalAkhir = teganganEndDate.format("YYYY-MM-DD");
+
+    return `&tanggalAwal=${tanggalAwal}&tanggalAkhir=${tanggalAkhir}`;
+  }
+
+  function generateTeganganRangePemantauan() {
+    const persentaseAwal = getInner("tegangan-percentage-table-label-1").replace("%", "");
+    const persentaseAkhir = getInner("tegangan-percentage-table-label-2").replace("%", "");
+
+    return `&rangeAwal=${persentaseAwal}&rangeAkhir=${persentaseAkhir}`;
   }
 </script>
