@@ -769,8 +769,6 @@ class Tegangan extends CI_Controller
 		}
 	}
 
-	//function replace data realisasi
-
 	//date check saat import data realisasi
 	function date_check_eval()
 	{

@@ -4,7 +4,6 @@
   const urlAPIPembangkitYearlyChart = "<?php echo base_url('api/graph/get-beban-pembangkit-yearly'); ?>";
   const urlAPIBebanPembangkitSelect2 = "<?php echo base_url('api/select2/beban-pembangkit'); ?>";
   const urlAPISatuanPembangkitSelect2 = "<?php echo base_url('api/select2/satuan-pembangkit'); ?>";
-  const urlAPIPembangkitDatatable = "<?php echo base_url('api/datatable'); ?>";
   const urlAPIPembangkitHighestThisMonth = "<?php echo base_url('api/panel/get-highest-pembangkit-this-month-panel'); ?>";
   const urlAPIPembangkitHighestThisYear = "<?php echo base_url('api/panel/get-highest-pembangkit-this-year-panel'); ?>";
   const urlAPIPembangkitHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-pembangkit-all-time-panel'); ?>";
@@ -43,11 +42,6 @@
 
     await getDefaultSelect2({
       id: 'pembangkit-yearly-default',
-      url: `${urlAPIBebanPembangkitSelect2}`
-    });
-
-    await getDefaultSelect2({
-      id: 'pembangkit-table-default',
       url: `${urlAPIBebanPembangkitSelect2}`
     });
 
@@ -138,80 +132,6 @@
   }
 
   const updateRangePembangkitTableLabel = () => updateRangeLabel("pembangkit-percentage-table");
-
-  function initializePembangkitDatatable() {
-    pembangkitDatatable = $('#pembangkit-datatable').DataTable({
-      "responsive": true,
-      "ordering": false,
-      "searching": false,
-      "pagingType": "full_numbers",
-      "columnDefs": [{
-          "defaultContent": "-",
-          "targets": "_all"
-        },
-        {
-          "targets": [1, 2],
-          createdCell: function(td, cellData, rowData, row, col) {
-            $(td).css("text-align", "center");
-          },
-        },
-        {
-          "targets": [3, 4, 5],
-          createdCell: function(td, cellData, rowData, row, col) {
-            $(td).css("text-align", "right");
-          },
-        },
-        {
-          "targets": [0],
-          "render": function(data, type, row, meta) {
-            return `${row.no}`;
-          }
-        },
-        {
-          "targets": [1],
-          "render": function(data, type, row, meta) {
-            return `${row.tanggal}`;
-          }
-        },
-        {
-          "targets": [2],
-          "render": function(data, type, row, meta) {
-            return `${row.jam}`;
-          }
-        },
-        {
-          "targets": [3],
-          "render": function(data, type, row, meta) {
-            return `${row.percentage}`;
-          }
-        },
-        {
-          "targets": [4],
-          "render": function(data, type, row, meta) {
-            return `${row.mw}`;
-          }
-        },
-        {
-          "targets": [5],
-          "render": function(data, type, row, meta) {
-            return `${row.mx}`;
-          }
-        }
-      ],
-      "processing": true,
-      "serverSide": true,
-      "ajax": {
-        "url": urlAPIPembangkitDatatable,
-        "data": function(d) {
-          d.pembangkit = getValue("pembangkit-table");
-          d.tanggalAwal = pembangkitStartDate.format("YYYY-MM-DD");
-          d.tanggalAkhir = pembangkitEndDate.format("YYYY-MM-DD");
-          d.persentaseAwal = getInner("pembangkit-percentage-table-label-1").replace("%", "");
-          d.persentaseAkhir = getInner("pembangkit-percentage-table-label-2").replace("%", "");
-        },
-      }
-    });
-  }
 
   function initializePembangkitSelect2() {
     $(".select2-pembangkit").select2({

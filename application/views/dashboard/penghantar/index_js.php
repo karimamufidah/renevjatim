@@ -4,7 +4,7 @@
   const urlAPIPenghantarYearlyChart = "<?php echo base_url('api/graph/get-beban-penghantar-yearly'); ?>";
   const urlAPIBebanPenghantarSelect2 = "<?php echo base_url('api/select2/beban-penghantar'); ?>";
   const urlAPISatuanPenghantarSelect2 = "<?php echo base_url('api/select2/satuan-penghantar'); ?>";
-  const urlAPIPenghantarDatatable = "<?php echo base_url('api/datatable'); ?>";
+  const urlAPIPenghantarDatatable = "<?php echo base_url('api/datatable/penghantar-realisasi-table'); ?>";
   const urlAPIPenghantarHighestThisMonth = "<?php echo base_url('api/panel/get-highest-penghantar-this-month-panel'); ?>";
   const urlAPIPenghantarHighestThisYear = "<?php echo base_url('api/panel/get-highest-penghantar-this-year-panel'); ?>";
   const urlAPIPenghantarHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-penghantar-all-time-panel'); ?>";
@@ -198,7 +198,7 @@
         {
           "targets": [5],
           "render": function(data, type, row, meta) {
-            return `${row.mx}`;
+            return `${row.mvar}`;
           }
         }
       ],
@@ -207,7 +207,7 @@
       "ajax": {
         "url": urlAPIPenghantarDatatable,
         "data": function(d) {
-          d.ruas = getValue("penghantar-ruas-table");
+          d.nama = getValue("penghantar-ruas-table");
           d.tanggalAwal = penghantarStartDate.format("YYYY-MM-DD");
           d.tanggalAkhir = penghantarEndDate.format("YYYY-MM-DD");
           d.persentaseAwal = getInner("penghantar-percentage-table-label-1").replace("%", "");

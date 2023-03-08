@@ -4,7 +4,7 @@
   const urlAPITeganganYearlyChart = "<?php echo base_url('api/graph/get-beban-tegangan-yearly'); ?>";
   const urlAPIBebanTeganganSelect2 = "<?php echo base_url('api/select2/beban-tegangan'); ?>";
   const urlAPIMinMaxSelect2 = "<?php echo base_url('api/select2/min-max'); ?>";
-  const urlAPITeganganDatatable = "<?php echo base_url('api/datatable'); ?>";
+  const urlAPITeganganDatatable = "<?php echo base_url('api/datatable/tegangan-realisasi-table'); ?>";
   const urlAPITeganganHighestThisMonth = "<?php echo base_url('api/panel/get-highest-tegangan-this-month-panel'); ?>";
   const urlAPITeganganHighestThisYear = "<?php echo base_url('api/panel/get-highest-tegangan-this-year-panel'); ?>";
   const urlAPITeganganHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-tegangan-all-time-panel'); ?>";
@@ -198,7 +198,7 @@
       "ajax": {
         "url": urlAPITeganganDatatable,
         "data": function(d) {
-          d.tegangan = getValue("tegangan-table");
+          d.nama = getValue("tegangan-table");
           d.tanggalAwal = teganganStartDate.format("YYYY-MM-DD");
           d.tanggalAkhir = teganganEndDate.format("YYYY-MM-DD");
           d.persentaseAwal = getInner("tegangan-percentage-table-label-1").replace("%", "");

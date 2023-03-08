@@ -4,7 +4,7 @@
   const urlAPIIBTYearlyChart = "<?php echo base_url('api/graph/get-beban-ibt-yearly'); ?>";
   const urlAPIBebanIBTSelect2 = "<?php echo base_url('api/select2/beban-interbus-transformer'); ?>";
   const urlAPISatuanIBTSelect2 = "<?php echo base_url('api/select2/satuan-ibt'); ?>";
-  const urlAPIIBTDatatable = "<?php echo base_url('api/datatable'); ?>";
+  const urlAPIIBTDatatable = "<?php echo base_url('api/datatable/ibt-realisasi-table'); ?>";
   const urlAPIIBTHighestThisMonth = "<?php echo base_url('api/panel/get-highest-ibt-this-month-panel'); ?>";
   const urlAPIIBTHighestThisYear = "<?php echo base_url('api/panel/get-highest-ibt-this-year-panel'); ?>";
   const urlAPIIBTHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-ibt-all-time-panel'); ?>";
@@ -206,7 +206,7 @@
       "ajax": {
         "url": urlAPIIBTDatatable,
         "data": function(d) {
-          d.ibt = getValue("ibt-table");
+          d.nama = getValue("ibt-table");
           d.tanggalAwal = ibtStartDate.format("YYYY-MM-DD");
           d.tanggalAkhir = ibtEndDate.format("YYYY-MM-DD");
           d.persentaseAwal = getInner("ibt-percentage-table-label-1").replace("%", "");

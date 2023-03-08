@@ -228,6 +228,7 @@
                 <thead>
                   <tr>
                     <th style="text-align:center; width:15px">No</th>
+                    <th style="text-align:center">Nama</th>
                     <th style="text-align:center">Tanggal</th>
                     <th style="text-align:center">Pukul</th>
                     <th style="text-align:right">%</th>

@@ -1,5 +1,5 @@
 <?php
-class Generator_penghantar_table_m extends CI_Model
+class Generator_trafo_table_m extends CI_Model
 {
     public function generate_or_update($params)
     {
@@ -12,7 +12,7 @@ class Generator_penghantar_table_m extends CI_Model
 
     private function _is_exist($params)
     {
-        $this->db->where('main.ruas', $params->ruas);
+        $this->db->where('main.nama', $params->nama);
         $this->db->where('DATE(main.logged_at)', $params->tanggal);
 
         $query = $this->db->get($this->_get_table_name());
@@ -37,15 +37,13 @@ class Generator_penghantar_table_m extends CI_Model
                 $time_string = $i == 24 ? "23:59:00" : "$hour_string:00:00";
 
                 array_push($data, array(
-                    "logged_at" => "'$params->tanggal $time_string'", "ruas" => "'$params->ruas'",
+                    "logged_at" => "'$params->tanggal $time_string'", "nama" => "'$params->nama'",
                     "mw" => $this->_generate_mw_query($params, $hour_string . "00"),
                     "mx" => $this->_generate_mx_query($params, $hour_string . "00"),
                     "percentage" => $this->_generate_percentage_query($params, $hour_string . "00")
                 ));
-            }
-
-            if ($i != 24) array_push($data, array(
-                "logged_at" => "'$params->tanggal $hour_string:30:00'", "ruas" => "'$params->ruas'",
+            } else if ($i != 24) array_push($data, array(
+                "logged_at" => "'$params->tanggal $hour_string:30:00'", "nama" => "'$params->nama'",
                 "mw" => $this->_generate_mw_query($params, $hour_string . "30"),
                 "mx" => $this->_generate_mx_query($params, $hour_string . "30"),
                 "percentage" => $this->_generate_percentage_query($params, $hour_string . "30")
@@ -64,22 +62,18 @@ class Generator_penghantar_table_m extends CI_Model
                 $time_string = $i == 24 ? "23:59:00" : "$hour_string:00:00";
 
                 $this->db->where("logged_at", "$params->tanggal $time_string");
-                $this->db->where("ruas", $params->ruas);
-                $this->db->update($this->_get_pure_table_name(), array(
-                    "mw" => $this->_generate_mw_query($params, $hour_string . "00"),
-                    "mx" => $this->_generate_mx_query($params, $hour_string . "00"),
-                    "percentage" => $this->_generate_percentage_query($params, $hour_string . "00")
-                ), false);
-            }
-
-            if ($i != 24) {
+                $this->db->where("nama", $params->nama);
+                $this->db->set("mw", $this->_generate_mw_query($params, $hour_string . "00"), false);
+                $this->db->set("mx", $this->_generate_mx_query($params, $hour_string . "00"), false);
+                $this->db->set("percentage", $this->_generate_percentage_query($params, $hour_string . "00"), false);
+                $this->db->update($this->_get_pure_table_name());
+            } else if ($i != 24) {
                 $this->db->where("logged_at", "$params->tanggal $hour_string:30:00");
-                $this->db->where("ruas", $params->ruas);
-                $this->db->update($this->_get_pure_table_name(), array(
-                    "mw" => $this->_generate_mw_query($params, $hour_string . "30"),
-                    "mx" => $this->_generate_mx_query($params, $hour_string . "30"),
-                    "percentage" => $this->_generate_percentage_query($params, $hour_string . "30")
-                ), false);
+                $this->db->where("nama", $params->nama);
+                $this->db->set("mw", $this->_generate_mw_query($params, $hour_string . "30"), false);
+                $this->db->set("mx", $this->_generate_mx_query($params, $hour_string . "30"), false);
+                $this->db->set("percentage", $this->_generate_percentage_query($params, $hour_string . "30"), false);
+                $this->db->update($this->_get_pure_table_name());
             }
         }
     }
@@ -87,17 +81,17 @@ class Generator_penghantar_table_m extends CI_Model
     /** General */
     private function _generate_mw_query($params, $pukul)
     {
-        return "(SELECT eval_$pukul FROM penghantar_realisasi WHERE tanggal = '$params->tanggal' AND ruas = '$params->ruas' AND satuan = 'MW')";
+        return "COALESCE((SELECT eval_$pukul FROM trafo_realisasi WHERE tanggal = '$params->tanggal' AND trafo = '$params->nama' AND satuan = 'MW'), 0)";
     }
 
     private function _generate_mx_query($params, $pukul)
     {
-        return "(SELECT eval_$pukul FROM penghantar_realisasi WHERE tanggal = '$params->tanggal' AND ruas = '$params->ruas' AND satuan = 'MVAR')";
+        return "COALESCE((SELECT eval_$pukul FROM trafo_realisasi WHERE tanggal = '$params->tanggal' AND trafo = '$params->nama' AND satuan = 'MX'), 0)";
     }
 
     private function _generate_percentage_query($params, $pukul)
     {
-        return "(SELECT eval_$pukul FROM penghantar_realisasi WHERE tanggal = '$params->tanggal' AND ruas = '$params->ruas' AND satuan = '%')";
+        return "COALESCE((SELECT eval_$pukul FROM trafo_realisasi WHERE tanggal = '$params->tanggal' AND trafo = '$params->nama' AND satuan = '%'), 0)";
     }
 
     private function _get_table_name()
@@ -107,6 +101,6 @@ class Generator_penghantar_table_m extends CI_Model
 
     private function _get_pure_table_name()
     {
-        return "penghantar_realisasi_table";
+        return "trafo_realisasi_table";
     }
 }

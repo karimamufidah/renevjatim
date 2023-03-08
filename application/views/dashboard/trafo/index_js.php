@@ -4,7 +4,7 @@
   const urlAPITrafoYearlyChart = "<?php echo base_url('api/graph/get-beban-trafo-yearly'); ?>";
   const urlAPIBebanTrafoSelect2 = "<?php echo base_url('api/select2/beban-trafo'); ?>";
   const urlAPISatuanTrafoSelect2 = "<?php echo base_url('api/select2/satuan-trafo'); ?>";
-  const urlAPITrafoDatatable = "<?php echo base_url('api/datatable'); ?>";
+  const urlAPITrafoDatatable = "<?php echo base_url('api/datatable/trafo-realisasi-table'); ?>";
   const urlAPITrafoHighestThisMonth = "<?php echo base_url('api/panel/get-highest-trafo-this-month-panel'); ?>";
   const urlAPITrafoHighestThisYear = "<?php echo base_url('api/panel/get-highest-trafo-this-year-panel'); ?>";
   const urlAPITrafoHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-trafo-all-time-panel'); ?>";
@@ -206,7 +206,7 @@
       "ajax": {
         "url": urlAPITrafoDatatable,
         "data": function(d) {
-          d.trafo = getValue("trafo-table");
+          d.nama = getValue("trafo-table");
           d.tanggalAwal = trafoStartDate.format("YYYY-MM-DD");
           d.tanggalAkhir = trafoEndDate.format("YYYY-MM-DD");
           d.persentaseAwal = getInner("trafo-percentage-table-label-1").replace("%", "");

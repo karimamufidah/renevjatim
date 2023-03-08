@@ -53,10 +53,7 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
 
-/** APIs */
-$route['api/daily'] = 'api/daily/index';
-$route['api/monthly'] = 'api/monthly/index';
-$route['api/yearly'] = 'api/yearly/index';
-$route['api/datatable'] = 'api/datatable_penghantar_realisasi_table/index';
-
-$route['api/generator']['POST'] = 'api/generator_table_data/index';
+$route['api/penghantar-generator']['POST'] = 'api/generator_penghantar_table_data/index';
+$route['api/ibt-generator']['POST'] = 'api/generator_ibt_table_data/index';
+$route['api/trafo-generator']['POST'] = 'api/generator_trafo_table_data/index';
+$route['api/tegangan-generator']['POST'] = 'api/generator_tegangan_table_data/index';

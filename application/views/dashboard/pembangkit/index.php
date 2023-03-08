@@ -183,65 +183,6 @@
       </div>
     </div>
   </div>
-
-  <div class="card shadow-none bg-transparent border border-secondary mb-3">
-    <div class="card-body">
-      <h5 class="card-title">Pemantauan</h5>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-4">
-            <div class="input-group mb-3">
-              <select id="pembangkit-table" class="select2-pembangkit form-control" style="width: 100%;">
-                <option id="pembangkit-table-default" selected></option>
-              </select>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-12">
-                <input id="f-pembangkit-date-range" type="text" class="form-control">
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-12">
-                <strong class="form-label col-12"><span id="pembangkit-percentage-table-label-1">0%</span><span id="pembangkit-percentage-table-label-2" class="float-end">100%</span></strong>
-                <br>
-                <br>
-                <label for="pembangkit-percentage-table-1" class="form-label col-12">Min</label>
-                <input type="range" class="form-range" min="0" max="100" step="1" id="pembangkit-percentage-table-1" onchange="updateRangePembangkitTableLabel()">
-
-                <label for="pembangkit-percentage-table-2" class="form-label col-12">Max</label>
-                <input type="range" class="form-range" min="0" max="100" step="1" id="pembangkit-percentage-table-2" onchange="updateRangePembangkitTableLabel()">
-              </div>
-            </div>
-
-            <div class="row mt-3">
-              <div class="col-12">
-                <button class="btn btn-primary col-12" onclick="pembangkitDatatable.ajax.reload()">Proses</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-8">
-            <div class="table-responsive">
-              <table id="pembangkit-datatable" class="table table-borderless table-striped" style="width:100%">
-                <thead>
-                  <tr>
-                    <th style="text-align:center; width:15px">No</th>
-                    <th style="text-align:center">Tanggal</th>
-                    <th style="text-align:center">Pukul</th>
-                    <th style="text-align:right">%</th>
-                    <th style="text-align:right">MW</th>
-                    <th style="text-align:right">MVAR</th>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <?php $this->load->view("dashboard/pembangkit/index_js"); ?>

@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class Datatable_penghantar_realisasi_table extends CI_Controller
+class Penghantar_realisasi_table extends CI_Controller
 {
     public function index()
     {
@@ -10,7 +10,7 @@ class Datatable_penghantar_realisasi_table extends CI_Controller
         $request->order[0]['column'] = 0;
         $request->order[0]['dir'] = 'DESC';
 
-        $this->load->model('datatable_penghantar_realisasi_table_m', 'main');
+        $this->load->model('datatable/penghantar_realisasi_table_m', 'main');
         $this->load->library('datatable');
         $this->load->helper('datatable');
         $this->load->helper('validation');
@@ -21,7 +21,7 @@ class Datatable_penghantar_realisasi_table extends CI_Controller
         $params->model = $this->main;
         $params->order_options = array(0 => 'logged_at');
         $params->filters = array(
-            'ruas' => 'ruas', 'tanggalAwal' => 'tanggal_awal', 'tanggalAkhir' => 'tanggal_akhir',
+            'nama' => 'nama', 'tanggalAwal' => 'tanggal_awal', 'tanggalAkhir' => 'tanggal_akhir',
             'persentaseAwal' => 'persentase_awal', 'persentaseAkhir' => 'persentase_akhir'
         );
 
