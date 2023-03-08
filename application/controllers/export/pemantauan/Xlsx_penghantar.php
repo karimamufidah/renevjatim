@@ -27,6 +27,8 @@ class Xlsx_penghantar extends CI_Controller
   private function _validate($request, &$response)
   {
     if (!isset($request->nama)) $request->nama = null;
+    if (!isset($request->rangeAwal)) $request->rangeAwal = 0;
+    if (!isset($request->rangeAkhir)) $request->rangeAkhir = 100;
     if (!isset($request->tanggalAwal)) $request->tanggalAwal = date("Y-m-d");
     if (!isset($request->tanggalAkhir)) $request->tanggalAkhir = date("Y-m-d");
   }

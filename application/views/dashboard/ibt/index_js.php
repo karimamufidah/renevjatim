@@ -11,6 +11,7 @@
   const urlAPIIBTDailyExport = "<?php echo base_url('export/xlsx-ibt'); ?>";
   const urlAPIIBTMonthlyExport = "<?php echo base_url('export/monthly/xlsx-ibt'); ?>";
   const urlAPIIBTYearlyExport = "<?php echo base_url('export/yearly/xlsx-ibt'); ?>";
+  const urlAPIIBTPemantauanExport = "<?php echo base_url('export/pemantauan/xlsx-ibt'); ?>";
   let ibtDailyChart = document.getElementById('ibt-daily-chart');
   let ibtMonthlyChart = document.getElementById('ibt-monthly-chart');
   let ibtYearlyChart = document.getElementById('ibt-yearly-chart');
@@ -197,7 +198,7 @@
         {
           "targets": [5],
           "render": function(data, type, row, meta) {
-            return `${row.mx}`;
+            return `${row.mvar}`;
           }
         }
       ],
@@ -497,5 +498,28 @@
     }
 
     return isWithPlan;
+  }
+
+  // Pemantauan
+  function downloadIBTPemantauanXLSX() {
+    const mainFilter = `nama=${getValue("ibt-table")}`;
+    const dateData = `${generateIBTDatePemantauan()}`;
+    const rangeData = `${generateIBTRangePemantauan()}`;
+    const url = `${urlAPIIBTPemantauanExport}?${mainFilter}${dateData}${rangeData}`;
+    window.open(url);
+  }
+
+  function generateIBTDatePemantauan() {
+    const tanggalAwal = ibtStartDate.format("YYYY-MM-DD");
+    const tanggalAkhir = ibtEndDate.format("YYYY-MM-DD");
+
+    return `&tanggalAwal=${tanggalAwal}&tanggalAkhir=${tanggalAkhir}`;
+  }
+
+  function generateIBTRangePemantauan() {
+    const persentaseAwal = getInner("ibt-percentage-table-label-1").replace("%", "");
+    const persentaseAkhir = getInner("ibt-percentage-table-label-2").replace("%", "");
+
+    return `&rangeAwal=${persentaseAwal}&rangeAkhir=${persentaseAkhir}`;
   }
 </script>

@@ -13,19 +13,13 @@
   let pembangkitDailyChart = document.getElementById('pembangkit-daily-chart');
   let pembangkitMonthlyChart = document.getElementById('pembangkit-monthly-chart');
   let pembangkitYearlyChart = document.getElementById('pembangkit-yearly-chart');
-  let pembangkitDatatable = document.getElementById("pembangkit-datatable");
-  let pembangkitStartDate = "";
-  let pembangkitEndDate = "";
 
   /** Initialize Data */
   async function initializePembangkitData() {
     await initializePembangkitSelect2Default();
-    initializePembangkitDateRangePicker();
     initializePembangkitDailyChart();
     initializePembangkitMonthlyChart();
     initializePembangkitYearlyChart();
-    updateRangePembangkitTableLabel();
-    initializePembangkitDatatable();
     initializePembangkitSelect2();
   };
 
@@ -88,19 +82,6 @@
     fillInner("pembangkit-highest-all-time-datetime", getDateFormatOptions(data.logged_at));
   }
 
-  async function initializePembangkitDateRangePicker() {
-    pembangkitStartDate = moment().subtract(7, 'days');
-    pembangkitEndDate = moment();
-
-    $('#f-pembangkit-date-range').daterangepicker({
-      startDate: pembangkitStartDate,
-      endDate: pembangkitEndDate
-    }, function(start, end, label) {
-      pembangkitStartDate = start;
-      pembangkitEndDate = end;
-    });
-  }
-
   function initializePembangkitDailyChart() {
     pembangkitDailyChart = new Chart(pembangkitDailyChart, {
       type: 'line',
@@ -130,8 +111,6 @@
       options: getStandardOptions()
     });
   }
-
-  const updateRangePembangkitTableLabel = () => updateRangeLabel("pembangkit-percentage-table");
 
   function initializePembangkitSelect2() {
     $(".select2-pembangkit").select2({

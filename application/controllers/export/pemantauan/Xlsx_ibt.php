@@ -27,6 +27,8 @@ class Xlsx_ibt extends CI_Controller
   private function _validate($request, &$response)
   {
     if (!isset($request->nama)) $request->nama = null;
+    if (!isset($request->rangeAwal)) $request->rangeAwal = 0;
+    if (!isset($request->rangeAkhir)) $request->rangeAkhir = 100;
     if (!isset($request->tanggalAwal)) $request->tanggalAwal = date("Y-m-d");
     if (!isset($request->tanggalAkhir)) $request->tanggalAkhir = date("Y-m-d");
   }
@@ -37,6 +39,8 @@ class Xlsx_ibt extends CI_Controller
 
     $request->data = $this->xlsx->index((object) array(
       "nama" => $request->nama,
+      "range_awal" => $request->rangeAwal,
+      "range_akhir" => $request->rangeAkhir,
       "tanggal_awal" => $request->tanggalAwal,
       "tanggal_akhir" => $request->tanggalAkhir
     ));
