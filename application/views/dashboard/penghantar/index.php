@@ -218,6 +218,7 @@
             <div class="row mt-3">
               <div class="col-12">
                 <button class="btn btn-primary col-12" onclick="penghantarDatatable.ajax.reload()">Proses</button>
+                <button class="btn btn-default col-12 mt-1" onclick="downloadPenghantarPemantauanXLSX()"><i class="bx bx-download"></i>&nbsp; Download</button>
               </div>
             </div>
           </div>
@@ -228,7 +229,6 @@
                 <thead>
                   <tr>
                     <th style="text-align:center; width:15px">No</th>
-                    <th style="text-align:center">Nama</th>
                     <th style="text-align:center">Tanggal</th>
                     <th style="text-align:center">Pukul</th>
                     <th style="text-align:right">%</th>

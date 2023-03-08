@@ -11,6 +11,7 @@
   const urlAPIPenghantarDailyExport = "<?php echo base_url('export/xlsx-penghantar'); ?>";
   const urlAPIPenghantarMonthlyExport = "<?php echo base_url('export/monthly/xlsx-penghantar'); ?>";
   const urlAPIPenghantarYearlyExport = "<?php echo base_url('export/yearly/xlsx-penghantar'); ?>";
+  const urlAPIPenghantarPemantauanExport = "<?php echo base_url('export/pemantauan/xlsx-penghantar'); ?>";
   let penghantarDailyChart = document.getElementById('penghantar-daily');
   let penghantarMonthlyChart = document.getElementById('penghantar-monthly');
   let penghantarYearlyChart = document.getElementById('penghantar-yearly');
@@ -498,6 +499,29 @@
     }
 
     return isWithPlan;
+  }
+
+  // Pemantauan
+  function downloadPenghantarPemantauanXLSX() {
+    const mainFilter = `nama=${getValue("penghantar-ruas-table")}`;
+    const dateData = `${generatePenghantarDatePemantauan()}`;
+    const rangeData = `${generatePenghantarRangePemantauan()}`;
+    const url = `${urlAPIPenghantarPemantauanExport}?${mainFilter}${dateData}${rangeData}`;
+    window.open(url);
+  }
+
+  function generatePenghantarDatePemantauan() {
+    const tanggalAwal = penghantarStartDate.format("YYYY-MM-DD");
+    const tanggalAkhir = penghantarEndDate.format("YYYY-MM-DD");
+
+    return `&tanggalAwal=${tanggalAwal}&tanggalAkhir=${tanggalAkhir}`;
+  }
+
+  function generatePenghantarRangePemantauan() {
+    const persentaseAwal = getInner("penghantar-percentage-table-label-1").replace("%", "");
+    const persentaseAkhir = getInner("penghantar-percentage-table-label-2").replace("%", "");
+
+    return `&rangeAwal=${persentaseAwal}&rangeAkhir=${persentaseAkhir}`;
   }
 
   /** General */
