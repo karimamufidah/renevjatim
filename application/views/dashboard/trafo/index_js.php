@@ -11,6 +11,7 @@
   const urlAPITrafoDailyExport = "<?php echo base_url('export/xlsx-trafo'); ?>";
   const urlAPITrafoMonthlyExport = "<?php echo base_url('export/monthly/xlsx-trafo'); ?>";
   const urlAPITrafoYearlyExport = "<?php echo base_url('export/yearly/xlsx-trafo'); ?>";
+  const urlAPITrafoPemantauanExport = "<?php echo base_url('export/pemantauan/xlsx-trafo'); ?>";
   let trafoDailyChart = document.getElementById('trafo-daily-chart');
   let trafoMonthlyChart = document.getElementById('trafo-monthly-chart');
   let trafoYearlyChart = document.getElementById('trafo-yearly-chart');
@@ -497,5 +498,29 @@
     }
 
     return isWithPlan;
+  }
+
+
+  // Pemantauan
+  function downloadTrafoPemantauanXLSX() {
+    const mainFilter = `nama=${getValue("trafo-table")}`;
+    const dateData = `${generateTrafoDatePemantauan()}`;
+    const rangeData = `${generateTrafoRangePemantauan()}`;
+    const url = `${urlAPITrafoPemantauanExport}?${mainFilter}${dateData}${rangeData}`;
+    window.open(url);
+  }
+
+  function generateTrafoDatePemantauan() {
+    const tanggalAwal = trafoStartDate.format("YYYY-MM-DD");
+    const tanggalAkhir = trafoEndDate.format("YYYY-MM-DD");
+
+    return `&tanggalAwal=${tanggalAwal}&tanggalAkhir=${tanggalAkhir}`;
+  }
+
+  function generateTrafoRangePemantauan() {
+    const persentaseAwal = getInner("trafo-percentage-table-label-1").replace("%", "");
+    const persentaseAkhir = getInner("trafo-percentage-table-label-2").replace("%", "");
+
+    return `&rangeAwal=${persentaseAwal}&rangeAkhir=${persentaseAkhir}`;
   }
 </script>
