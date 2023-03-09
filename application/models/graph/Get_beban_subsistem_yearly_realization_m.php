@@ -17,6 +17,7 @@ class Get_beban_subsistem_yearly_realization_m extends CI_Model
       eval_2030 + eval_2100 + eval_2130 + eval_2200 + eval_2230 + eval_2300 + eval_2330 + eval_2400), 0) AS total
     ");
 
+    $this->db->where("status", 1);
     $this->db->where('main.subsistem', $params->subsistem);
     $this->db->where('main.pasokan', $params->pasokan);
     $this->db->where('MONTH(main.tanggal)', $params->bulan);

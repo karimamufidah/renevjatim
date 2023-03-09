@@ -23,6 +23,7 @@ class Get_sistem_realisasi_m extends CI_Model
       COALESCE(MAX(eval_2230), 0) AS eval_2230, COALESCE(MAX(eval_2300), 0) AS eval_2300, COALESCE(MAX(eval_2330), 0) AS eval_2330, COALESCE(MAX(eval_2400), 0) AS eval_2400
     ");
 
+    $this->db->where("status", 1);
     $this->db->where("sistem", $filters->sistem);
     $this->db->where("YEAR(tanggal)", $filters->year);
     $this->db->where("MONTH(tanggal)", $filters->month);

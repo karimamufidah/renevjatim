@@ -9,6 +9,7 @@ class Get_highest_sistem_this_month_panel_m extends CI_Model
   public function show($column, $nama)
   {
     $this->db->select("main.tanggal, $column AS value, '$column' AS waktu");
+    $this->db->where("status", 1);
     $this->db->where("sistem", $nama);
     $this->db->where("MONTH(tanggal) = MONTH(NOW())");
     $this->db->where("YEAR(tanggal) = YEAR(NOW())");

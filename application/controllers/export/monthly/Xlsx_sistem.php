@@ -110,6 +110,7 @@ class Xlsx_sistem extends CI_Controller
 
       $day = $i < 10 ? "0$i" : $i;
       $plan = $this->plan->show((object) array(
+        "forMonthly" => true,
         "sistem" => $filters->sistem,
         "tanggal" => "$filters->tanggal-$day"
       ));
@@ -125,6 +126,7 @@ class Xlsx_sistem extends CI_Controller
       $data["ren_$i"] = $plan;
 
       $realization = $this->realization->show((object) array(
+        "forMonthly" => true,
         "sistem" => $filters->sistem,
         "tanggal" => "$filters->tanggal-$day"
       ));

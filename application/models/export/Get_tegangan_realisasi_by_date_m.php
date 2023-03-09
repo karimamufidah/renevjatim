@@ -23,6 +23,7 @@ class Get_tegangan_realisasi_by_date_m extends CI_Model
       COALESCE(eval_2230, 0) AS eval_2230, COALESCE(eval_2300, 0) AS eval_2300, COALESCE(eval_2330, 0) AS eval_2330, COALESCE(eval_2400, 0) AS eval_2400
     ");
 
+    if (isset($filters->forMonthly)) $this->db->where("status", 1);
     $this->db->where("gardu_induk", $filters->tegangan);
     $this->db->where("tanggal", $filters->tanggal);
 

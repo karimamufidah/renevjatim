@@ -23,6 +23,7 @@ class Get_penghantar_realisasi_m extends CI_Model
       COALESCE(MAX(eval_2230), 0) AS eval_2230, COALESCE(MAX(eval_2300), 0) AS eval_2300, COALESCE(MAX(eval_2330), 0) AS eval_2330, COALESCE(MAX(eval_2400), 0) AS eval_2400
     ");
 
+    $this->db->where("status", 1);
     $this->db->where("ruas", $filters->ruas);
     $this->db->where("satuan", $filters->satuan);
     $this->db->where("YEAR(tanggal)", $filters->year);

@@ -36,6 +36,7 @@ class Get_beban_tegangan_monthly extends CI_Controller
 
       $day = $i < 10 ? "0$i" : $i;
       $plan = $this->plan->show((object) array(
+        "forMonthly" => true,
         "gardu_induk" => $request->gardu_induk,
         "min_max" => $request->min_max,
         "tanggal" => "$request->tahun-$request->bulan-$day"
@@ -68,6 +69,7 @@ class Get_beban_tegangan_monthly extends CI_Controller
 
       $day = $i < 10 ? "0$i" : $i;
       $realization = $this->realization->show((object) array(
+        "forMonthly" => true,
         "gardu_induk" => $request->gardu_induk,
         "min_max" => $request->min_max,
         "tanggal" => "$request->tahun-$request->bulan-$day"

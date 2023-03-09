@@ -40,6 +40,7 @@ class Get_tegangan_realisasi_m extends CI_Model
       ");
     }
 
+    $this->db->where("status", 1);
     $this->db->where("gardu_induk", $filters->gardu_induk);
     $this->db->where("YEAR(tanggal)", $filters->year);
     $this->db->where("MONTH(tanggal)", $filters->month);

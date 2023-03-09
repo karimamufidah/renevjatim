@@ -17,6 +17,7 @@ class Get_beban_trafo_yearly_plan_m extends CI_Model
       ren_2030 + ren_2100 + ren_2130 + ren_2200 + ren_2230 + ren_2300 + ren_2330 + ren_2400), 0) AS total
     ");
 
+    $this->db->where("status", 1);
     $this->db->where('main.trafo', $params->trafo);
     $this->db->where('main.satuan', $params->satuan);
     $this->db->where('MONTH(main.tanggal)', $params->bulan);

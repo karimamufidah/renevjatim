@@ -36,6 +36,7 @@ class Get_beban_ibt_monthly extends CI_Controller
 
       $day = $i < 10 ? "0$i" : $i;
       $plan = $this->plan->show((object) array(
+        "forMonthly" => true,
         "ibt" => $request->ibt,
         "satuan" => $request->satuan,
         "tanggal" => "$request->tahun-$request->bulan-$day"
@@ -69,6 +70,7 @@ class Get_beban_ibt_monthly extends CI_Controller
 
       $day = $i < 10 ? "0$i" : $i;
       $realization = $this->realization->show((object) array(
+        "forMonthly" => true,
         "ibt" => $request->ibt,
         "satuan" => $request->satuan,
         "tanggal" => "$request->tahun-$request->bulan-$day"

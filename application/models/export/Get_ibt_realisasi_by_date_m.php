@@ -23,6 +23,7 @@ class Get_ibt_realisasi_by_date_m extends CI_Model
       COALESCE(SUM(eval_2230), 0) AS eval_2230, COALESCE(SUM(eval_2300), 0) AS eval_2300, COALESCE(SUM(eval_2330), 0) AS eval_2330, COALESCE(SUM(eval_2400), 0) AS eval_2400
     ");
 
+    if (isset($filters->forMonthly)) $this->db->where("status", 1);
     $this->db->where("ibt", $filters->ibt);
     $this->db->where("satuan", $filters->satuan);
     $this->db->where("tanggal", $filters->tanggal);

@@ -22,6 +22,8 @@ class Get_beban_pembangkit_monthly_realization_m extends CI_Model
       COALESCE(SUM(eval_2030), 0) AS eval_2030, COALESCE(SUM(eval_2100), 0) AS eval_2100, COALESCE(SUM(eval_2130), 0) AS eval_2130, COALESCE(SUM(eval_2200), 0) AS eval_2200,
       COALESCE(SUM(eval_2230), 0) AS eval_2230, COALESCE(SUM(eval_2300), 0) AS eval_2300, COALESCE(SUM(eval_2330), 0) AS eval_2330, COALESCE(SUM(eval_2400), 0) AS eval_2400
     ");
+
+    $this->db->where("status", 1);
     $this->db->where("pembangkit", $filters->pembangkit);
     $this->db->where("satuan", $filters->satuan);
     $this->db->where("tanggal", $filters->tanggal);

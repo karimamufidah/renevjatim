@@ -23,6 +23,7 @@ class Get_sistem_perencanaan_m extends CI_Model
       COALESCE(MAX(ren_2230), 0) AS ren_2230, COALESCE(MAX(ren_2300), 0) AS ren_2300, COALESCE(MAX(ren_2330), 0) AS ren_2330, COALESCE(MAX(ren_2400), 0) AS ren_2400
     ");
     
+    $this->db->where("status", 1);
     $this->db->where("sistem", $filters->sistem);
     $this->db->where("YEAR(tanggal)", $filters->year);
     $this->db->where("MONTH(tanggal)", $filters->month);

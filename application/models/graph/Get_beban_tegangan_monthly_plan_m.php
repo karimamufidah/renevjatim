@@ -23,6 +23,7 @@ class Get_beban_tegangan_monthly_plan_m extends CI_Model
       COALESCE(ren_2230, 0) AS ren_2230, COALESCE(ren_2300, 0) AS ren_2300, COALESCE(ren_2330, 0) AS ren_2330, COALESCE(ren_2400, 0) AS ren_2400
     ");
     
+    $this->db->where("status", 1);
     $this->db->where("gardu_induk", $filters->gardu_induk);
     $this->db->where("tanggal", $filters->tanggal);
 
