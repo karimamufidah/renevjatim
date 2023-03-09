@@ -80,7 +80,7 @@
       url: `${urlAPITeganganHighestThisMonth}?nama=${getValue("tegangan-panel")}`
     });
 
-    fillInner("tegangan-highest-this-month", `${data.value} MW`);
+    fillInner("tegangan-highest-this-month", `${data.value} kV`);
     fillInner("tegangan-highest-this-month-datetime", getDateFormatOptions(data.logged_at));
   }
 
@@ -89,7 +89,7 @@
       url: `${urlAPITeganganHighestThisYear}?nama=${getValue("tegangan-panel")}`
     });
 
-    fillInner("tegangan-highest-this-year", `${data.value} MW`);
+    fillInner("tegangan-highest-this-year", `${data.value} kV`);
     fillInner("tegangan-highest-this-year-datetime", getDateFormatOptions(data.logged_at));
   }
 
@@ -98,7 +98,7 @@
       url: `${urlAPITeganganHighestThisAllTime}?nama=${getValue("tegangan-panel")}`
     });
 
-    fillInner("tegangan-highest-all-time", `${data.value} MW`);
+    fillInner("tegangan-highest-all-time", `${data.value} kV`);
     fillInner("tegangan-highest-all-time-datetime", getDateFormatOptions(data.logged_at));
   }
 
