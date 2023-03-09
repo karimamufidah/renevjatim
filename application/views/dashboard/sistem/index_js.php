@@ -55,7 +55,7 @@
 
   async function getAndFillSistemHighestThisMonthPanel() {
     const data = await crud.read({
-      url: `${urlAPISistemHighestThisMonth}`
+      url: `${urlAPISistemHighestThisMonth}?nama=${getValue("sistem-panel")}`
     });
 
     fillInner("sistem-highest-this-month", `${data.value} MW`);
@@ -64,7 +64,7 @@
 
   async function getAndFillSistemHighestThisYearPanel() {
     const data = await crud.read({
-      url: `${urlAPISistemHighestThisYear}`
+      url: `${urlAPISistemHighestThisYear}?nama=${getValue("sistem-panel")}`
     });
 
     fillInner("sistem-highest-this-year", `${data.value} MW`);
@@ -73,7 +73,7 @@
 
   async function getAndFillSistemHighestAllTimePanel() {
     const data = await crud.read({
-      url: `${urlAPISistemHighestThisAllTime}`
+      url: `${urlAPISistemHighestThisAllTime}?nama=${getValue("sistem-panel")}`
     });
 
     fillInner("sistem-highest-all-time", `${data.value} MW`);

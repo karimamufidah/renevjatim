@@ -77,7 +77,7 @@
 
   async function getAndFillTeganganHighestThisMonthPanel() {
     const data = await crud.read({
-      url: `${urlAPITeganganHighestThisMonth}`
+      url: `${urlAPITeganganHighestThisMonth}?nama=${getValue("tegangan-panel")}`
     });
 
     fillInner("tegangan-highest-this-month", `${data.value} MW`);
@@ -86,7 +86,7 @@
 
   async function getAndFillTeganganHighestThisYearPanel() {
     const data = await crud.read({
-      url: `${urlAPITeganganHighestThisYear}`
+      url: `${urlAPITeganganHighestThisYear}?nama=${getValue("tegangan-panel")}`
     });
 
     fillInner("tegangan-highest-this-year", `${data.value} MW`);
@@ -95,7 +95,7 @@
 
   async function getAndFillTeganganHighestAllTimePanel() {
     const data = await crud.read({
-      url: `${urlAPITeganganHighestThisAllTime}`
+      url: `${urlAPITeganganHighestThisAllTime}?nama=${getValue("tegangan-panel")}`
     });
 
     fillInner("tegangan-highest-all-time", `${data.value} MW`);

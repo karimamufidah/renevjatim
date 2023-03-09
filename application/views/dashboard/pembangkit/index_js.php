@@ -69,7 +69,7 @@
 
   async function getAndFillPembangkitHighestThisMonthPanel() {
     const data = await crud.read({
-      url: `${urlAPIPembangkitHighestThisMonth}`
+      url: `${urlAPIPembangkitHighestThisMonth}?nama=${getValue("pembangkit-panel")}`
     });
 
     fillInner("pembangkit-highest-this-month", `${data.value} MW`);
@@ -78,7 +78,7 @@
 
   async function getAndFillPembangkitHighestThisYearPanel() {
     const data = await crud.read({
-      url: `${urlAPIPembangkitHighestThisYear}`
+      url: `${urlAPIPembangkitHighestThisYear}?nama=${getValue("pembangkit-panel")}`
     });
 
     fillInner("pembangkit-highest-this-year", `${data.value} MW`);
@@ -87,7 +87,7 @@
 
   async function getAndFillPembangkitHighestAllTimePanel() {
     const data = await crud.read({
-      url: `${urlAPIPembangkitHighestThisAllTime}`
+      url: `${urlAPIPembangkitHighestThisAllTime}?nama=${getValue("pembangkit-panel")}`
     });
 
     fillInner("pembangkit-highest-all-time", `${data.value} MW`);

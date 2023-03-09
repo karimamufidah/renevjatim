@@ -82,7 +82,7 @@
 
   async function getAndFillTrafoHighestThisMonthPanel() {
     const data = await crud.read({
-      url: `${urlAPITrafoHighestThisMonth}`
+      url: `${urlAPITrafoHighestThisMonth}?nama=${getValue("trafo-panel")}`
     });
 
     fillInner("trafo-highest-this-month", `${data.value} MW`);
@@ -91,7 +91,7 @@
 
   async function getAndFillTrafoHighestThisYearPanel() {
     const data = await crud.read({
-      url: `${urlAPITrafoHighestThisYear}`
+      url: `${urlAPITrafoHighestThisYear}?nama=${getValue("trafo-panel")}`
     });
 
     fillInner("trafo-highest-this-year", `${data.value} MW`);
@@ -100,7 +100,7 @@
 
   async function getAndFillTrafoHighestAllTimePanel() {
     const data = await crud.read({
-      url: `${urlAPITrafoHighestThisAllTime}`
+      url: `${urlAPITrafoHighestThisAllTime}?nama=${getValue("trafo-panel")}`
     });
 
     fillInner("trafo-highest-all-time", `${data.value} MW`);
