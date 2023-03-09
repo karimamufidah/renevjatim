@@ -21,9 +21,7 @@
   /** Initialize Data */
   async function initializeSubsistemData() {
     await initializeSubsistemSelect2Default();
-    getAndFillSubsistemHighestThisMonthPanel();
-    getAndFillSubsistemHighestThisYearPanel();
-    getAndFillSubsistemHighestAllTimePanel();
+    getAndFillSubsistemPanelData();
     initializeSubsistemDailyChart();
     initializeSubsistemMonthlyChart();
     initializeSubsistemYearlyChart();
@@ -31,6 +29,11 @@
   };
 
   async function initializeSubsistemSelect2Default() {
+    await getDefaultSelect2({
+      id: 'subsistem-panel-default',
+      url: `${urlAPIBebanSubsistemSelect2}`
+    });
+
     await getDefaultSelect2({
       id: 'subsistem-daily-default',
       url: `${urlAPIBebanSubsistemSelect2}`
@@ -60,6 +63,12 @@
       id: 'subsistem-pasokan-yearly-default',
       url: `${urlAPIPasokanSubsistemSelect2}`
     });
+  }
+
+  function getAndFillSubsistemPanelData() {
+    getAndFillSubsistemHighestThisMonthPanel();
+    getAndFillSubsistemHighestThisYearPanel();
+    getAndFillSubsistemHighestAllTimePanel();
   }
 
   async function getAndFillSubsistemHighestThisMonthPanel() {

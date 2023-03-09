@@ -22,6 +22,7 @@
   /** Initialize Data */
   async function initializeTeganganData() {
     await initializeTeganganSelect2Default();
+    getAndFillTeganganPanelData();
     initializeTeganganDateRangePicker();
     initializeTeganganDailyChart();
     initializeTeganganMonthlyChart();
@@ -32,6 +33,11 @@
   };
 
   async function initializeTeganganSelect2Default() {
+    await getDefaultSelect2({
+      id: 'tegangan-panel-default',
+      url: `${urlAPIBebanTeganganSelect2}`
+    });
+
     await getDefaultSelect2({
       id: 'tegangan-daily-default',
       url: `${urlAPIBebanTeganganSelect2}`
@@ -61,6 +67,12 @@
       id: 'min-max-yearly-default',
       url: `${urlAPIMinMaxSelect2}`
     });
+  }
+
+  function getAndFillTeganganPanelData() {
+    getAndFillTeganganHighestThisMonthPanel();
+    getAndFillTeganganHighestThisYearPanel();
+    getAndFillTeganganHighestAllTimePanel();
   }
 
   async function getAndFillTeganganHighestThisMonthPanel() {

@@ -6,10 +6,11 @@ class Get_highest_trafo_this_month_panel_m extends CI_Model
     return "trafo_realisasi AS main";
   }
 
-  public function show($column)
+  public function show($column, $nama)
   {
     $this->db->select("main.tanggal, $column AS value, '$column' AS waktu");
     $this->db->where("satuan", "MW");
+    $this->db->where("trafo", $nama);
     $this->db->where("MONTH(tanggal) = MONTH(NOW())");
     $this->db->where("YEAR(tanggal) = YEAR(NOW())");
     $this->db->order_by($column, "DESC");

@@ -22,9 +22,7 @@
   /** Initialize Data */
   async function initializeTrafoData() {
     await initializeTrafoSelect2Default();
-    getAndFillTrafoHighestThisMonthPanel();
-    getAndFillTrafoHighestThisYearPanel();
-    getAndFillTrafoHighestAllTimePanel();
+    getAndFillTrafoPanelData();
     initializeTrafoDateRangePicker();
     initializeTrafoDailyChart();
     initializeTrafoMonthlyChart();
@@ -35,6 +33,11 @@
   };
 
   async function initializeTrafoSelect2Default() {
+    await getDefaultSelect2({
+      id: 'trafo-panel-default',
+      url: `${urlAPIBebanTrafoSelect2}`
+    });
+
     await getDefaultSelect2({
       id: 'trafo-daily-default',
       url: `${urlAPIBebanTrafoSelect2}`
@@ -69,6 +72,12 @@
       id: 'trafo-satuan-yearly-default',
       url: `${urlAPISatuanTrafoSelect2}`
     });
+  }
+
+  function getAndFillTrafoPanelData() {
+    getAndFillTrafoHighestThisMonthPanel();
+    getAndFillTrafoHighestThisYearPanel();
+    getAndFillTrafoHighestAllTimePanel();
   }
 
   async function getAndFillTrafoHighestThisMonthPanel() {

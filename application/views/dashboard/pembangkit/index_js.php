@@ -17,6 +17,7 @@
   /** Initialize Data */
   async function initializePembangkitData() {
     await initializePembangkitSelect2Default();
+    getAndFillPembangkitPanelData();
     initializePembangkitDailyChart();
     initializePembangkitMonthlyChart();
     initializePembangkitYearlyChart();
@@ -24,6 +25,11 @@
   };
 
   async function initializePembangkitSelect2Default() {
+    await getDefaultSelect2({
+      id: 'pembangkit-panel-default',
+      url: `${urlAPIBebanPembangkitSelect2}`
+    });
+
     await getDefaultSelect2({
       id: 'pembangkit-daily-default',
       url: `${urlAPIBebanPembangkitSelect2}`
@@ -53,6 +59,12 @@
       id: 'pembangkit-satuan-yearly-default',
       url: `${urlAPISatuanPembangkitSelect2}`
     });
+  }
+
+  function getAndFillPembangkitPanelData() {
+    getAndFillPembangkitHighestThisMonthPanel();
+    getAndFillPembangkitHighestThisYearPanel();
+    getAndFillPembangkitHighestAllTimePanel();
   }
 
   async function getAndFillPembangkitHighestThisMonthPanel() {

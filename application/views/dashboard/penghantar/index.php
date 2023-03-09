@@ -1,5 +1,11 @@
 <div class="tab-pane fade show active" id="navs-pills-top-pht" role="tabpanel">
   <div class="row">
+    <div class="col-12 mb-4">
+      <select id="penghantar-panel" class="select2-penghantar form-control" style="width: 100%;" onchange="getAndFillPenghantarPanelData()">
+        <option id="penghantar-panel-default" selected></option>
+      </select>
+    </div>
+
     <div class="col-md-4 col-12 mb-4">
       <div class="card h-100 py-2 bg-light border-start border-primary">
         <div class="card-body">

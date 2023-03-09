@@ -21,6 +21,7 @@ class Get_highest_sistem_all_time_panel extends CI_Controller
 
   private function _validate($request, &$response)
   {
+    if (!isset($request->nama)) $request->nama = "";
   }
 
   private function _get_data($request, &$response)
@@ -31,30 +32,30 @@ class Get_highest_sistem_all_time_panel extends CI_Controller
     $this->load->helper("jam");
 
     $data = array(
-      $this->_get_value("eval_0030"), $this->_get_value("eval_0100"),
-      $this->_get_value("eval_0130"), $this->_get_value("eval_0200"),
-      $this->_get_value("eval_0230"), $this->_get_value("eval_0300"),
-      $this->_get_value("eval_0330"), $this->_get_value("eval_0400"),
-      $this->_get_value("eval_0430"), $this->_get_value("eval_0500"),
-      $this->_get_value("eval_0530"), $this->_get_value("eval_0600"),
-      $this->_get_value("eval_0630"), $this->_get_value("eval_0700"),
-      $this->_get_value("eval_0730"), $this->_get_value("eval_0800"),
-      $this->_get_value("eval_0830"), $this->_get_value("eval_0900"),
-      $this->_get_value("eval_0930"), $this->_get_value("eval_1000"),
-      $this->_get_value("eval_1030"), $this->_get_value("eval_1100"),
-      $this->_get_value("eval_1130"), $this->_get_value("eval_1200"),
-      $this->_get_value("eval_1230"), $this->_get_value("eval_1300"),
-      $this->_get_value("eval_1330"), $this->_get_value("eval_1400"),
-      $this->_get_value("eval_1430"), $this->_get_value("eval_1500"),
-      $this->_get_value("eval_1530"), $this->_get_value("eval_1600"),
-      $this->_get_value("eval_1630"), $this->_get_value("eval_1700"),
-      $this->_get_value("eval_1730"), $this->_get_value("eval_1800"),
-      $this->_get_value("eval_1830"), $this->_get_value("eval_1900"),
-      $this->_get_value("eval_1930"), $this->_get_value("eval_2000"),
-      $this->_get_value("eval_2030"), $this->_get_value("eval_2100"),
-      $this->_get_value("eval_2130"), $this->_get_value("eval_2200"),
-      $this->_get_value("eval_2230"), $this->_get_value("eval_2300"),
-      $this->_get_value("eval_2330"), $this->_get_value("eval_2400")
+      $this->_get_value("eval_0030", $request->nama), $this->_get_value("eval_0100", $request->nama),
+      $this->_get_value("eval_0130", $request->nama), $this->_get_value("eval_0200", $request->nama),
+      $this->_get_value("eval_0230", $request->nama), $this->_get_value("eval_0300", $request->nama),
+      $this->_get_value("eval_0330", $request->nama), $this->_get_value("eval_0400", $request->nama),
+      $this->_get_value("eval_0430", $request->nama), $this->_get_value("eval_0500", $request->nama),
+      $this->_get_value("eval_0530", $request->nama), $this->_get_value("eval_0600", $request->nama),
+      $this->_get_value("eval_0630", $request->nama), $this->_get_value("eval_0700", $request->nama),
+      $this->_get_value("eval_0730", $request->nama), $this->_get_value("eval_0800", $request->nama),
+      $this->_get_value("eval_0830", $request->nama), $this->_get_value("eval_0900", $request->nama),
+      $this->_get_value("eval_0930", $request->nama), $this->_get_value("eval_1000", $request->nama),
+      $this->_get_value("eval_1030", $request->nama), $this->_get_value("eval_1100", $request->nama),
+      $this->_get_value("eval_1130", $request->nama), $this->_get_value("eval_1200", $request->nama),
+      $this->_get_value("eval_1230", $request->nama), $this->_get_value("eval_1300", $request->nama),
+      $this->_get_value("eval_1330", $request->nama), $this->_get_value("eval_1400", $request->nama),
+      $this->_get_value("eval_1430", $request->nama), $this->_get_value("eval_1500", $request->nama),
+      $this->_get_value("eval_1530", $request->nama), $this->_get_value("eval_1600", $request->nama),
+      $this->_get_value("eval_1630", $request->nama), $this->_get_value("eval_1700", $request->nama),
+      $this->_get_value("eval_1730", $request->nama), $this->_get_value("eval_1800", $request->nama),
+      $this->_get_value("eval_1830", $request->nama), $this->_get_value("eval_1900", $request->nama),
+      $this->_get_value("eval_1930", $request->nama), $this->_get_value("eval_2000", $request->nama),
+      $this->_get_value("eval_2030", $request->nama), $this->_get_value("eval_2100", $request->nama),
+      $this->_get_value("eval_2130", $request->nama), $this->_get_value("eval_2200", $request->nama),
+      $this->_get_value("eval_2230", $request->nama), $this->_get_value("eval_2300", $request->nama),
+      $this->_get_value("eval_2330", $request->nama), $this->_get_value("eval_2400", $request->nama)
     );
 
     usort($data, function ($firstData, $secondData) {
@@ -71,9 +72,9 @@ class Get_highest_sistem_all_time_panel extends CI_Controller
     $response->data = $data;
   }
 
-  private function _get_value($column)
+  private function _get_value($column, $nama)
   {
-    $data = $this->main->show($column);
+    $data = $this->main->show($column, $nama);
     $date = new DateTime();
 
     return $data ? $data : (object) array(

@@ -1,5 +1,11 @@
 <div class="tab-pane fade" id="navs-pills-top-subsistem" role="tabpanel">
   <div class="row">
+    <div class="col-12 mb-4">
+      <select id="subsistem-panel" class="select2-subsistem form-control" style="width: 100%;" onchange="getAndFillSubsistemPanelData()">
+        <option id="subsistem-panel-default" selected></option>
+      </select>
+    </div>
+
     <div class="col-md-4 col-12 mb-4">
       <div class="card h-100 py-2 bg-light border-start border-primary">
         <div class="card-body">

@@ -1,5 +1,11 @@
 <div class="tab-pane fade" id="navs-pills-top-trafo" role="tabpanel">
   <div class="row">
+    <div class="col-12 mb-4">
+      <select id="trafo-panel" class="select2-trafo form-control" style="width: 100%;" onchange="getAndFillTrafoPanelData()">
+        <option id="trafo-panel-default" selected></option>
+      </select>
+    </div>
+
     <div class="col-md-4 col-12 mb-4">
       <div class="card h-100 py-2 bg-light border-start border-primary">
         <div class="card-body">

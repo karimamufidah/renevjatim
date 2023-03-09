@@ -22,9 +22,7 @@
   /** Initialize Data */
   async function initializeIBTData() {
     await initializeIBTSelect2Default();
-    getAndFillIBTHighestThisMonthPanel();
-    getAndFillIBTHighestThisYearPanel();
-    getAndFillIBTHighestAllTimePanel();
+    getAndFillIBTPanelData();
     initializeIBTDateRangePicker();
     initializeIBTDailyChart();
     initializeIBTMonthlyChart();
@@ -34,34 +32,12 @@
     initializeIBTSelect2();
   };
 
-  async function getAndFillIBTHighestThisMonthPanel() {
-    const data = await crud.read({
-      url: `${urlAPIIBTHighestThisMonth}`
-    });
-
-    fillInner("ibt-highest-this-month", `${data.value} MW`);
-    fillInner("ibt-highest-this-month-datetime", getDateFormatOptions(data.logged_at));
-  }
-
-  async function getAndFillIBTHighestThisYearPanel() {
-    const data = await crud.read({
-      url: `${urlAPIIBTHighestThisYear}`
-    });
-
-    fillInner("ibt-highest-this-year", `${data.value} MW`);
-    fillInner("ibt-highest-this-year-datetime", getDateFormatOptions(data.logged_at));
-  }
-
-  async function getAndFillIBTHighestAllTimePanel() {
-    const data = await crud.read({
-      url: `${urlAPIIBTHighestThisAllTime}`
-    });
-
-    fillInner("ibt-highest-all-time", `${data.value} MW`);
-    fillInner("ibt-highest-all-time-datetime", getDateFormatOptions(data.logged_at));
-  }
-
   async function initializeIBTSelect2Default() {
+    await getDefaultSelect2({
+      id: 'ibt-panel-default',
+      url: `${urlAPIBebanIBTSelect2}`
+    });
+
     await getDefaultSelect2({
       id: 'ibt-daily-default',
       url: `${urlAPIBebanIBTSelect2}`
@@ -96,6 +72,39 @@
       id: 'ibt-satuan-yearly-default',
       url: `${urlAPISatuanIBTSelect2}`
     });
+  }
+
+  function getAndFillIBTPanelData() {
+    getAndFillIBTHighestThisMonthPanel();
+    getAndFillIBTHighestThisYearPanel();
+    getAndFillIBTHighestAllTimePanel();
+  }
+
+  async function getAndFillIBTHighestThisMonthPanel() {
+    const data = await crud.read({
+      url: `${urlAPIIBTHighestThisMonth}?nama=${getValue("ibt-panel")}`
+    });
+
+    fillInner("ibt-highest-this-month", `${data.value} MW`);
+    fillInner("ibt-highest-this-month-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillIBTHighestThisYearPanel() {
+    const data = await crud.read({
+      url: `${urlAPIIBTHighestThisYear}?nama=${getValue("ibt-panel")}`
+    });
+
+    fillInner("ibt-highest-this-year", `${data.value} MW`);
+    fillInner("ibt-highest-this-year-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillIBTHighestAllTimePanel() {
+    const data = await crud.read({
+      url: `${urlAPIIBTHighestThisAllTime}?nama=${getValue("ibt-panel")}`
+    });
+
+    fillInner("ibt-highest-all-time", `${data.value} MW`);
+    fillInner("ibt-highest-all-time-datetime", getDateFormatOptions(data.logged_at));
   }
 
   async function initializeIBTDateRangePicker() {

@@ -6,9 +6,10 @@ class Get_highest_sistem_this_year_panel_m extends CI_Model
     return "sistem_realisasi AS main";
   }
 
-  public function show($column)
+  public function show($column, $nama)
   {
     $this->db->select("main.tanggal, $column AS value, '$column' AS waktu");
+    $this->db->where("sistem", $nama);
     $this->db->where("YEAR(tanggal) = YEAR(NOW())");
     $this->db->order_by($column, "DESC");
     $this->db->limit(1);

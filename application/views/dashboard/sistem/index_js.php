@@ -18,9 +18,7 @@
   /** Initialize Data */
   async function initializeSistemData() {
     await initializeSistemSelect2Default();
-    getAndFillSistemHighestThisMonthPanel();
-    getAndFillSistemHighestThisYearPanel();
-    getAndFillSistemHighestAllTimePanel();
+    getAndFillSistemPanelData();
     initializeSistemDailyChart();
     initializeSistemMonthlyChart();
     initializeSistemYearlyChart();
@@ -28,6 +26,11 @@
   };
 
   async function initializeSistemSelect2Default() {
+    await getDefaultSelect2({
+      id: 'sistem-panel-default',
+      url: `${urlAPIBebanSistemSelect2}`
+    });
+
     await getDefaultSelect2({
       id: 'sistem-daily-default',
       url: `${urlAPIBebanSistemSelect2}`
@@ -42,6 +45,12 @@
       id: 'sistem-yearly-default',
       url: `${urlAPIBebanSistemSelect2}`
     });
+  }
+
+  function getAndFillSistemPanelData() {
+    getAndFillSistemHighestThisMonthPanel();
+    getAndFillSistemHighestThisYearPanel();
+    getAndFillSistemHighestAllTimePanel();
   }
 
   async function getAndFillSistemHighestThisMonthPanel() {

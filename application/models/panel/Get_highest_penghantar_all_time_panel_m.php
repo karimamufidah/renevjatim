@@ -6,10 +6,11 @@ class Get_highest_penghantar_all_time_panel_m extends CI_Model
     return "penghantar_realisasi AS main";
   }
 
-  public function show($column)
+  public function show($column, $nama)
   {
     $this->db->select("main.tanggal, $column AS value, '$column' AS waktu");
     $this->db->where("satuan", "MW");
+    $this->db->where("ruas", $nama);
     $this->db->order_by($column, "DESC");
     $this->db->limit(1);
 

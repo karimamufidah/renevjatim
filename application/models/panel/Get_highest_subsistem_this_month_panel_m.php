@@ -6,10 +6,11 @@ class Get_highest_subsistem_this_month_panel_m extends CI_Model
     return "subsistem_realisasi AS main";
   }
 
-  public function show($column)
+  public function show($column, $nama)
   {
     $this->db->select("main.tanggal, $column AS value, '$column' AS waktu");
     $this->db->where("pasokan", "DMP");
+    $this->db->where("subsistem", $nama);
     $this->db->where("MONTH(tanggal) = MONTH(NOW())");
     $this->db->where("YEAR(tanggal) = YEAR(NOW())");
     $this->db->order_by($column, "DESC");

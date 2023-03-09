@@ -19,13 +19,10 @@
   let penghantarStartDate = "";
   let penghantarEndDate = "";
 
-
   /** Initialize Data */
   async function initializePenghantarData() {
     await initializePenghantarSelect2Default();
-    getAndFillPenghantarHighestThisMonthPanel();
-    getAndFillPenghantarHighestThisYearPanel();
-    getAndFillPenghantarHighestAllTimePanel();
+    getAndFillPenghantarPanelData();
     initializePenghantarDateRangePicker();
     initializePenghantarDailyChart();
     initializePenghantarMonthlyChart();
@@ -35,34 +32,12 @@
     initializePenghantarSelect2();
   };
 
-  async function getAndFillPenghantarHighestThisMonthPanel() {
-    const data = await crud.read({
-      url: `${urlAPIPenghantarHighestThisMonth}`
-    });
-
-    fillInner("penghantar-highest-this-month", `${data.value} MW`);
-    fillInner("penghantar-highest-this-month-datetime", getDateFormatOptions(data.logged_at));
-  }
-
-  async function getAndFillPenghantarHighestThisYearPanel() {
-    const data = await crud.read({
-      url: `${urlAPIPenghantarHighestThisYear}`
-    });
-
-    fillInner("penghantar-highest-this-year", `${data.value} MW`);
-    fillInner("penghantar-highest-this-year-datetime", getDateFormatOptions(data.logged_at));
-  }
-
-  async function getAndFillPenghantarHighestAllTimePanel() {
-    const data = await crud.read({
-      url: `${urlAPIPenghantarHighestThisAllTime}`
-    });
-
-    fillInner("penghantar-highest-all-time", `${data.value} MW`);
-    fillInner("penghantar-highest-all-time-datetime", getDateFormatOptions(data.logged_at));
-  }
-
   async function initializePenghantarSelect2Default() {
+    await getDefaultSelect2({
+      id: 'penghantar-panel-default',
+      url: `${urlAPIBebanPenghantarSelect2}`
+    });
+
     await getDefaultSelect2({
       id: 'penghantar-ruas-daily-default',
       url: `${urlAPIBebanPenghantarSelect2}`
@@ -97,6 +72,39 @@
       id: 'penghantar-satuan-yearly-default',
       url: `${urlAPISatuanPenghantarSelect2}`
     });
+  }
+
+  function getAndFillPenghantarPanelData() {
+    getAndFillPenghantarHighestThisMonthPanel();
+    getAndFillPenghantarHighestThisYearPanel();
+    getAndFillPenghantarHighestAllTimePanel();
+  }
+
+  async function getAndFillPenghantarHighestThisMonthPanel() {
+    const data = await crud.read({
+      url: `${urlAPIPenghantarHighestThisMonth}?nama=${getValue("penghantar-panel")}`
+    });
+
+    fillInner("penghantar-highest-this-month", `${data.value} MW`);
+    fillInner("penghantar-highest-this-month-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillPenghantarHighestThisYearPanel() {
+    const data = await crud.read({
+      url: `${urlAPIPenghantarHighestThisYear}?nama=${getValue("penghantar-panel")}`
+    });
+
+    fillInner("penghantar-highest-this-year", `${data.value} MW`);
+    fillInner("penghantar-highest-this-year-datetime", getDateFormatOptions(data.logged_at));
+  }
+
+  async function getAndFillPenghantarHighestAllTimePanel() {
+    const data = await crud.read({
+      url: `${urlAPIPenghantarHighestThisAllTime}?nama=${getValue("penghantar-panel")}`
+    });
+
+    fillInner("penghantar-highest-all-time", `${data.value} MW`);
+    fillInner("penghantar-highest-all-time-datetime", getDateFormatOptions(data.logged_at));
   }
 
   async function initializePenghantarDateRangePicker() {
