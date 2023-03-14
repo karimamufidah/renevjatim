@@ -164,7 +164,8 @@ class Penghantar_perencanaan extends CI_Controller
   {
     $data = new $this->main;
     $data->tanggal = $request->tanggal;
-    $data->penghantar = $datum[1];
+    $data->numerik = "";
+    $data->ruas = $datum[1];
     $data->kv = $datum[2];
     $data->satuan = $datum[4];
     $data->inom = $datum[3] ? $datum[3] : null;
