@@ -4,7 +4,7 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Ibt_realisasi extends CI_Controller
+class Penghantar_realisasi extends CI_Controller
 {
   public function store()
   {
@@ -76,9 +76,9 @@ class Ibt_realisasi extends CI_Controller
   {
     if (!$response->success) return;
 
-    $this->load->model("crud/ibt_realisasi_m", "main");
-    $this->load->model("utilities/get_ibt_realisasi_for_insert_m", "existing_data");
-    $this->load->model("utilities/generator_ibt_table_m", "generator");
+    $this->load->model("crud/penghantar_realisasi_m", "main");
+    $this->load->model("utilities/get_penghantar_realisasi_for_insert_m", "existing_data");
+    $this->load->model("utilities/generator_penghantar_table_m", "generator");
 
     foreach ($request->data as $datum) {
       if (!$datum[1]) continue;
@@ -167,7 +167,7 @@ class Ibt_realisasi extends CI_Controller
   {
     $data = new $this->main;
     $data->tanggal = $request->tanggal;
-    $data->ibt = $datum[1];
+    $data->penghantar = $datum[1];
     $data->kv = $datum[2];
     $data->satuan = $datum[4];
     $data->inom = $datum[3] ? $datum[3] : null;
