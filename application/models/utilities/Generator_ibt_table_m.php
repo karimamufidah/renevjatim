@@ -18,7 +18,7 @@ class Generator_ibt_table_m extends CI_Model
         $query = $this->db->get($this->_get_table_name());
         $result = $query->result();
 
-        return $result ? true : null;
+        return count($result) > 0 ? true : false;
     }
 
     private function _generate($params)
@@ -81,17 +81,17 @@ class Generator_ibt_table_m extends CI_Model
     /** General */
     private function _generate_mw_query($params, $pukul)
     {
-        return "COALESCE((SELECT eval_$pukul FROM ibt_realisasi WHERE tanggal = '$params->tanggal' AND ibt = '$params->nama' AND satuan = 'MW'), 0)";
+        return "COALESCE((SELECT eval_$pukul FROM ibt_realisasi WHERE tanggal = '$params->tanggal' AND ibt = '$params->nama' AND satuan = 'MW' LIMIT 1), 0)";
     }
 
     private function _generate_mvar_query($params, $pukul)
     {
-        return "COALESCE((SELECT eval_$pukul FROM ibt_realisasi WHERE tanggal = '$params->tanggal' AND ibt = '$params->nama' AND satuan = 'MVAR'), 0)";
+        return "COALESCE((SELECT eval_$pukul FROM ibt_realisasi WHERE tanggal = '$params->tanggal' AND ibt = '$params->nama' AND satuan = 'MVAR' LIMIT 1), 0)";
     }
 
     private function _generate_percentage_query($params, $pukul)
     {
-        return "COALESCE((SELECT eval_$pukul FROM ibt_realisasi WHERE tanggal = '$params->tanggal' AND ibt = '$params->nama' AND satuan = '%'), 0)";
+        return "COALESCE((SELECT eval_$pukul FROM ibt_realisasi WHERE tanggal = '$params->tanggal' AND ibt = '$params->nama' AND satuan = '%' LIMIT 1), 0)";
     }
 
     private function _get_table_name()
