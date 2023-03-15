@@ -76,8 +76,8 @@ class Trafo_realisasi extends CI_Controller
   {
     if (!$response->success) return;
 
-    $this->load->model("crud/sistem_realisasi_m", "main");
-    $this->load->model("utilities/get_sistem_realisasi_for_insert_m", "existing_data");
+    $this->load->model("crud/trafo_realisasi_m", "main");
+    $this->load->model("utilities/get_trafo_realisasi_for_insert_m", "existing_data");
 
     foreach ($request->data as $datum) {
       if (!$datum[1]) continue;
