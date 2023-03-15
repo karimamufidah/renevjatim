@@ -164,8 +164,6 @@ const openFail = (message) => openModalNotification("fail", message);
 const openSuccess = (message) => openModalNotification("success", message);
 const openModalNotification = (condition, message = "", handler) => {
   let Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
     showConfirmButton: condition == "success" ? false : true,
     timer: condition == "success" ? 3000 : 300000,
   });
