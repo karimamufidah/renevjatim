@@ -163,7 +163,7 @@ class Tegangan_perencanaan extends CI_Controller
   {
     $data = new $this->main;
     $data->tanggal = $request->tanggal;
-    $data->tegangan = $datum[1];
+    $data->gardu_induk = $datum[1];
     $data->busbar = $datum[2];
     $data->kv = $datum[3] ? $datum[3] : null;
     $data->status = $datum[52];

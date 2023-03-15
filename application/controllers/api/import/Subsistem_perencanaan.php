@@ -4,7 +4,7 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Subsubsistem_perencanaan extends CI_Controller
+class Subsistem_perencanaan extends CI_Controller
 {
   public function store()
   {
