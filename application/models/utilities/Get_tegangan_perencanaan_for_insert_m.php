@@ -10,6 +10,7 @@ class Get_tegangan_perencanaan_for_insert_m extends CI_Model
   {
     $this->db->where("tanggal", $filters->tanggal);
     $this->db->where("gardu_induk", $filters->nama);
+    $this->db->where("busbar", $filters->busbar);
 
     $query = $this->db->get($this->_get_table_name());
     $result = $query->result();
