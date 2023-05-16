@@ -64,6 +64,13 @@ const generateDeleteButtonWithoutMargin = (data) => {
     "</button>"
   );
 };
+const generateDeleteButtonLink = (data) => {
+  return `
+  <a title="Hapus" class="btn btn-xs btn-outline-danger" href="${data}">
+    <i class="bx bx-trash-alt me-1"></i>
+  </a>
+  `;
+};
 const generateEditButton = (data) => {
   return (
     '<button title="Edit"' +
@@ -88,14 +95,11 @@ const generateEditButtonWithoutMargin = (data) => {
   );
 };
 const generateEditButtonLink = (data) => {
-  return (
-    '<a title="Edit"' +
-    ` href="${data}"` +
-    ' class="btn btn-outline-secondary btn-sm"' +
-    ' style="margin-left:5px;margin-top:5px">' +
-    '<i class="fas fa-edit"></i>' +
-    "</a>"
-  );
+  return `
+  <a title="Edit" class="btn btn-xs btn-outline-primary" href="${data}">
+    <i class="bx bx-edit-alt me-1"></i>
+  </a>
+  `;
 };
 
 const generateUnorderableColDatatable = (...columns) => {

@@ -23,7 +23,8 @@ class Generator_penghantar_table_m extends CI_Model
 
     private function _generate($params)
     {
-        return $this->db->insert_batch($this->_get_pure_table_name(), $this->_generate_new_data($params), false);
+        $data = $this->_generate_new_data($params);
+        return $this->db->insert_batch($this->_get_pure_table_name(), $data, false);
     }
 
     private function _generate_new_data($params)
