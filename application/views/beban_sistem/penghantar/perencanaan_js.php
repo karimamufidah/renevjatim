@@ -1,6 +1,10 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
+  const urlAPIDeliveryUnitFilterSelect2 = "<?php echo base_url('api/select2/satuan-penghantar-filter'); ?>";
   const urlAPIMainDatatable = "<?php echo base_url('api/datatable/penghantar-perencanaan'); ?>";
   let mainDatatable = document.getElementById("main-datatable");
   let startDate;
@@ -11,7 +15,9 @@
   async function getData() {
     try {
       await initializeDateRangePicker();
+      await initializeSelect2Default();
       initializeDatatable();
+      initializeSelect2();
     } catch (error) {
       openFail(error);
     };
@@ -32,6 +38,13 @@
 
     $('#f-date-range').on('apply.daterangepicker', function(ev, picker) {
       $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD'));
+    });
+  }
+
+  async function initializeSelect2Default() {
+    await getDefaultSelect2({
+      id: 'f-unit-default',
+      url: `${urlAPIDeliveryUnitFilterSelect2}`
     });
   }
 
@@ -75,6 +88,7 @@
         "data": function(d) {
           d.tanggalAwal = startDate ? startDate.format("YYYY-MM-DD") : null;
           d.tanggalAkhir = endDate ? endDate.format("YYYY-MM-DD") : null;
+          d.satuan = getValue("f-unit");
         }
       }
     });
@@ -243,4 +257,30 @@
       ${generateDeleteButtonLink(`<?= base_url('beban_sistem/del_penghantar_ren'); ?>/${data.data_id}`)}
     `;
   }
+
+  function initializeSelect2() {
+    $("#f-unit").select2({
+      ajax: {
+        url: urlAPIDeliveryUnitFilterSelect2,
+        dataType: 'json',
+        data: function(params) {
+          var query = {
+            search: params.term,
+            page: params.page || 1
+          }
+
+          return query;
+        },
+        cache: true
+      },
+      theme: 'bootstrap-5',
+      templateResult: formatUnit,
+      templateSelection: formatTemplateSelection,
+      escapeMarkup: function(m) {
+        return m;
+      }
+    });
+  }
+
+  const formatUnit = (result) => formatTemplateResult(result, 'unit');
 </script>

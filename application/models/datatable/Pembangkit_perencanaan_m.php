@@ -26,6 +26,7 @@ class Pembangkit_perencanaan_m extends CI_Model
   {
     if ($filters->tanggal_awal) $this->db->where('DATE(main.tanggal) >=', $filters->tanggal_awal);
     if ($filters->tanggal_akhir) $this->db->where('DATE(main.tanggal) <=', $filters->tanggal_akhir);
+    if ($filters->satuan) $this->db->where('main.satuan', $filters->satuan);
   }
 
   private function _search_query($q)

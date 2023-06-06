@@ -20,7 +20,9 @@ class Interbus_transformer_realisasi extends CI_Controller
 		$params->response = $response;
 		$params->model = $this->main;
 		$params->order_options = array(0 => 'tanggal');
-		$params->filters = array('tanggalAwal' => 'tanggal_awal', 'tanggalAkhir' => 'tanggal_akhir');
+		$params->filters = array(
+			'tanggalAwal' => 'tanggal_awal', 'tanggalAkhir' => 'tanggal_akhir', 'satuan' => 'satuan'
+		);
 
 		$datatable = new Datatable();
 		$response = $datatable->index($params);

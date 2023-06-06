@@ -26,6 +26,7 @@ class Subsistem_realisasi_m extends CI_Model
   {
     if ($filters->tanggal_awal) $this->db->where('DATE(main.tanggal) >=', $filters->tanggal_awal);
     if ($filters->tanggal_akhir) $this->db->where('DATE(main.tanggal) <=', $filters->tanggal_akhir);
+    if ($filters->pasokan) $this->db->where('main.pasokan', $filters->pasokan);
   }
 
   private function _search_query($q)

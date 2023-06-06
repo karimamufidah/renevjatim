@@ -17,11 +17,18 @@
                 <!-- Perencanaan -->
                 <div class="card-header">
                     <div class="btn-group mt-1" role="group">
-                        <div class="input-group mb-3">
+                        <div class="input-group">
                             <span class="input-group-text"><i class="bx bx-calendar"></i></span>
                             <input id="f-date-range" type="text" class="form-control" value="">
                         </div>
                     </div>
+
+                    <div class="btn-group mt-1" role="group">
+                        <select id="f-unit" class="form-control" onchange="mainDatatable.ajax.reload()" style="min-width: 200px">
+                            <option id="f-unit-default" selected="selected"></option>
+                        </select>
+                    </div>
+                    
                     <button type="button" class="btn btn-primary dropdown-toggle float-end" data-bs-toggle="dropdown" aria-expanded="false">Add data</button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="<?= site_url('beban_sistem/add_ibt_eval') ?>">Manual Input</a></li>
