@@ -6,7 +6,7 @@
 
 <script>
   const urlAPIMain = "<?= base_url("api/interbus-transformer-perencanaan"); ?>";
-  const urlAPICountByDate = "<?= base_url("api/utilities/get-beban-tegangan-perencanaan-by-date-count"); ?>";
+  const urlAPICountByDate = "<?= base_url("api/utilities/get-beban-ibt-perencanaan-by-date-count"); ?>";
   const urlAPIInterbusTransformerUnitFilterSelect2 = "<?php echo base_url('api/select2/satuan-interbus-transformer-filter'); ?>";
   const urlAPIMainDatatable = "<?php echo base_url('api/datatable/interbus-transformer-perencanaan'); ?>";
   let mainDatatable = document.getElementById("main-datatable");
@@ -288,4 +288,160 @@
   }
 
   const formatUnit = (result) => formatTemplateResult(result, 'unit');
+
+  /** Create */
+  function showImportForm() {
+    show("import-card");
+    hide("main-toolbar");
+  }
+
+  function hideImportForm() {
+    hide("import-card");
+    show("main-toolbar");
+  }
+
+  async function postMain() {
+    try {
+      await validatePostForm();
+      const data = await crud.read({
+        url: `${urlAPICountByDate}?date=${getValue("tanggal")}`
+      });
+
+      if (parseInt(data)) {
+        showConfirmationAlert();
+      } else {
+        importCSV();
+      }
+    } catch (error) {
+      openFail(error);
+    }
+  }
+
+  async function validatePostForm() {
+    return new Promise((resolve, reject) => {
+      if (!getElement("tanggal").value) reject("Tanggal harus diisi.");
+      if (!getElement("file").value) reject("File harus diisi.");
+
+      resolve(true);
+    })
+  }
+
+  function showConfirmationAlert() {
+    Swal.fire({
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Replace',
+      denyButtonText: `Don't save`,
+      title: 'Data Exist!',
+      text: 'Data is already exist. Do you want to replace the data?'
+    }).then((result) => {
+      if (result.isConfirmed) importCSV();
+    });
+  }
+
+  async function importCSV() {
+    Papa.parse(getElement("file").files[0], {
+      complete: function(results) {
+        importData(results.data);
+      }
+    });
+  }
+
+  async function importData(data) {
+    $("#modal-proses").modal("show");
+    fillProgress(0);
+
+    const totalData = data.length;
+    let processed = 0;
+
+    for (let i = 0; i < data.length; i++) {
+      processed++;
+      fillProgress(Math.round(processed / totalData * 100));
+
+      if (i === 0) continue;
+      if (!data[i][0]) continue;
+
+      await postData({
+        name: data[i][1],
+        kv: data[i][2],
+        inom: data[i][3],
+        satuan: data[i][4],
+        status: data[i][53],
+        username: "<?= $this->fungsi->user_login()->name ?>",
+        tanggal: getValue("tanggal"),
+        at0030: data[i][5],
+        at0100: data[i][6],
+        at0130: data[i][7],
+        at0200: data[i][8],
+        at0230: data[i][9],
+        at0300: data[i][10],
+        at0330: data[i][11],
+        at0400: data[i][12],
+        at0430: data[i][13],
+        at0500: data[i][14],
+        at0530: data[i][15],
+        at0600: data[i][16],
+        at0630: data[i][17],
+        at0700: data[i][18],
+        at0730: data[i][19],
+        at0800: data[i][20],
+        at0830: data[i][21],
+        at0900: data[i][22],
+        at0930: data[i][23],
+        at1000: data[i][24],
+        at1030: data[i][25],
+        at1100: data[i][26],
+        at1130: data[i][27],
+        at1200: data[i][28],
+        at1230: data[i][29],
+        at1300: data[i][30],
+        at1330: data[i][31],
+        at1400: data[i][32],
+        at1430: data[i][33],
+        at1500: data[i][34],
+        at1530: data[i][35],
+        at1600: data[i][36],
+        at1630: data[i][37],
+        at1700: data[i][38],
+        at1730: data[i][39],
+        at1800: data[i][40],
+        at1830: data[i][41],
+        at1900: data[i][42],
+        at1930: data[i][43],
+        at2000: data[i][44],
+        at2030: data[i][45],
+        at2100: data[i][46],
+        at2130: data[i][47],
+        at2200: data[i][48],
+        at2230: data[i][49],
+        at2300: data[i][50],
+        at2330: data[i][51],
+        at2400: data[i][52]
+      });
+    }
+
+    setTimeout(() => {
+      $("#modal-proses").modal("hide");
+      openSuccess("Berhasil mengimpor data!");
+      mainDatatable.ajax.reload();
+    }, 1000);
+  }
+
+  function fillProgress(percentage) {
+    fillInner("mp-loading-text", percentage + "%");
+    getElement("mp-loading-progress").style.width = percentage + "%";
+    getElement("mp-loading-progress").setAttribute("aria-valuenow", percentage);
+  }
+
+  async function postData(data) {
+    const response = await crud.create({
+      url: urlAPIMain,
+      data: data,
+      name: "perencanaan interbus tranformer"
+    });
+
+    if (!response.success) throw response.message;
+
+    return true;
+  }
 </script>

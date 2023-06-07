@@ -3,7 +3,7 @@
 
 <script>
   const urlAPIMain = "<?= base_url("api/tegangan-realisasi"); ?>";
-  const urlAPICountByDate = "<?= base_url("api/utilities/get-beban-tegangan-perencanaan-by-date-count"); ?>";
+  const urlAPICountByDate = "<?= base_url("api/utilities/get-beban-tegangan-realisasi-by-date-count"); ?>";
   const urlAPIMainDatatable = "<?php echo base_url('api/datatable/tegangan-realisasi'); ?>";
   let mainDatatable = document.getElementById("main-datatable");
   let startDate;

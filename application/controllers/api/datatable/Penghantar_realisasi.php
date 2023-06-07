@@ -10,7 +10,7 @@ class Penghantar_realisasi extends CI_Controller
 		if (!isset($request->tanggalAwal)) $request->tanggalAwal = "";
 		if (!isset($request->tanggalAkhir)) $request->tanggalAkhir = "";
 
-		$this->load->model('datatable/pembangkit_realisasi_m', 'main');
+		$this->load->model('datatable/penghantar_realisasi_m', 'main');
 		$this->load->library('datatable');
 		$this->load->helper('datatable');
 		$this->load->helper('validation');

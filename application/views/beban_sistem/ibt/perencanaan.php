@@ -36,11 +36,11 @@
 
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="<?= site_url('beban_sistem/add_ibt_ren') ?>">Manual Input</a></li>
-            <li><a class="dropdown-item" href="<?= site_url('beban_sistem/import_ibt_ren') ?>">Import File</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0)" onclick="showImportForm()">Import File</a></li>
           </ul>
         </div>
 
-        <div class="card-body">
+        <div class="card-body mt-4">
           <div class="table-responsive">
             <table class="table table-striped table-hover" id="main-datatable">
               <thead>

@@ -34,11 +34,11 @@
           <button type="button" class="btn btn-primary dropdown-toggle float-end" data-bs-toggle="dropdown" aria-expanded="false">Add data</button>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="<?= site_url('beban_sistem/add_penghantar_ren') ?>">Manual Input</a></li>
-            <li><a class="dropdown-item" href="<?= site_url('beban_sistem/import_penghantar_ren') ?>">Import File</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0)" onclick="showImportForm()">Import File</a></li>
           </ul>
         </div>
 
-        <div class="card-body">
+        <div class="card-body mt-4">
           <div class="table-responsive">
             <table class="table table-striped table-hover" id="main-datatable">
               <thead>
