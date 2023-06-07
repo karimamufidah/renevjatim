@@ -3,11 +3,9 @@ class Generator_tegangan_table_m extends CI_Model
 {
   public function generate_or_update($params)
   {
-    if (!$this->_is_exist($params)) $this->_generate($params);
+    if (!$this->_is_exist($params)) return $this->_generate($params);
 
-    $this->_regenerate($params);
-
-    return true;
+    return $this->_regenerate($params);
   }
 
   private function _is_exist($params)
@@ -73,7 +71,7 @@ class Generator_tegangan_table_m extends CI_Model
   /** General */
   private function _generate_kv_query($params, $pukul)
   {
-    return "COALESCE((SELECT eval_$pukul FROM tegangan_realisasi WHERE tanggal = '$params->tanggal' AND gardu_induk = '$params->nama'), 0)";
+    return "COALESCE((SELECT eval_$pukul FROM tegangan_realisasi WHERE tanggal = '$params->tanggal' AND gardu_induk = '$params->nama' LIMIT 1), 0)";
   }
 
   private function _get_table_name()

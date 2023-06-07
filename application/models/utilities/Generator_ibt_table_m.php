@@ -3,11 +3,9 @@ class Generator_ibt_table_m extends CI_Model
 {
     public function generate_or_update($params)
     {
-        if (!$this->_is_exist($params)) $this->_generate($params);
+        if (!$this->_is_exist($params)) return $this->_generate($params);
 
-        $this->_regenerate($params);
-
-        return true;
+        return $this->_regenerate($params);
     }
 
     private function _is_exist($params)
