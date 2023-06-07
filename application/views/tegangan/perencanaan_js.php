@@ -1,15 +1,19 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
+  const urlAPICountByDate = "<?= base_url("api/utilities/get-beban-tegangan-perencanaan-by-date-count"); ?>";
   const urlAPIMainDatatable = "<?php echo base_url('api/datatable/tegangan-perencanaan'); ?>";
   let mainDatatable = document.getElementById("main-datatable");
   let startDate;
   let endDate;
+  let crud;
 
   window.onload = () => getData();
 
   async function getData() {
     try {
+      crud = new LimCRUD();
+
       await initializeDateRangePicker();
       initializeDatatable();
     } catch (error) {
@@ -240,5 +244,61 @@
       ${generateEditButtonLink(`<?= base_url('tegangan/edit_ren'); ?>/${data.data_id}`)}
       ${generateDeleteButtonLink(`<?= base_url('tegangan/del_ren'); ?>/${data.data_id}`)}
     `;
+  }
+
+  /** Create */
+  function showImportForm() {
+    show("import-card");
+    hide("main-toolbar");
+  }
+
+  function hideImportForm() {
+    hide("import-card");
+    show("main-toolbar");
+  }
+
+  async function postMain() {
+    try {
+      await validatePostForm();
+      const data = await crud.read({
+        url: `${urlAPICountByDate}?date=${getValue("tanggal")}`
+      });
+
+      if (parseInt(data)) {
+        showConfirmationAlert();
+      } else {
+        postMainData();
+      }
+    } catch (error) {
+      openFail(error);
+    }
+  }
+
+  async function validatePostForm() {
+    return new Promise((resolve, reject) => {
+      if (!getElement("tanggal").value) reject("Tanggal harus diisi.");
+      if (!getElement("file").value) reject("File harus diisi.");
+
+      resolve(true);
+    })
+  }
+
+  function showConfirmationAlert() {
+    Swal.fire({
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Replace',
+      denyButtonText: `Don't save`,
+      title: 'Data Exist!',
+      text: 'Data is already exist. Do you want to replace the data?'
+    }).then((result) => {
+      if (result.isConfirmed) postMainData();
+    });
+  }
+
+  function postMainData() {
+    console.log("OK");
+    // getElement("formBulkUpload").setAttribute("onsubmit", "");
+    // getElement("formBulkUpload").submit();
   }
 </script>

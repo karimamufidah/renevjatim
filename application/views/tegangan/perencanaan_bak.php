@@ -9,40 +9,14 @@
         <li class="nav-item">
           <a class="nav-link active" href="javascript:void(0);">Perencanaan</a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link" href="<?= site_url('tegangan/realisasi') ?>">Realisasi</a>
         </li>
       </ul>
 
-      <form class="card mb-3" onsubmit="postMain();return false" id="import-card" style="display: none">
-        <div class="card-header">
-          <small class="bx bx-upload"></small>&nbsp; Import CSV
-        </div>
-
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-6 col-12">
-              <label for="tanggal" class="form-label">Tanggal</label>
-              <input class="form-control" type="date" id="tanggal" />
-            </div>
-
-            <div class="col-md-6 col-12">
-              <label for="tanggal" class="form-label">File</label>
-              <input class="form-control" type="file" id="file" multiple accept=".csv">
-            </div>
-          </div>
-        </div>
-
-        <div class="card-footer">
-          <button class="btn btn-primary float-end m-1">Simpan & Tambah Lagi</button>
-          <button type="button" class="btn btn-default float-end m-1" onclick="hideImportForm()">Tutup</button>
-        </div>
-      </form>
-
       <div class="card">
         <!-- Perencanaan -->
-        <div class="card-header" id="main-toolbar">
+        <div class="card-header">
           <div class="btn-group mt-1" role="group">
             <div class="input-group mb-3">
               <span class="input-group-text"><i class="bx bx-calendar"></i></span>
@@ -51,10 +25,9 @@
           </div>
 
           <button type="button" class="btn btn-primary dropdown-toggle float-end" data-bs-toggle="dropdown" aria-expanded="false">Add data</button>
-
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="<?= site_url('tegangan/add_ren') ?>">Manual Input</a></li>
-            <li><a class="dropdown-item" href="javascript:void(0)" onclick="showImportForm()">Import File</a></li>
+            <li><a class="dropdown-item" href="<?= site_url('tegangan/import_ren') ?>">Import File</a></li>
           </ul>
         </div>
 

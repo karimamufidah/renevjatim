@@ -5,6 +5,21 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
 
+$route['api/interbus-transformer-perencanaan']['POST'] = 'api/crud/interbus_transformer_perencanaan/store';
+$route['api/interbus-transformer-realisasi']['POST'] = 'api/crud/interbus_transformer_realisasi/store';
+$route['api/penghantar-perencanaan']['POST'] = 'api/crud/penghantar_perencanaan/store';
+$route['api/penghantar-realisasi']['POST'] = 'api/crud/penghantar_realisasi/store';
+$route['api/pembangkit-perencanaan']['POST'] = 'api/crud/pembangkit_perencanaan/store';
+$route['api/pembangkit-realisasi']['POST'] = 'api/crud/pembangkit_realisasi/store';
+$route['api/sistem-perencanaan']['POST'] = 'api/crud/sistem_perencanaan/store';
+$route['api/sistem-realisasi']['POST'] = 'api/crud/sistem_realisasi/store';
+$route['api/subsistem-perencanaan']['POST'] = 'api/crud/subsistem_perencanaan/store';
+$route['api/subsistem-realisasi']['POST'] = 'api/crud/subsistem_realisasi/store';
+$route['api/tegangan-perencanaan']['POST'] = 'api/crud/tegangan_perencanaan/store';
+$route['api/tegangan-realisasi']['POST'] = 'api/crud/tegangan_realisasi/store';
+$route['api/trafo-perencanaan']['POST'] = 'api/crud/trafo_perencanaan/store';
+$route['api/trafo-realisasi']['POST'] = 'api/crud/trafo_realisasi/store';
+
 $route['api/penghantar-generator']['POST'] = 'api/generator_penghantar_table_data/index';
 $route['api/ibt-generator']['POST'] = 'api/generator_ibt_table_data/index';
 $route['api/trafo-generator']['POST'] = 'api/generator_trafo_table_data/index';
