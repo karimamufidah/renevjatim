@@ -12,7 +12,7 @@ class Generator_tegangan_table_m extends CI_Model
 
   private function _is_exist($params)
   {
-    $this->db->where('main.gardu_induk', $params->nama);
+    $this->db->where('main.nama', $params->nama);
     $this->db->where('DATE(main.logged_at)', $params->tanggal);
 
     $query = $this->db->get($this->_get_table_name());
@@ -37,11 +37,11 @@ class Generator_tegangan_table_m extends CI_Model
         $time_string = $i == 24 ? "23:59:00" : "$hour_string:00:00";
 
         array_push($data, array(
-          "logged_at" => "'$params->tanggal $time_string'", "gardu_induk" => "'$params->nama'",
+          "logged_at" => "'$params->tanggal $time_string'", "nama" => "'$params->nama'",
           "kv" => $this->_generate_kv_query($params, $hour_string . "00")
         ));
       } else if ($i != 24) array_push($data, array(
-        "logged_at" => "'$params->tanggal $hour_string:30:00'", "gardu_induk" => "'$params->nama'",
+        "logged_at" => "'$params->tanggal $hour_string:30:00'", "nama" => "'$params->nama'",
         "kv" => $this->_generate_kv_query($params, $hour_string . "30")
       ));
     }
@@ -58,12 +58,12 @@ class Generator_tegangan_table_m extends CI_Model
         $time_string = $i == 24 ? "23:59:00" : "$hour_string:00:00";
 
         $this->db->where("logged_at", "$params->tanggal $time_string");
-        $this->db->where("gardu_induk", $params->nama);
+        $this->db->where("nama", $params->nama);
         $this->db->set("kv", $this->_generate_kv_query($params, $hour_string . "00"), false);
         $this->db->update($this->_get_pure_table_name());
       } else if ($i != 24) {
         $this->db->where("logged_at", "$params->tanggal $hour_string:30:00");
-        $this->db->where("gardu_induk", $params->nama);
+        $this->db->where("nama", $params->nama);
         $this->db->set("kv", $this->_generate_kv_query($params, $hour_string . "30"), false);
         $this->db->update($this->_get_pure_table_name());
       }

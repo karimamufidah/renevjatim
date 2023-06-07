@@ -14,9 +14,11 @@
         </li>
       </ul>
 
+      <?php $this->load->view("components/card_import"); ?>
+
       <div class="card">
         <!-- Perencanaan -->
-        <div class="card-header">
+        <div class="card-header" id="main-toolbar">
           <div class="btn-group mt-1" role="group">
             <div class="input-group mb-3">
               <span class="input-group-text"><i class="bx bx-calendar"></i></span>
@@ -27,7 +29,7 @@
           <button type="button" class="btn btn-primary dropdown-toggle float-end" data-bs-toggle="dropdown" aria-expanded="false">Add data</button>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="<?= site_url('tegangan/add_eval') ?>">Manual Input</a></li>
-            <li><a class="dropdown-item" href="<?= site_url('tegangan/import_eval') ?>">Import File</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0)" onclick="showImportForm()">Import File</a></li>
           </ul>
         </div>
 
@@ -51,4 +53,5 @@
   </div>
 </div>
 
+<?php $this->load->view("components/modal_process"); ?>
 <?php $this->load->view("tegangan/realisasi_js"); ?>

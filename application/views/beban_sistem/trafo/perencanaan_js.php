@@ -2,18 +2,24 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 
 <script>
+  const urlAPIMain = "<?= base_url("api/trafo-perencanaan"); ?>";
+  const urlAPICountByDate = "<?= base_url("api/utilities/get-beban-tegangan-perencanaan-by-date-count"); ?>";
   const urlAPITransformerUnitFilterSelect2 = "<?php echo base_url('api/select2/satuan-trafo-filter'); ?>";
   const urlAPIMainDatatable = "<?php echo base_url('api/datatable/trafo-perencanaan'); ?>";
   let mainDatatable = document.getElementById("main-datatable");
   let startDate;
   let endDate;
+  let crud;
 
   window.onload = () => getData();
 
   async function getData() {
     try {
+      crud = new LimCRUD();
+
       await initializeDateRangePicker();
       await initializeSelect2Default();
       initializeDatatable();

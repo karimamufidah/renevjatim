@@ -1,15 +1,21 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 
 <script>
+  const urlAPIMain = "<?= base_url("api/sistem-perencanaan"); ?>";
+  const urlAPICountByDate = "<?= base_url("api/utilities/get-beban-tegangan-perencanaan-by-date-count"); ?>";
   const urlAPIMainDatatable = "<?php echo base_url('api/datatable/sistem-perencanaan'); ?>";
   let mainDatatable = document.getElementById("main-datatable");
   let startDate;
   let endDate;
+  let crud;
 
   window.onload = () => getData();
 
   async function getData() {
     try {
+      crud = new LimCRUD();
+
       await initializeDateRangePicker();
       initializeDatatable();
     } catch (error) {

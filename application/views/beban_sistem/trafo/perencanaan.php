@@ -13,9 +13,12 @@
                     <a class="nav-link" href="<?= site_url('beban_sistem/trafo_realisasi') ?>">Realisasi</a>
                 </li>
             </ul>
+
+            <?php $this->load->view("components/card_import"); ?>
+            
             <div class="card">
                 <!-- Perencanaan -->
-                <div class="card-header">
+                <div class="card-header" id="main-toolbar">
                     <div class="btn-group mt-1" role="group">
                         <div class="input-group">
                             <span class="input-group-text"><i class="bx bx-calendar"></i></span>
@@ -53,4 +56,5 @@
     </div>
 </div>
 
+<?php $this->load->view("components/modal_process"); ?>
 <?php $this->load->view("beban_sistem/trafo/perencanaan_js"); ?>
