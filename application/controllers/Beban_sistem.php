@@ -20,34 +20,6 @@ class Beban_sistem extends CI_Controller
 	//list table data perencanaan penghantar
 	public function penghantar_perencanaan()
 	{
-		$this->load->library('pagination');
-		$config['base_url'] = site_url('beban_sistem/penghantar_perencanaan');
-		$config['total_rows'] = $this->bebansistem_m->get_penghantar_ren_pagination()->num_rows();
-		$config['per_page'] = 15;
-		$config['uri_segment'] = 3;
-		$config['first_link'] = 'First';
-		$config['last_link'] = 'Last';
-		$config['next_link'] = 'Next';
-		$config['prev_link'] = 'Prev';
-		$config['full_tag_open']	= '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-		$config['full_tag_close']   = '</ul></nav></div>';
-		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-		$config['num_tag_close']    = '</span></li>';
-		$config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-		$config['cur_tag_close']    = '<span class="sr-only"></span></span></li>';
-		$config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-		$config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['prev_tagl_close']  = '</span>Next</li>';
-		$config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-		$config['first_tagl_close'] = '</span></li>';
-		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['last_tagl_close']  = '</span></li>';
-
-		$this->pagination->initialize($config);
-
-		$data['pagination'] = $this->pagination->create_links();
-		$data['row'] = $this->bebansistem_m->get_penghantar_ren_pagination($config['per_page'], $this->uri->segment(3));
 		$data['title'] = 'Penghantar | Perencanaan';
 		$this->template->load('template', 'beban_sistem/penghantar/perencanaan', $data);
 	}
@@ -381,34 +353,6 @@ class Beban_sistem extends CI_Controller
 	//list table data realisasi penghantar
 	public function penghantar_realisasi()
 	{
-		$this->load->library('pagination');
-		$config['base_url'] = site_url('beban_sistem/penghantar_realisasi');
-		$config['total_rows'] = $this->bebansistem_m->get_penghantar_eval_pagination()->num_rows();
-		$config['per_page'] = 15;
-		$config['uri_segment'] = 3;
-		$config['first_link'] = 'First';
-		$config['last_link'] = 'Last';
-		$config['next_link'] = 'Next';
-		$config['prev_link'] = 'Prev';
-		$config['full_tag_open']	= '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-		$config['full_tag_close']   = '</ul></nav></div>';
-		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-		$config['num_tag_close']    = '</span></li>';
-		$config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-		$config['cur_tag_close']    = '<span class="sr-only"></span></span></li>';
-		$config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-		$config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['prev_tagl_close']  = '</span>Next</li>';
-		$config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-		$config['first_tagl_close'] = '</span></li>';
-		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['last_tagl_close']  = '</span></li>';
-
-		$this->pagination->initialize($config);
-
-		$data['pagination'] = $this->pagination->create_links();
-		$data['row'] = $this->bebansistem_m->get_penghantar_eval_pagination($config['per_page'], $this->uri->segment(3));
 		$data['title'] = 'Penghantar | Realisasi';
 		$this->template->load('template', 'beban_sistem/penghantar/realisasi', $data);
 	}
@@ -750,34 +694,6 @@ class Beban_sistem extends CI_Controller
 	//list table data ibt
 	public function ibt_perencanaan()
 	{
-		$this->load->library('pagination');
-		$config['base_url'] = site_url('beban_sistem/ibt_perencanaan');
-		$config['total_rows'] = $this->bebansistem_m->get_ibt_ren_pagination()->num_rows();
-		$config['per_page'] = 15;
-		$config['uri_segment'] = 3;
-		$config['first_link'] = 'First';
-		$config['last_link'] = 'Last';
-		$config['next_link'] = 'Next';
-		$config['prev_link'] = 'Prev';
-		$config['full_tag_open']	= '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-		$config['full_tag_close']   = '</ul></nav></div>';
-		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-		$config['num_tag_close']    = '</span></li>';
-		$config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-		$config['cur_tag_close']    = '<span class="sr-only"></span></span></li>';
-		$config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-		$config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['prev_tagl_close']  = '</span>Next</li>';
-		$config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-		$config['first_tagl_close'] = '</span></li>';
-		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['last_tagl_close']  = '</span></li>';
-
-		$this->pagination->initialize($config);
-
-		$data['pagination'] = $this->pagination->create_links();
-		$data['row'] = $this->bebansistem_m->get_ibt_ren_pagination($config['per_page'], $this->uri->segment(3));
 		$data['title'] = 'IBT | Perencanaan';
 		$this->template->load('template', 'beban_sistem/ibt/perencanaan', $data);
 	}
@@ -1108,34 +1024,6 @@ class Beban_sistem extends CI_Controller
 	//list table data realisasi ibt
 	public function ibt_realisasi()
 	{
-		$this->load->library('pagination');
-		$config['base_url'] = site_url('beban_sistem/ibt_realisasi');
-		$config['total_rows'] = $this->bebansistem_m->get_ibt_eval_pagination()->num_rows();
-		$config['per_page'] = 15;
-		$config['uri_segment'] = 3;
-		$config['first_link'] = 'First';
-		$config['last_link'] = 'Last';
-		$config['next_link'] = 'Next';
-		$config['prev_link'] = 'Prev';
-		$config['full_tag_open']	= '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-		$config['full_tag_close']   = '</ul></nav></div>';
-		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-		$config['num_tag_close']    = '</span></li>';
-		$config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-		$config['cur_tag_close']    = '<span class="sr-only"></span></span></li>';
-		$config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-		$config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['prev_tagl_close']  = '</span>Next</li>';
-		$config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-		$config['first_tagl_close'] = '</span></li>';
-		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['last_tagl_close']  = '</span></li>';
-
-		$this->pagination->initialize($config);
-
-		$data['pagination'] = $this->pagination->create_links();
-		$data['row'] = $this->bebansistem_m->get_ibt_eval_pagination($config['per_page'], $this->uri->segment(3));
 		$data['title'] = 'IBT | Realisasi';
 		$this->template->load('template', 'beban_sistem/ibt/realisasi', $data);
 	}
@@ -1468,34 +1356,6 @@ class Beban_sistem extends CI_Controller
 	//list table data perencanaan trafo
 	public function trafo_perencanaan()
 	{
-		$this->load->library('pagination');
-		$config['base_url'] = site_url('beban_sistem/trafo_perencanaan');
-		$config['total_rows'] = $this->bebansistem_m->get_trafo_ren_pagination()->num_rows();
-		$config['per_page'] = 15;
-		$config['uri_segment'] = 3;
-		$config['first_link'] = 'First';
-		$config['last_link'] = 'Last';
-		$config['next_link'] = 'Next';
-		$config['prev_link'] = 'Prev';
-		$config['full_tag_open']	= '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-		$config['full_tag_close']   = '</ul></nav></div>';
-		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-		$config['num_tag_close']    = '</span></li>';
-		$config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-		$config['cur_tag_close']    = '<span class="sr-only"></span></span></li>';
-		$config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-		$config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['prev_tagl_close']  = '</span>Next</li>';
-		$config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-		$config['first_tagl_close'] = '</span></li>';
-		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['last_tagl_close']  = '</span></li>';
-
-		$this->pagination->initialize($config);
-
-		$data['pagination'] = $this->pagination->create_links();
-		$data['row'] = $this->bebansistem_m->get_trafo_ren_pagination($config['per_page'], $this->uri->segment(3));
 		$data['title'] = 'Trafo | Perencanaan';
 		$this->template->load('template', 'beban_sistem/trafo/perencanaan', $data);
 	}
@@ -1820,34 +1680,6 @@ class Beban_sistem extends CI_Controller
 	//list table data realisasi trafo
 	public function trafo_realisasi()
 	{
-		$this->load->library('pagination');
-		$config['base_url'] = site_url('beban_sistem/trafo_realisasi');
-		$config['total_rows'] = $this->bebansistem_m->get_trafo_eval_pagination()->num_rows();
-		$config['per_page'] = 15;
-		$config['uri_segment'] = 3;
-		$config['first_link'] = 'First';
-		$config['last_link'] = 'Last';
-		$config['next_link'] = 'Next';
-		$config['prev_link'] = 'Prev';
-		$config['full_tag_open']	= '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-		$config['full_tag_close']   = '</ul></nav></div>';
-		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-		$config['num_tag_close']    = '</span></li>';
-		$config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-		$config['cur_tag_close']    = '<span class="sr-only"></span></span></li>';
-		$config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-		$config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['prev_tagl_close']  = '</span>Next</li>';
-		$config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-		$config['first_tagl_close'] = '</span></li>';
-		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['last_tagl_close']  = '</span></li>';
-
-		$this->pagination->initialize($config);
-
-		$data['pagination'] = $this->pagination->create_links();
-		$data['row'] = $this->bebansistem_m->get_trafo_eval_pagination($config['per_page'], $this->uri->segment(3));
 		$data['title'] = 'Trafo | Realisasi';
 		$this->template->load('template', 'beban_sistem/trafo/realisasi', $data);
 	}
@@ -2174,34 +2006,6 @@ class Beban_sistem extends CI_Controller
 	//list table data perencanaan sistem
 	public function sistem_perencanaan()
 	{
-		$this->load->library('pagination');
-		$config['base_url'] = site_url('beban_sistem/sistem_perencanaan');
-		$config['total_rows'] = $this->bebansistem_m->get_sistem_ren_pagination()->num_rows();
-		$config['per_page'] = 15;
-		$config['uri_segment'] = 3;
-		$config['first_link'] = 'First';
-		$config['last_link'] = 'Last';
-		$config['next_link'] = 'Next';
-		$config['prev_link'] = 'Prev';
-		$config['full_tag_open']	= '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-		$config['full_tag_close']   = '</ul></nav></div>';
-		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-		$config['num_tag_close']    = '</span></li>';
-		$config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-		$config['cur_tag_close']    = '<span class="sr-only"></span></span></li>';
-		$config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-		$config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['prev_tagl_close']  = '</span>Next</li>';
-		$config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-		$config['first_tagl_close'] = '</span></li>';
-		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['last_tagl_close']  = '</span></li>';
-
-		$this->pagination->initialize($config);
-
-		$data['pagination'] = $this->pagination->create_links();
-		$data['row'] = $this->bebansistem_m->get_sistem_ren_pagination($config['per_page'], $this->uri->segment(3));
 		$data['title'] = 'Sistem | Perencanaan';
 		$this->template->load('template', 'beban_sistem/sistem/perencanaan', $data);
 	}
@@ -2522,34 +2326,6 @@ class Beban_sistem extends CI_Controller
 	//list table data realisasi sistem
 	public function sistem_realisasi()
 	{
-		$this->load->library('pagination');
-		$config['base_url'] = site_url('beban_sistem/sistem_realisasi');
-		$config['total_rows'] = $this->bebansistem_m->get_sistem_eval_pagination()->num_rows();
-		$config['per_page'] = 15;
-		$config['uri_segment'] = 3;
-		$config['first_link'] = 'First';
-		$config['last_link'] = 'Last';
-		$config['next_link'] = 'Next';
-		$config['prev_link'] = 'Prev';
-		$config['full_tag_open']	= '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-		$config['full_tag_close']   = '</ul></nav></div>';
-		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-		$config['num_tag_close']    = '</span></li>';
-		$config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-		$config['cur_tag_close']    = '<span class="sr-only"></span></span></li>';
-		$config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-		$config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['prev_tagl_close']  = '</span>Next</li>';
-		$config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-		$config['first_tagl_close'] = '</span></li>';
-		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['last_tagl_close']  = '</span></li>';
-
-		$this->pagination->initialize($config);
-
-		$data['pagination'] = $this->pagination->create_links();
-		$data['row'] = $this->bebansistem_m->get_sistem_eval_pagination($config['per_page'], $this->uri->segment(3));
 		$data['title'] = 'Sistem | Realisasi';
 		$this->template->load('template', 'beban_sistem/sistem/realisasi', $data);
 	}
@@ -2872,34 +2648,6 @@ class Beban_sistem extends CI_Controller
 	//list table data perencanaan subsistem
 	public function subsistem_perencanaan()
 	{
-		$this->load->library('pagination');
-		$config['base_url'] = site_url('beban_sistem/subsistem_perencanaan');
-		$config['total_rows'] = $this->bebansistem_m->get_subsistem_ren_pagination()->num_rows();
-		$config['per_page'] = 15;
-		$config['uri_segment'] = 3;
-		$config['first_link'] = 'First';
-		$config['last_link'] = 'Last';
-		$config['next_link'] = 'Next';
-		$config['prev_link'] = 'Prev';
-		$config['full_tag_open']	= '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-		$config['full_tag_close']   = '</ul></nav></div>';
-		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-		$config['num_tag_close']    = '</span></li>';
-		$config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-		$config['cur_tag_close']    = '<span class="sr-only"></span></span></li>';
-		$config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-		$config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['prev_tagl_close']  = '</span>Next</li>';
-		$config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-		$config['first_tagl_close'] = '</span></li>';
-		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['last_tagl_close']  = '</span></li>';
-
-		$this->pagination->initialize($config);
-
-		$data['pagination'] = $this->pagination->create_links();
-		$data['row'] = $this->bebansistem_m->get_subsistem_ren_pagination($config['per_page'], $this->uri->segment(3));
 		$data['title'] = 'Subsistem | Perencanaan';
 		$this->template->load('template', 'beban_sistem/subsistem/perencanaan', $data);
 	}
@@ -3224,34 +2972,6 @@ class Beban_sistem extends CI_Controller
 	//list table data realisasi subsistem
 	public function subsistem_realisasi()
 	{
-		$this->load->library('pagination');
-		$config['base_url'] = site_url('beban_sistem/subsistem_realisasi');
-		$config['total_rows'] = $this->bebansistem_m->get_subsistem_eval_pagination()->num_rows();
-		$config['per_page'] = 15;
-		$config['uri_segment'] = 3;
-		$config['first_link'] = 'First';
-		$config['last_link'] = 'Last';
-		$config['next_link'] = 'Next';
-		$config['prev_link'] = 'Prev';
-		$config['full_tag_open']	= '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-		$config['full_tag_close']   = '</ul></nav></div>';
-		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-		$config['num_tag_close']    = '</span></li>';
-		$config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-		$config['cur_tag_close']    = '<span class="sr-only"></span></span></li>';
-		$config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-		$config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['prev_tagl_close']  = '</span>Next</li>';
-		$config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-		$config['first_tagl_close'] = '</span></li>';
-		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['last_tagl_close']  = '</span></li>';
-
-		$this->pagination->initialize($config);
-
-		$data['pagination'] = $this->pagination->create_links();
-		$data['row'] = $this->bebansistem_m->get_subsistem_eval_pagination($config['per_page'], $this->uri->segment(3));
 		$data['title'] = 'Subsistem | Realisasi';
 		$this->template->load('template', 'beban_sistem/subsistem/realisasi', $data);
 	}
@@ -3577,34 +3297,6 @@ class Beban_sistem extends CI_Controller
 	//list table data perencanaan pembangkit
 	public function pembangkit_perencanaan()
 	{
-		$this->load->library('pagination');
-		$config['base_url'] = site_url('beban_sistem/pembangkit_perencanaan');
-		$config['total_rows'] = $this->bebansistem_m->get_pembangkit_ren_pagination()->num_rows();
-		$config['per_page'] = 15;
-		$config['uri_segment'] = 3;
-		$config['first_link'] = 'First';
-		$config['last_link'] = 'Last';
-		$config['next_link'] = 'Next';
-		$config['prev_link'] = 'Prev';
-		$config['full_tag_open']	= '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-		$config['full_tag_close']   = '</ul></nav></div>';
-		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-		$config['num_tag_close']    = '</span></li>';
-		$config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-		$config['cur_tag_close']    = '<span class="sr-only"></span></span></li>';
-		$config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-		$config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['prev_tagl_close']  = '</span>Next</li>';
-		$config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-		$config['first_tagl_close'] = '</span></li>';
-		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['last_tagl_close']  = '</span></li>';
-
-		$this->pagination->initialize($config);
-
-		$data['pagination'] = $this->pagination->create_links();
-		$data['row'] = $this->bebansistem_m->get_pembangkit_ren_pagination($config['per_page'], $this->uri->segment(3));
 		$data['title'] = 'Pembangkit | Perencanaan';
 		$this->template->load('template', 'beban_sistem/pembangkit/perencanaan', $data);
 	}
@@ -3929,34 +3621,6 @@ class Beban_sistem extends CI_Controller
 	//list table data realisasi pembangkit
 	public function pembangkit_realisasi()
 	{
-		$this->load->library('pagination');
-		$config['base_url'] = site_url('beban_sistem/pembangkit_realisasi');
-		$config['total_rows'] = $this->bebansistem_m->get_pembangkit_eval_pagination()->num_rows();
-		$config['per_page'] = 15;
-		$config['uri_segment'] = 3;
-		$config['first_link'] = 'First';
-		$config['last_link'] = 'Last';
-		$config['next_link'] = 'Next';
-		$config['prev_link'] = 'Prev';
-		$config['full_tag_open']	= '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-		$config['full_tag_close']   = '</ul></nav></div>';
-		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-		$config['num_tag_close']    = '</span></li>';
-		$config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-		$config['cur_tag_close']    = '<span class="sr-only"></span></span></li>';
-		$config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-		$config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['prev_tagl_close']  = '</span>Next</li>';
-		$config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-		$config['first_tagl_close'] = '</span></li>';
-		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-		$config['last_tagl_close']  = '</span></li>';
-
-		$this->pagination->initialize($config);
-
-		$data['pagination'] = $this->pagination->create_links();
-		$data['row'] = $this->bebansistem_m->get_pembangkit_eval_pagination($config['per_page'], $this->uri->segment(3));
 		$data['title'] = 'Pembangkit | Realisasi';
 		$this->template->load('template', 'beban_sistem/pembangkit/realisasi', $data);
 	}
