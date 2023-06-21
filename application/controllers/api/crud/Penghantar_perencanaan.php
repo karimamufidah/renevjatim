@@ -89,22 +89,21 @@ class Penghantar_perencanaan extends CI_Controller
     if (!$response->success) return;
 
     $this->load->model("crud/penghantar_perencanaan_m", "main");
-    $this->load->model("utilities/get_penghantar_perencanaan_for_insert_m", "existing_data");
+    $this->load->model("utilities/get_penghantar_perencanaan_id_m", "id_getter");
 
     $general_params = (object) array("tanggal" => $request->tanggal, "nama" => $request->name, "satuan" => $request->satuan);
-    $existing_data = $this->_get_existing_data($general_params);
-
-    if ($existing_data) {
-      $request->id = $existing_data->data_id;
+    
+    if ($id = $this->_get_id($general_params)) {
+      $request->id = $id;
       $this->_update_data($request);
     } else {
       $this->_insert_new_data($request);
     }
   }
 
-  private function _get_existing_data($params)
+  private function _get_id($params)
   {
-    return $this->existing_data->show($params);
+    return $this->id_getter->show($params);
   }
 
   private function _update_data($request)
