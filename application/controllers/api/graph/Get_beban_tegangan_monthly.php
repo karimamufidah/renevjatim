@@ -101,7 +101,7 @@ class Get_beban_tegangan_monthly extends CI_Controller
     $year_month_array = explode('-', $year_month);
 
     if (in_array($year_month_array[1], array(1, 3, 5, 7, 8, 10, 12))) return 31;
-    if (in_array($year_month_array[1], array(2, 4, 6, 9, 11))) return 30;
+    if (in_array($year_month_array[1], array(4, 6, 9, 11))) return 30;
 
     return $this->_is_leap_year($year_month_array[0]) ? 29 : 28;
   }
