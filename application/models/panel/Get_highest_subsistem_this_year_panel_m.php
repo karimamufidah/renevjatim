@@ -10,7 +10,7 @@ class Get_highest_subsistem_this_year_panel_m extends CI_Model
   {
     $this->db->select("main.tanggal, $column AS value, '$column' AS waktu");
     $this->db->where("status", 1);
-    $this->db->where("pasokan", "DMP");
+    $this->db->where("pasokan", "BEBAN");
     $this->db->where("subsistem", $nama);
     $this->db->where("YEAR(tanggal) = YEAR(NOW())");
     $this->db->order_by($column, "DESC");

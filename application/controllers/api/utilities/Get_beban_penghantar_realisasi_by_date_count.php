@@ -28,7 +28,7 @@ class Get_beban_penghantar_realisasi_by_date_count extends CI_Controller
   {
     if (!$response->success) return;
 
-    $this->load->model("utilities/get_beban_penghantar_perencanaan_by_date_count_m", "main");
+    $this->load->model("utilities/get_beban_penghantar_realisasi_by_date_count_m", "main");
 
     $response->data = $this->main->show($request->date);
   }

@@ -5,14 +5,18 @@
   window.onload = () => {
     crud = new LimCRUD();
     initializeDatePicker();
-    initializePenghantarData();
-    initializeIBTData();
-    initializePembangkitData();
-    initializeTrafoData();
-    initializeSistemData();
-    initializeSubsistemData();
-    initializeTeganganData();
+    initializeData();
   };
+
+  async function initializeData() {
+    await initializePenghantarData();
+    await initializeIBTData();
+    await initializePembangkitData();
+    await initializeTrafoData();
+    await initializeSistemData();
+    await initializeSubsistemData();
+    await initializeTeganganData();
+  }
 
   /** General */
   function initializeDatePicker() {

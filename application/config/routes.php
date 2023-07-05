@@ -20,6 +20,8 @@ $route['api/tegangan-realisasi']['POST'] = 'api/crud/tegangan_realisasi/store';
 $route['api/trafo-perencanaan']['POST'] = 'api/crud/trafo_perencanaan/store';
 $route['api/trafo-realisasi']['POST'] = 'api/crud/trafo_realisasi/store';
 
+$route['api/utilities/penghantar-perencanaan-mass']['POST'] = 'api/utilities/penghantar_perencanaan_mass/store';
+
 $route['api/penghantar-generator']['POST'] = 'api/generator_penghantar_table_data/index';
 $route['api/ibt-generator']['POST'] = 'api/generator_ibt_table_data/index';
 $route['api/trafo-generator']['POST'] = 'api/generator_trafo_table_data/index';

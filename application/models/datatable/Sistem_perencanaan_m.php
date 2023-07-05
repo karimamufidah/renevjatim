@@ -33,7 +33,6 @@ class Sistem_perencanaan_m extends CI_Model
     if ($q) {
       $this->db->group_start();
       $this->db->where('main.sistem LIKE', '%' . $q . '%');
-      $this->db->or_where('main.satuan LIKE', '%' . $q . '%');
       $this->db->group_end();
     }
   }
