@@ -59,7 +59,7 @@ class Get_highest_pembangkit_this_month_panel extends CI_Controller
     );
 
     usort($data, function ($firstData, $secondData) {
-      return strcmp($firstData->value, $secondData->value);
+      return (double) $firstData->value < (double) $secondData->value;
     });
 
     $data = $data[0];
