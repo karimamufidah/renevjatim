@@ -67,7 +67,6 @@ class Penghantar_perencanaan_m extends CI_Model
 
     if ($this->db->insert($this->_get_plain_table_name(), $this)) {
       $to_return->status = true;
-
       return $to_return;
     } else {
       $error = $this->db->error();

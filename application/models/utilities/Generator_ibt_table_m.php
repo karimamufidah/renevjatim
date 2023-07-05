@@ -13,10 +13,7 @@ class Generator_ibt_table_m extends CI_Model
         $this->db->where('main.nama', $params->nama);
         $this->db->where('DATE(main.logged_at)', $params->tanggal);
 
-        $query = $this->db->get($this->_get_table_name());
-        $result = $query->result();
-
-        return count($result) > 0 ? true : false;
+        return $this->db->count_all_results($this->_get_table_name());
     }
 
     private function _generate($params)
