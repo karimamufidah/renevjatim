@@ -12,10 +12,10 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
-                Beban Puncak Bulan Ini
+                Beban Dasar Bulan Ini
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800" id="tegangan-highest-this-month">0</div>
-              <small class="text-muted"><em id="tegangan-highest-this-month-datetime">Sedang memuat...</em></small>
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="tegangan-lowest-this-month">0</div>
+              <small class="text-muted"><em id="tegangan-lowest-this-month-datetime">Sedang memuat...</em></small>
             </div>
           </div>
         </div>
@@ -28,10 +28,10 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
-                Beban Puncak Tahun Ini
+                Beban Dasar Tahun Ini
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800" id="tegangan-highest-this-year">0</div>
-              <small class="text-muted"><em id="tegangan-highest-this-year-datetime">Sedang memuat...</em></small>
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="tegangan-lowest-this-year">0</div>
+              <small class="text-muted"><em id="tegangan-lowest-this-year-datetime">Sedang memuat...</em></small>
             </div>
           </div>
         </div>
@@ -44,10 +44,10 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
-                Beban Puncak Tertinggi
+                Beban Dasar Terendah
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800" id="tegangan-highest-all-time">0</div>
-              <small class="text-muted"><em id="tegangan-highest-all-time-datetime">Sedang memuat...</em></small>
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="tegangan-lowest-all-time">0</div>
+              <small class="text-muted"><em id="tegangan-lowest-all-time-datetime">Sedang memuat...</em></small>
             </div>
           </div>
         </div>

@@ -5,9 +5,9 @@
   const urlAPIBebanTeganganSelect2 = "<?php echo base_url('api/select2/beban-tegangan'); ?>";
   const urlAPIMinMaxSelect2 = "<?php echo base_url('api/select2/min-max'); ?>";
   const urlAPITeganganDatatable = "<?php echo base_url('api/datatable/tegangan-realisasi-table'); ?>";
-  const urlAPITeganganHighestThisMonth = "<?php echo base_url('api/panel/get-highest-tegangan-this-month-panel'); ?>";
-  const urlAPITeganganHighestThisYear = "<?php echo base_url('api/panel/get-highest-tegangan-this-year-panel'); ?>";
-  const urlAPITeganganHighestThisAllTime = "<?php echo base_url('api/panel/get-highest-tegangan-all-time-panel'); ?>";
+  const urlAPITeganganHighestThisMonth = "<?php echo base_url('api/panel/get-lowest-tegangan-this-month-panel'); ?>";
+  const urlAPITeganganHighestThisYear = "<?php echo base_url('api/panel/get-lowest-tegangan-this-year-panel'); ?>";
+  const urlAPITeganganHighestThisAllTime = "<?php echo base_url('api/panel/get-lowest-tegangan-all-time-panel'); ?>";
   const urlAPITeganganDailyExport = "<?php echo base_url('export/xlsx-tegangan'); ?>";
   const urlAPITeganganMonthlyExport = "<?php echo base_url('export/monthly/xlsx-tegangan'); ?>";
   const urlAPITeganganYearlyExport = "<?php echo base_url('export/yearly/xlsx-tegangan'); ?>";
@@ -80,8 +80,8 @@
       url: `${urlAPITeganganHighestThisMonth}?nama=${getValue("tegangan-panel")}`
     });
 
-    fillInner("tegangan-highest-this-month", `${data.value} kV`);
-    fillInner("tegangan-highest-this-month-datetime", getDateFormatOptions(data.logged_at));
+    fillInner("tegangan-lowest-this-month", `${data.value} kV`);
+    fillInner("tegangan-lowest-this-month-datetime", getDateFormatOptions(data.logged_at));
   }
 
   async function getAndFillTeganganHighestThisYearPanel() {
@@ -89,8 +89,8 @@
       url: `${urlAPITeganganHighestThisYear}?nama=${getValue("tegangan-panel")}`
     });
 
-    fillInner("tegangan-highest-this-year", `${data.value} kV`);
-    fillInner("tegangan-highest-this-year-datetime", getDateFormatOptions(data.logged_at));
+    fillInner("tegangan-lowest-this-year", `${data.value} kV`);
+    fillInner("tegangan-lowest-this-year-datetime", getDateFormatOptions(data.logged_at));
   }
 
   async function getAndFillTeganganHighestAllTimePanel() {
@@ -98,8 +98,8 @@
       url: `${urlAPITeganganHighestThisAllTime}?nama=${getValue("tegangan-panel")}`
     });
 
-    fillInner("tegangan-highest-all-time", `${data.value} kV`);
-    fillInner("tegangan-highest-all-time-datetime", getDateFormatOptions(data.logged_at));
+    fillInner("tegangan-lowest-all-time", `${data.value} kV`);
+    fillInner("tegangan-lowest-all-time-datetime", getDateFormatOptions(data.logged_at));
   }
 
   async function initializeTeganganDateRangePicker() {
