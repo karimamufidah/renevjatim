@@ -14,6 +14,7 @@
         </li>
       </ul>
 
+      <?php $this->load->view("components/card_delete"); ?>
       <?php $this->load->view("components/card_import"); ?>
 
       <div class="card">
@@ -36,6 +37,7 @@
             <li><a class="dropdown-item" href="<?= site_url('beban_sistem/add_trafo_ren') ?>">Manual Input</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)" onclick="showImportForm()">Import File</a></li>
           </ul>
+          <button type="button" class="btn btn-secondary float-end" style="margin-right:5px" onclick="showDeleteForm()">Delete data</button>
         </div>
 
         <div class="card-body mt-4">

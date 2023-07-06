@@ -6,7 +6,7 @@ class Delete_subsistem_realisasi_by_date_m extends CI_Model
     return "subsistem_realisasi";
   }
 
-  public function show($filters)
+  public function delete($filters)
   {
     $this->db->where("tanggal", $filters->tanggal);
 

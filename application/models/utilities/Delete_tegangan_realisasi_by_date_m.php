@@ -1,7 +1,7 @@
 <?php
 class Delete_tegangan_realisasi_by_date_m extends CI_Model
 {
-  public function show($filters)
+  public function delete($filters)
   {
     $this->db->where("tanggal", $filters->tanggal);
     $this->db->delete("tegangan_realisasi");

@@ -6,7 +6,7 @@ class Delete_ibt_perencanaan_by_date_m extends CI_Model
     return "ibt_perencanaan";
   }
 
-  public function show($filters)
+  public function delete($filters)
   {
     $this->db->where("tanggal", $filters->tanggal);
 
