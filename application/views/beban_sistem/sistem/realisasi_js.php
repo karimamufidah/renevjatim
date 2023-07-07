@@ -4,6 +4,7 @@
 <script>
   const urlAPIMain = "<?= base_url("api/sistem-realisasi"); ?>";
   const urlAPICountByDate = "<?= base_url("api/utilities/get-beban-sistem-realisasi-by-date-count"); ?>";
+  const urlAPIDeleteByDate = "<?= base_url("api/utilities/delete-sistem-realisasi-by-date"); ?>";
   const urlAPIMainDatatable = "<?php echo base_url('api/datatable/sistem-realisasi'); ?>";
   let mainDatatable = document.getElementById("main-datatable");
   let startDate;
@@ -397,5 +398,66 @@
     if (!response.success) throw response.message;
 
     return true;
+  }
+
+  /** Delete */
+  function showDeleteForm() {
+    show("delete-card");
+    hide("main-toolbar");
+  }
+
+  function hideDeleteForm() {
+    hide("delete-card");
+    show("main-toolbar");
+  }
+
+  async function postDelete() {
+    try {
+      await validateDeleteForm();
+
+      $("#modal-proses").modal("show");
+      fillProgress(0);
+
+      await deleteDataByDate({
+        date: getValue("dc-tanggal")
+      });
+
+      fillProgress(100);
+
+      setTimeout(() => {
+        $("#modal-proses").modal("hide");
+        openSuccess("Berhasil menghapus data!");
+        mainDatatable.ajax.reload();
+      }, 1000);
+    } catch (error) {
+      openFail(error);
+    }
+  }
+
+  async function validateDeleteForm() {
+    return new Promise((resolve, reject) => {
+      if (!getElement("dc-tanggal").value) reject("Tanggal harus diisi.");
+
+      resolve(true);
+    })
+  }
+
+  async function deleteDataByDate(data) {
+    const response = await crud.delete({
+      url: urlAPIDeleteByDate,
+      data: data,
+      name: "realisasi sistem"
+    });
+
+    if (!response.success) throw response.message;
+
+    return true;
+  }
+
+  /** Others */
+  function fillProgress(percentage) {
+    fillInner("mp-loading-text", percentage + "%");
+    getElement("mp-loading-progress").style.width = percentage + "%";
+    getElement("mp-loading-progress").setAttribute("aria-valuenow", percentage);
   }
 </script>

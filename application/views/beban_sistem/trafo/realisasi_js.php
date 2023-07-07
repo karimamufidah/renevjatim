@@ -7,6 +7,7 @@
 <script>
   const urlAPIMain = "<?= base_url("api/trafo-realisasi"); ?>";
   const urlAPICountByDate = "<?= base_url("api/utilities/get-beban-trafo-realisasi-by-date-count"); ?>";
+  const urlAPIDeleteByDate = "<?= base_url("api/utilities/delete-trafo-realisasi-by-date"); ?>";
   const urlAPITransformerUnitFilterSelect2 = "<?php echo base_url('api/select2/satuan-trafo-filter'); ?>";
   const urlAPIMainDatatable = "<?php echo base_url('api/datatable/trafo-realisasi'); ?>";
   let mainDatatable = document.getElementById("main-datatable");
@@ -439,5 +440,66 @@
     if (!response.success) throw response.message;
 
     return true;
+  }
+
+  /** Delete */
+  function showDeleteForm() {
+    show("delete-card");
+    hide("main-toolbar");
+  }
+
+  function hideDeleteForm() {
+    hide("delete-card");
+    show("main-toolbar");
+  }
+
+  async function postDelete() {
+    try {
+      await validateDeleteForm();
+
+      $("#modal-proses").modal("show");
+      fillProgress(0);
+
+      await deleteDataByDate({
+        date: getValue("dc-tanggal")
+      });
+
+      fillProgress(100);
+
+      setTimeout(() => {
+        $("#modal-proses").modal("hide");
+        openSuccess("Berhasil menghapus data!");
+        mainDatatable.ajax.reload();
+      }, 1000);
+    } catch (error) {
+      openFail(error);
+    }
+  }
+
+  async function validateDeleteForm() {
+    return new Promise((resolve, reject) => {
+      if (!getElement("dc-tanggal").value) reject("Tanggal harus diisi.");
+
+      resolve(true);
+    })
+  }
+
+  async function deleteDataByDate(data) {
+    const response = await crud.delete({
+      url: urlAPIDeleteByDate,
+      data: data,
+      name: "realisasi trafo"
+    });
+
+    if (!response.success) throw response.message;
+
+    return true;
+  }
+
+  /** Others */
+  function fillProgress(percentage) {
+    fillInner("mp-loading-text", percentage + "%");
+    getElement("mp-loading-progress").style.width = percentage + "%";
+    getElement("mp-loading-progress").setAttribute("aria-valuenow", percentage);
   }
 </script>

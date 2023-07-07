@@ -29,6 +29,13 @@ $route['api/utilities/delete-sistem-perencanaan-by-date']['DELETE'] = 'api/utili
 $route['api/utilities/delete-subsistem-perencanaan-by-date']['DELETE'] = 'api/utilities/delete_subsistem_perencanaan_by_date/delete';
 $route['api/utilities/delete-tegangan-perencanaan-by-date']['DELETE'] = 'api/utilities/delete_tegangan_perencanaan_by_date/delete';
 $route['api/utilities/delete-trafo-perencanaan-by-date']['DELETE'] = 'api/utilities/delete_trafo_perencanaan_by_date/delete';
+$route['api/utilities/delete-ibt-realisasi-by-date']['DELETE'] = 'api/utilities/delete_ibt_realisasi_by_date/delete';
+$route['api/utilities/delete-pembangkit-realisasi-by-date']['DELETE'] = 'api/utilities/delete_pembangkit_realisasi_by_date/delete';
+$route['api/utilities/delete-penghantar-realisasi-by-date']['DELETE'] = 'api/utilities/delete_penghantar_realisasi_by_date/delete';
+$route['api/utilities/delete-sistem-realisasi-by-date']['DELETE'] = 'api/utilities/delete_sistem_realisasi_by_date/delete';
+$route['api/utilities/delete-subsistem-realisasi-by-date']['DELETE'] = 'api/utilities/delete_subsistem_realisasi_by_date/delete';
+$route['api/utilities/delete-tegangan-realisasi-by-date']['DELETE'] = 'api/utilities/delete_tegangan_realisasi_by_date/delete';
+$route['api/utilities/delete-trafo-realisasi-by-date']['DELETE'] = 'api/utilities/delete_trafo_realisasi_by_date/delete';
 
 $route['api/penghantar-generator']['POST'] = 'api/generator_penghantar_table_data/index';
 $route['api/ibt-generator']['POST'] = 'api/generator_ibt_table_data/index';
