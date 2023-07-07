@@ -59,7 +59,7 @@ class Get_highest_trafo_this_year_panel extends CI_Controller
     );
 
     usort($data, function ($firstData, $secondData) {
-      return (double) $firstData->value < (double) $secondData->value;
+      return (double) $secondData->value <=> (double) $firstData->value;
     });
 
     $data = $data[0];

@@ -28,7 +28,7 @@ class Get_lowest_tegangan_this_year_panel extends CI_Controller
   {
     if (!$response->success) return;
 
-    $this->load->model("panel/Get_highest_tegangan_this_year_panel_m", "main");
+    $this->load->model("panel/Get_lowest_tegangan_this_year_panel_m", "main");
     $this->load->helper("jam");
 
     $data = array(
@@ -59,7 +59,7 @@ class Get_lowest_tegangan_this_year_panel extends CI_Controller
     );
 
     usort($data, function ($firstData, $secondData) {
-      return (double) $firstData->value > (double) $secondData->value;
+      return (double) $firstData->value <=> (double) $secondData->value;
     });
 
     $data = $data[0];

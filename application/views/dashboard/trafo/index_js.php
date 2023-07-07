@@ -22,14 +22,14 @@
   /** Initialize Data */
   async function initializeTrafoData() {
     await initializeTrafoSelect2Default();
-    getAndFillTrafoPanelData();
-    initializeTrafoDateRangePicker();
-    initializeTrafoDailyChart();
-    initializeTrafoMonthlyChart();
-    initializeTrafoYearlyChart();
-    updateRangeTrafoTableLabel();
-    initializeTrafoDatatable();
-    initializeTrafoSelect2();
+    await getAndFillTrafoPanelData();
+    await initializeTrafoDateRangePicker();
+    await initializeTrafoDailyChart();
+    await initializeTrafoMonthlyChart();
+    await initializeTrafoYearlyChart();
+    await updateRangeTrafoTableLabel();
+    await initializeTrafoDatatable();
+    await initializeTrafoSelect2();
   };
 
   async function initializeTrafoSelect2Default() {
@@ -74,10 +74,10 @@
     });
   }
 
-  function getAndFillTrafoPanelData() {
-    getAndFillTrafoHighestThisMonthPanel();
-    getAndFillTrafoHighestThisYearPanel();
-    getAndFillTrafoHighestAllTimePanel();
+  async function getAndFillTrafoPanelData() {
+    await getAndFillTrafoHighestThisMonthPanel();
+    await getAndFillTrafoHighestThisYearPanel();
+    await getAndFillTrafoHighestAllTimePanel();
   }
 
   async function getAndFillTrafoHighestThisMonthPanel() {

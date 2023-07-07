@@ -12,7 +12,7 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
-                Beban Dasar Bulan Ini
+                Tegangan Terendah Bulan Ini
               </div>
               <div class="h5 mb-0 font-weight-bold text-gray-800" id="tegangan-lowest-this-month">0</div>
               <small class="text-muted"><em id="tegangan-lowest-this-month-datetime">Sedang memuat...</em></small>
@@ -28,7 +28,7 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
-                Beban Dasar Tahun Ini
+                Tegangan Terendah Tahun Ini
               </div>
               <div class="h5 mb-0 font-weight-bold text-gray-800" id="tegangan-lowest-this-year">0</div>
               <small class="text-muted"><em id="tegangan-lowest-this-year-datetime">Sedang memuat...</em></small>
@@ -44,7 +44,7 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-muted text-uppercase mb-1">
-                Beban Dasar Terendah
+                Tegangan Terendah Selama Ini
               </div>
               <div class="h5 mb-0 font-weight-bold text-gray-800" id="tegangan-lowest-all-time">0</div>
               <small class="text-muted"><em id="tegangan-lowest-all-time-datetime">Sedang memuat...</em></small>

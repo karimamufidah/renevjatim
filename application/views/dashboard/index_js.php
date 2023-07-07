@@ -10,12 +10,12 @@
 
   async function initializeData() {
     await initializePenghantarData();
-    await initializeIBTData();
-    await initializePembangkitData();
-    await initializeTrafoData();
     await initializeSistemData();
     await initializeSubsistemData();
+    await initializeIBTData();
+    await initializePembangkitData();
     await initializeTeganganData();
+    await initializeTrafoData();
   }
 
   /** General */

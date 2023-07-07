@@ -1,5 +1,5 @@
 <?php
-class Get_highest_tegangan_this_year_panel_m extends CI_Model
+class Get_lowest_tegangan_this_year_panel_m extends CI_Model
 {
   private function _get_table_name()
   {
@@ -12,7 +12,8 @@ class Get_highest_tegangan_this_year_panel_m extends CI_Model
     $this->db->where("status", 1);
     $this->db->where("gardu_induk", $nama);
     $this->db->where("YEAR(tanggal) = YEAR(NOW())");
-    $this->db->order_by($column, "DESC");
+    $this->db->order_by($column, "ASC");
+    $this->db->order_by("main.tanggal", "DESC");
     $this->db->limit(1);
 
     $query = $this->db->get($this->_get_table_name());

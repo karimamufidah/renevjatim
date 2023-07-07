@@ -12,6 +12,7 @@ class Get_highest_sistem_all_time_panel_m extends CI_Model
     $this->db->where("status", 1);
     $this->db->where("sistem", $nama);
     $this->db->order_by($column, "DESC");
+    $this->db->order_by("main.tanggal", "DESC");
     $this->db->limit(1);
 
     $query = $this->db->get($this->_get_table_name());
