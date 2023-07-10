@@ -44,7 +44,7 @@ class Beban_pembangkit_m extends CI_Model
 
   private function _select_query()
   {
-    $this->db->select("main.name AS text, main.name AS id");
+    $this->db->select("main.name AS text, REPLACE(main.name, '#', '~') AS id");
   }
 
   private function _where_query($filters)

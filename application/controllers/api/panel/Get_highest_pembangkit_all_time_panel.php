@@ -22,6 +22,8 @@ class Get_highest_pembangkit_all_time_panel extends CI_Controller
   private function _validate($request, &$response)
   {
     if (!isset($request->nama)) $request->nama = "";
+
+    $request->nama = str_replace("~", "#", $request->nama);
   }
 
   private function _get_data($request, &$response)
@@ -59,7 +61,7 @@ class Get_highest_pembangkit_all_time_panel extends CI_Controller
     );
 
     usort($data, function ($firstData, $secondData) {
-      return (double) $secondData->value <=> (double) $firstData->value;
+      return (float) $secondData->value <=> (float) $firstData->value;
     });
 
     $data = $data[0];

@@ -9,6 +9,8 @@ class Get_beban_pembangkit_daily extends CI_Controller
     $request = (object) $this->input->get();
     $response = $this->_generate_response();
 
+    $request->pembangkit = str_replace("~", "#", $request->pembangkit);
+
     $this->_get_data_plan($request, $response);
     $this->_get_data_realization($request, $response);
 

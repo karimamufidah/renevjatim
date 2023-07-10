@@ -323,7 +323,7 @@
           <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
             <div class="mb-2">
               © <?= date('Y'); ?> by <a class="footer-link fw-bolder">Renev Jatim</a><br>
-              <small>v1.1.11</small>
+              <small>v1.1.12</small>
             </div>
           </div>
         </footer>

@@ -22,6 +22,8 @@ class Get_highest_pembangkit_this_year_panel extends CI_Controller
   private function _validate($request, &$response)
   {
     if (!isset($request->nama)) $request->nama = "";
+
+    $request->nama = str_replace("~", "#", $request->nama);
   }
 
   private function _get_data($request, &$response)
