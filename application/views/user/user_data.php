@@ -26,7 +26,8 @@
               <td><?= $data->username ?></td>
               <td><?= ucwords($data->name) ?></td>
               <td><?= ucwords($data->title) ?></td>
-              <td><?= $data->role == 1 ? "Admin" : "Operator" ?></td>
+              <td><?= $data->role == 1 ? "Admin" : ($data->role == 2 ? "Operator" : ($data->role == 3 ? "Internal" : ($data->role == 4 ? "Eksternal" : "Tidak Diketahui"))) ?>
+              </td>
               <td>
                 <div class="dropdown">
                   <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

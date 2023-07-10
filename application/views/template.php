@@ -80,14 +80,17 @@
 
         <ul class="menu-inner py-1">
           <!-- Dashboard -->
+          <?php if ($this->fungsi->user_login()->role == 1 || $this->session->userdata('role') == 2 || $this->session->userdata('role') == 3 || $this->session->userdata('role') == 4) { ?>
           <li <?= $this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'class="menu-item active"' : 'class="menu-item"' ?>>
             <a href="<?= site_url('dashboard') ?>" class="menu-link">
               <i class="menu-icon tf-icons bx bx-home-circle"></i>
               <div data-i18n="Dashboard">Dashboard</div>
             </a>
           </li>
+          <?php } ?>
 
           <!-- Layouts -->
+          <?php if ($this->fungsi->user_login()->role == 1 || $this->session->userdata('role') == 2 || $this->session->userdata('role') == 3) { ?>
           <li <?= $this->uri->segment(1) == 'beban_sistem' ? 'class="menu-item active open"' : 'class="menu-item"' ?>>
             <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class="menu-icon tf-icons bx bx-cube-alt"></i>
@@ -127,13 +130,17 @@
               </li>
             </ul>
           </li>
+          <?php } ?>
           <!-- Cards -->
+          <?php if ($this->fungsi->user_login()->role == 1 || $this->session->userdata('role') == 2 || $this->session->userdata('role') == 3) { ?>
           <li <?= $this->uri->segment(1) == 'tegangan' ? 'class="menu-item active"' : 'class="menu-item"' ?>>
             <a href="<?= site_url('tegangan/perencanaan') ?>" class="menu-link">
               <i class="menu-icon tf-icons bx bx-area"></i>
               <div data-i18n="Tegangan">Tegangan</div>
             </a>
           </li>
+          <?php } ?>
+          <?php if ($this->fungsi->user_login()->role == 1 || $this->session->userdata('role') == 2 || $this->session->userdata('role') == 3) { ?>
           <li <?= $this->uri->segment(1) == 'gangguan' ? 'class="menu-item active open"' : 'class="menu-item"' ?>>
             <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class="menu-icon tf-icons bx bx-error-alt"></i>
@@ -152,13 +159,17 @@
               </li>
             </ul>
           </li>
+          <?php } ?>
           <!-- Cards -->
+          <?php if ($this->fungsi->user_login()->role == 1 || $this->session->userdata('role') == 2 || $this->session->userdata('role') == 3) { ?>
           <li <?= $this->uri->segment(1) == 'defense_scheme' ? 'class="menu-item active"' : 'class="menu-item"' ?>>
             <a href="<?= site_url('defense_scheme') ?>" class="menu-link">
               <i class="menu-icon tf-icons bx bx-folder-open"></i>
               <div data-i18n="Defense Scheme">Defense Scheme</div>
             </a>
           </li>
+          <?php } ?>
+          <?php if ($this->fungsi->user_login()->role == 1 || $this->session->userdata('role') == 2 || $this->session->userdata('role') == 3) { ?>
           <li <?= $this->uri->segment(1) == 'konfigurasi' ? 'class="menu-item active open"' : 'class="menu-item"' ?>>
             <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class="menu-icon tf-icons bx bx-network-chart"></i>
@@ -177,7 +188,9 @@
               </li>
             </ul>
           </li>
+          <?php } ?>
           <!-- User interface -->
+          <?php if ($this->fungsi->user_login()->role == 1 || $this->session->userdata('role') == 2 || $this->session->userdata('role') == 3) { ?>
           <li <?= $this->uri->segment(1) == 'laporan' ? 'class="menu-item active open"' : 'class="menu-item"' ?>>
             <a href="javascript:void(0)" class="menu-link menu-toggle">
               <i class="menu-icon tf-icons bx bx-file"></i>
@@ -211,6 +224,7 @@
               </li>
             </ul>
           </li>
+          <?php } ?>
           <!-- Cards -->
           <?php if ($this->fungsi->user_login()->role == 1) { ?>
             <li <?= $this->uri->segment(1) == 'user' ? 'class="menu-item active"' : 'class="menu-item"' ?>>
@@ -221,12 +235,12 @@
             </li>
           <?php } ?>
           <!-- Cards -->
-          <li <?= $this->uri->segment(1) == 'master_data' ? 'class="menu-item active"' : 'class="menu-item"' ?>>
+          <!--li <?= $this->uri->segment(1) == 'master_data' ? 'class="menu-item active"' : 'class="menu-item"' ?>>
             <a href="<?= site_url('master_data') ?>" class="menu-link">
               <i class="menu-icon tf-icons bx bx-data"></i>
               <div data-i18n="Master Data">Master Data</div>
             </a>
-          </li>
+          </!--li-->
           <!-- Cards -->
           <?php if ($this->session->userdata('role') == 1) { ?>
             <li <?= $this->uri->segment(1) == 'audit_trail' ? 'class="menu-item active"' : 'class="menu-item"' ?>>
@@ -323,7 +337,7 @@
           <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
             <div class="mb-2">
               © <?= date('Y'); ?> by <a class="footer-link fw-bolder">Renev Jatim</a><br>
-              <small>v1.1.12</small>
+              <small>v1.1.13</small>
             </div>
           </div>
         </footer>

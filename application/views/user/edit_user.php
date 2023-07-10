@@ -67,6 +67,8 @@
                                 <?php $role = $this->input->post('role') ? $this->input->post('role') : $row->role ?>
                                 <option value="1">Admin</option>
                                 <option value="2" <?= $role == 2 ? 'selected' : null ?>>Operator</option>
+                                <option value="3" <?= $role == 3 ? 'selected' : null ?>>Internal</option>
+                                <option value="4" <?= $role == 4 ? 'selected' : null ?>>Ekternal</option>
                             </select>
                             <?= form_error('role') ?>
                         </div>

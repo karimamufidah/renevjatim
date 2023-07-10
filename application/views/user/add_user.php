@@ -67,6 +67,8 @@
                                 <option value="">Select</option>
                                 <option value="1" <?= set_value('role') == 1 ? "selected" : null ?>>Admin</option>
                                 <option value="2" <?= set_value('role') == 2 ? "selected" : null ?>>Operator</option>
+                                <option value="3" <?= set_value('role') == 2 ? "selected" : null ?>>Internal</option>
+                                <option value="4" <?= set_value('role') == 2 ? "selected" : null ?>>Eksternal</option>
                             </select>
                             <?= form_error('role') ?>
                         </div>
