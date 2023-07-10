@@ -35,7 +35,7 @@ class Xlsx_tegangan extends CI_Controller
 
   private function _get_data($request, &$response)
   {
-    $this->load->model("export/ibt_for_pemantauan_m", "xlsx");
+    $this->load->model("export/tegangan_for_pemantauan_m", "xlsx");
 
     $request->data = $this->xlsx->index((object) array(
       "nama" => $request->nama,

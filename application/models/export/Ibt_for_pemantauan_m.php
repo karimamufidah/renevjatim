@@ -3,7 +3,7 @@ class Ibt_for_pemantauan_m extends CI_Model
 {
   private function _get_table_name()
   {
-    return "trafo_realisasi_table AS main";
+    return "ibt_realisasi_table AS main";
   }
 
   public function index($filters)

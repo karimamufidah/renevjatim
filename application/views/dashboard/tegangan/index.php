@@ -208,14 +208,14 @@
 
             <div class="row mb-3">
               <div class="col-12">
-                <strong class="form-label col-12"><span id="tegangan-percentage-table-label-1">0%</span><span id="tegangan-percentage-table-label-2" class="float-end">100%</span></strong>
+                <strong class="form-label col-12"><span id="tegangan-percentage-table-label-1">0kV</span><span id="tegangan-percentage-table-label-2" class="float-end">550kV</span></strong>
                 <br>
                 <br>
                 <label for="tegangan-percentage-table-1" class="form-label col-12">Min</label>
-                <input type="range" class="form-range" min="0" max="100" step="1" id="tegangan-percentage-table-1" onchange="updateRangeTeganganTableLabel()">
+                <input type="range" class="form-range" min="0" max="550" step="1" id="tegangan-percentage-table-1" onchange="updateRangeTeganganTableLabel()">
 
                 <label for="tegangan-percentage-table-2" class="form-label col-12">Max</label>
-                <input type="range" class="form-range" min="0" max="100" step="1" id="tegangan-percentage-table-2" onchange="updateRangeTeganganTableLabel()">
+                <input type="range" class="form-range" min="0" max="550" step="1" id="tegangan-percentage-table-2" onchange="updateRangeTeganganTableLabel()">
               </div>
             </div>
 
@@ -233,7 +233,6 @@
                 <thead>
                   <tr>
                     <th style="text-align:center; width:15px">No</th>
-                    <th style="text-align:center">Nama</th>
                     <th style="text-align:center">Tanggal</th>
                     <th style="text-align:center">Pukul</th>
                     <th style="text-align:right">%</th>

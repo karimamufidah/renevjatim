@@ -145,7 +145,20 @@
     });
   }
 
-  const updateRangeTeganganTableLabel = () => updateRangeLabel("tegangan-percentage-table");
+  const updateRangeTeganganTableLabel = () => updateRangeTeganganLabel("tegangan-percentage-table");
+
+  function updateRangeTeganganLabel(mainElementID) {
+    let range1Value = parseInt(getValue(`${mainElementID}-1`));
+    let range2Value = parseInt(getValue(`${mainElementID}-2`));
+
+    if (range1Value < range2Value) {
+      fillInner(`${mainElementID}-label-1`, `${range1Value}kV`);
+      fillInner(`${mainElementID}-label-2`, `${range2Value}kV`);
+    } else {
+      fillInner(`${mainElementID}-label-1`, `${range2Value}kV`);
+      fillInner(`${mainElementID}-label-2`, `${range1Value}kV`);
+    }
+  }
 
   function initializeTeganganDatatable() {
     teganganDatatable = $('#tegangan-datatable').DataTable({
@@ -164,7 +177,7 @@
           },
         },
         {
-          "targets": [3, 4, 5],
+          "targets": [2, 3, 4],
           createdCell: function(td, cellData, rowData, row, col) {
             $(td).css("text-align", "right");
           },
@@ -196,13 +209,7 @@
         {
           "targets": [4],
           "render": function(data, type, row, meta) {
-            return `${row.mw}`;
-          }
-        },
-        {
-          "targets": [5],
-          "render": function(data, type, row, meta) {
-            return `${row.mx}`;
+            return `${row.kv}`;
           }
         }
       ],
