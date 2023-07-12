@@ -22,14 +22,14 @@
   /** Initialize Data */
   async function initializeIBTData() {
     await initializeIBTSelect2Default();
-    getAndFillIBTPanelData();
-    initializeIBTDateRangePicker();
-    initializeIBTDailyChart();
-    initializeIBTMonthlyChart();
-    initializeIBTYearlyChart();
-    updateRangeIBTTableLabel();
-    initializeIBTDatatable();
-    initializeIBTSelect2();
+    await getAndFillIBTPanelData();
+    await initializeIBTDateRangePicker();
+    await initializeIBTDailyChart();
+    await initializeIBTMonthlyChart();
+    await initializeIBTYearlyChart();
+    await updateRangeIBTTableLabel();
+    await initializeIBTDatatable();
+    await initializeIBTSelect2();
   };
 
   async function initializeIBTSelect2Default() {
@@ -74,10 +74,10 @@
     });
   }
 
-  function getAndFillIBTPanelData() {
-    getAndFillIBTHighestThisMonthPanel();
-    getAndFillIBTHighestThisYearPanel();
-    getAndFillIBTHighestAllTimePanel();
+  async function getAndFillIBTPanelData() {
+    await getAndFillIBTHighestThisMonthPanel();
+    await getAndFillIBTHighestThisYearPanel();
+    await getAndFillIBTHighestAllTimePanel();
   }
 
   async function getAndFillIBTHighestThisMonthPanel() {
@@ -152,7 +152,7 @@
 
   const updateRangeIBTTableLabel = () => updateRangeLabel("ibt-percentage-table");
 
-  function initializeIBTDatatable() {
+  async function initializeIBTDatatable() {
     ibtDatatable = $('#ibt-datatable').DataTable({
       "responsive": true,
       "ordering": false,

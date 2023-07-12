@@ -87,6 +87,7 @@ class Trafo_realisasi extends CI_Controller
 
     $this->load->model("crud/trafo_realisasi_m", "main");
     $this->load->model("utilities/get_trafo_realisasi_for_insert_m", "existing_data");
+    $this->load->model("utilities/generator_trafo_table_m", "generator");
 
     $general_params = (object) array("tanggal" => $request->tanggal, "nama" => $request->name, "satuan" => $request->satuan);
     $existing_data = $this->_get_existing_data($general_params);
@@ -97,6 +98,8 @@ class Trafo_realisasi extends CI_Controller
     } else {
       $this->_insert_new_data($request);
     }
+
+    $this->_update_table_data($general_params);
   }
 
   private function _get_existing_data($params)
@@ -222,5 +225,10 @@ class Trafo_realisasi extends CI_Controller
     $data->eval_2400 = (string) $request->at2400;
 
     $data->store();
+  }
+
+  private function _update_table_data($params)
+  {
+    $this->generator->generate_or_update($params);
   }
 }

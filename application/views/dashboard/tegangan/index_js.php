@@ -22,14 +22,14 @@
   /** Initialize Data */
   async function initializeTeganganData() {
     await initializeTeganganSelect2Default();
-    getAndFillTeganganPanelData();
-    initializeTeganganDateRangePicker();
-    initializeTeganganDailyChart();
-    initializeTeganganMonthlyChart();
-    initializeTeganganYearlyChart();
-    updateRangeTeganganTableLabel();
-    initializeTeganganDatatable();
-    initializeTeganganSelect2();
+    await getAndFillTeganganPanelData();
+    await initializeTeganganDateRangePicker();
+    await initializeTeganganDailyChart();
+    await initializeTeganganMonthlyChart();
+    await initializeTeganganYearlyChart();
+    await updateRangeTeganganTableLabel();
+    await initializeTeganganDatatable();
+    await initializeTeganganSelect2();
   };
 
   async function initializeTeganganSelect2Default() {
@@ -69,10 +69,10 @@
     });
   }
 
-  function getAndFillTeganganPanelData() {
-    getAndFillTeganganHighestThisMonthPanel();
-    getAndFillTeganganHighestThisYearPanel();
-    getAndFillTeganganHighestAllTimePanel();
+  async function getAndFillTeganganPanelData() {
+    await getAndFillTeganganHighestThisMonthPanel();
+    await getAndFillTeganganHighestThisYearPanel();
+    await getAndFillTeganganHighestAllTimePanel();
   }
 
   async function getAndFillTeganganHighestThisMonthPanel() {

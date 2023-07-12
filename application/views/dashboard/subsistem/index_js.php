@@ -21,11 +21,11 @@
   /** Initialize Data */
   async function initializeSubsistemData() {
     await initializeSubsistemSelect2Default();
-    getAndFillSubsistemPanelData();
-    initializeSubsistemDailyChart();
-    initializeSubsistemMonthlyChart();
-    initializeSubsistemYearlyChart();
-    initializeSubsistemSelect2();
+    await getAndFillSubsistemPanelData();
+    await initializeSubsistemDailyChart();
+    await initializeSubsistemMonthlyChart();
+    await initializeSubsistemYearlyChart();
+    await initializeSubsistemSelect2();
   };
 
   async function initializeSubsistemSelect2Default() {
@@ -65,10 +65,10 @@
     });
   }
 
-  function getAndFillSubsistemPanelData() {
-    getAndFillSubsistemHighestThisMonthPanel();
-    getAndFillSubsistemHighestThisYearPanel();
-    getAndFillSubsistemHighestAllTimePanel();
+  async function getAndFillSubsistemPanelData() {
+    await getAndFillSubsistemHighestThisMonthPanel();
+    await getAndFillSubsistemHighestThisYearPanel();
+    await getAndFillSubsistemHighestAllTimePanel();
   }
 
   async function getAndFillSubsistemHighestThisMonthPanel() {

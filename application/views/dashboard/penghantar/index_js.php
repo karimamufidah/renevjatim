@@ -22,14 +22,14 @@
   /** Initialize Data */
   async function initializePenghantarData() {
     await initializePenghantarSelect2Default();
-    getAndFillPenghantarPanelData();
-    initializePenghantarDateRangePicker();
-    initializePenghantarDailyChart();
-    initializePenghantarMonthlyChart();
-    initializePenghantarYearlyChart();
-    updateRangePenghantarTableLabel();
-    initializePenghantarDatatable();
-    initializePenghantarSelect2();
+    await getAndFillPenghantarPanelData();
+    await initializePenghantarDateRangePicker();
+    await initializePenghantarDailyChart();
+    await initializePenghantarMonthlyChart();
+    await initializePenghantarYearlyChart();
+    await updateRangePenghantarTableLabel();
+    await initializePenghantarDatatable();
+    await initializePenghantarSelect2();
   };
 
   async function initializePenghantarSelect2Default() {
@@ -74,10 +74,10 @@
     });
   }
 
-  function getAndFillPenghantarPanelData() {
-    getAndFillPenghantarHighestThisMonthPanel();
-    getAndFillPenghantarHighestThisYearPanel();
-    getAndFillPenghantarHighestAllTimePanel();
+  async function getAndFillPenghantarPanelData() {
+    await getAndFillPenghantarHighestThisMonthPanel();
+    await getAndFillPenghantarHighestThisYearPanel();
+    await getAndFillPenghantarHighestAllTimePanel();
   }
 
   async function getAndFillPenghantarHighestThisMonthPanel() {

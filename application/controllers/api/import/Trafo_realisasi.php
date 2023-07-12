@@ -218,4 +218,9 @@ class Trafo_realisasi extends CI_Controller
 
     $data->store();
   }
+
+  private function _update_table_data($params)
+  {
+    $this->generator->generate_or_update($params);
+  }
 }
